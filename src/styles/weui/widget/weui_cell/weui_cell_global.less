@@ -1,5 +1,5 @@
-@import "../../base/fn";
-
+@import "../../base/fn.less";
+@import '../../base/variable/weui-cell.less';
 .weui-cells {
     margin-top: @weuiCellsMarginTop;
     background-color: @weuiCellBg;
@@ -10,9 +10,11 @@
 
     // onepx
     position: relative;
+
     &:before {
         .setTopLine(@weuiCellBorderColor);
     }
+
     &:after {
         .setBottomLine(@weuiCellBorderColor);
     }
@@ -26,7 +28,7 @@
     color: @weuiTextColorGray;
     font-size: @weuiCellTipsFontSize;
 
-    & + .weui-cells {
+    &+.weui-cells {
         margin-top: 0;
     }
 }
@@ -44,33 +46,40 @@
     position: relative; //这个是为了兼容cells容器onepx方案被before挡住而做的
     display: flex;
     align-items: center;
+
     &:before {
         .setTopLine(@weuiCellBorderColor);
         left: @weuiCellGapH;
     }
+
     &:first-child {
         &:before {
             display: none;
         }
     }
 }
-.weui-cell_primary{
+
+.weui-cell_primary {
     align-items: flex-start;
 }
-.weui-cell__bd{
+
+.weui-cell__bd {
     flex: 1;
 }
+
 .weui-cell__ft {
     text-align: right;
     color: @weuiTextColorGray;
 }
+
 .vux-cell-justify {
-  height: unit(@weuiCellLineHeight, em);
-  &&:after {
-    content: ".";
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    height: 0;
-  }
+    height: unit(@weuiCellLineHeight, em);
+
+    &&:after {
+        content: ".";
+        display: inline-block;
+        width: 100%;
+        overflow: hidden;
+        height: 0;
+    }
 }

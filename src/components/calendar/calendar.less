@@ -1,0 +1,11 @@
+@import '../../styles/weui/base/fn';
+@import '../../styles/weui/base/mixin/setOnepx.less';
+
+.vux-calendar {
+    position: relative;
+
+    &:before {
+        .setTopLine(@weuiCellBorderColor);
+        left: @weuiCellGapH;
+    }
+}

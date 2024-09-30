@@ -32,14 +32,10 @@
 </template>
 
 <i18n>
-{
-  "zh-CN": {
-    "cancel": "取消"
-  },
-  "en": {
-    "cancel": "cancel"
-  }
-}
+  zh-CN:
+    cancel: 取消
+  en: 
+    cancel: cancel
 </i18n>
 
 <script>
@@ -146,11 +142,7 @@ export default {
   beforeDestroy() {
     this.fixIos(100)
     this.$refs.iOSMenu && this.$refs.iOSMenu.removeEventListener('transitionend', this.onTransitionEnd)
-  },
-
-  created() {
-    console.log(this.$i18n)
-  },
+  }
 }
 </script>
 
