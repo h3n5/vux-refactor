@@ -1,7 +1,4 @@
-import Flexbox from './flexbox'
-import FlexboxItem from './flexbox-item'
+import Flexbox from './flexbox.vue'
+import FlexboxItem from './flexbox-item.vue'
 
-export {
-  Flexbox,
-  FlexboxItem
-}
+export { Flexbox, FlexboxItem }

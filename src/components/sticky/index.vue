@@ -5,52 +5,52 @@
 </template>
 
 <script>
-import sticky from './sticky'
+import { stickyFunc } from './util.js'
 
 export default {
   name: 'sticky',
-  data () {
+  props: ['scrollBox', 'offset', 'checkStickySupport', 'disabled'],
+  data() {
     return {
-      initTimes: 0
+      initTimes: 0,
     }
   },
-  created () {
+  created() {
     this.$vux && this.$vux.bus && this.$vux.bus.$on('vux:after-view-enter', this.bindSticky)
   },
-  activated () {
+  activated() {
     if (this.initTimes > 0) {
       this.bindSticky()
     }
     this.initTimes++
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
       this.bindSticky()
     })
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.$vux && this.$vux.bus && this.$vux.bus.$off('vux:after-view-enter', this.bindSticky)
   },
   methods: {
-    bindSticky () {
+    bindSticky() {
       if (this.disabled) {
         return
       }
       this.$nextTick(() => {
-        sticky(this.$el, {
+        stickyFunc(this.$el, {
           scrollBox: this.scrollBox,
           offset: this.offset,
-          checkStickySupport: typeof this.checkStickySupport === 'undefined' ? true : this.checkStickySupport
+          checkStickySupport: typeof this.checkStickySupport === 'undefined' ? true : this.checkStickySupport,
         })
       })
-    }
+    },
   },
-  props: ['scrollBox', 'offset', 'checkStickySupport', 'disabled']
 }
 </script>
 
 <style lang="less">
-@import '../../styles/variable.less';
+@import '@/styles/variable.less';
 
 .vux-sticky-box {
   z-index: @sticky-zindex;

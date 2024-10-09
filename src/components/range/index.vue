@@ -1,11 +1,11 @@
 <template>
-  <div class="vux-range-input-box" style="position:relative;margin-right:30px;margin-left:50px;">
-    <input class="vux-range-input" v-model.number="currentValue">
+  <div class="vux-range-input-box" style="position: relative; margin-right: 30px; margin-left: 50px">
+    <input class="vux-range-input" v-model.number="currentValue" />
   </div>
 </template>
 
 <script>
-import Powerange from './powerange'
+import Powerange from './powerange.js'
 
 export default {
   name: 'range',
@@ -13,37 +13,37 @@ export default {
     decimal: Boolean,
     value: {
       default: 0,
-      type: Number
+      type: Number,
     },
     min: {
       type: Number,
-      default: 0
+      default: 0,
     },
     minHTML: String,
     maxHTML: String,
     max: {
       type: Number,
-      default: 100
+      default: 100,
     },
     step: {
       type: Number,
-      default: 1
+      default: 1,
     },
     disabled: Boolean,
     disabledOpacity: Number,
     rangeBarHeight: {
       type: Number,
-      default: 1
+      default: 1,
     },
     rangeHandleHeight: {
       type: Number,
-      default: 30
-    }
+      default: 30,
+    },
   },
-  created () {
+  created() {
     this.currentValue = this.value
   },
-  mounted () {
+  mounted() {
     const _this = this
     this.$nextTick(() => {
       let options = {
@@ -59,12 +59,12 @@ export default {
         disable: this.disabled,
         disabledOpacity: this.disabledOpacity,
         initialBarWidth: window.getComputedStyle(this.$el.parentNode).width.replace('px', '') - 80,
-        onTouchstart (e) {
+        onTouchstart(e) {
           _this.$emit('on-touchstart', e)
         },
-        onTouchend (e) {
+        onTouchend(e) {
           _this.$emit('on-touchend', e)
-        }
+        },
       }
       if (this.step !== 0) {
         options.step = this.step
@@ -80,7 +80,7 @@ export default {
     })
   },
   methods: {
-    update () {
+    update() {
       console.log('update', this.currentValue)
       let value = this.currentValue
       if (value < this.min) {
@@ -93,40 +93,40 @@ export default {
         min: this.min,
         max: this.max,
         step: this.step,
-        value
+        value,
       })
       this.currentValue = value
       this.range.setStart(this.currentValue)
       this.range.setStep()
-    }
+    },
   },
-  data () {
+  data() {
     return {
-      currentValue: 0
+      currentValue: 0,
     }
   },
   watch: {
-    currentValue (val) {
+    currentValue(val) {
       this.range && this.range.setStart(val)
       this.$emit('input', val)
       this.$emit('on-change', val)
     },
-    value (val) {
+    value(val) {
       this.currentValue = val
     },
-    min () {
+    min() {
       this.update()
     },
-    step () {
+    step() {
       this.update()
     },
-    max () {
+    max() {
       this.update()
-    }
+    },
   },
-  beforeDestroy () {
+  beforeDestroy() {
     window.removeEventListener('orientationchange', this.handleOrientationchange, false)
-  }
+  },
 }
 </script>
 
@@ -134,4 +134,3 @@ export default {
 @import '../../styles/variable.less';
 @import './powerange.less';
 </style>
-

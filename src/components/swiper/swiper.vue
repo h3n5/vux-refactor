@@ -1,35 +1,38 @@
 <template>
   <div class="vux-slider">
-    <div class="vux-swiper" :style="{height: xheight}">
+    <div class="vux-swiper" :style="{ height: xheight }">
       <slot></slot>
 
       <div
-      class="vux-swiper-item"
-      v-for="(item, index) in list"
-      @click="clickListItem(item)"
-      :data-index="index">
+        class="vux-swiper-item"
+        v-for="(item, index) in list"
+        :key="index"
+        @click="clickListItem(item)"
+        :data-index="index"
+      >
         <a href="javascript:">
-          <div class="vux-img" :style="{backgroundImage: buildBackgroundUrl(item)}"></div>
+          <div class="vux-img" :style="{ backgroundImage: buildBackgroundUrl(item) }"></div>
           <p class="vux-swiper-desc" v-if="showDescMask">{{ item.title }}</p>
         </a>
       </div>
-
-      <div
-      v-if="listTwoLoopItem.length > 0"
-      class="vux-swiper-item vux-swiper-item-clone"
-      v-for="(item, index) in listTwoLoopItem"
-      @click="clickListItem(item)"
-      :data-index="index">
-        <a href="javascript:">
-          <div class="vux-img" :style="{backgroundImage: buildBackgroundUrl(item)}"></div>
-          <p class="vux-swiper-desc" v-if="showDescMask">{{ item.title }}</p>
-        </a>
-      </div>
-
+      <template v-if="listTwoLoopItem.length > 0">
+        <div
+          class="vux-swiper-item vux-swiper-item-clone"
+          v-for="(item, index) in listTwoLoopItem"
+          :key="index"
+          @click="clickListItem(item)"
+          :data-index="index"
+        >
+          <a href="javascript:">
+            <div class="vux-img" :style="{ backgroundImage: buildBackgroundUrl(item) }"></div>
+            <p class="vux-swiper-desc" v-if="showDescMask">{{ item.title }}</p>
+          </a>
+        </div>
+      </template>
     </div>
     <div :class="[dotsClass, 'vux-indicator', `vux-indicator-${dotsPosition}`]" v-show="showDots">
-      <a href="javascript:" v-for="key in length">
-        <i class="vux-icon-dot" :class="{'active': key - 1 === current}"></i>
+      <a href="javascript:" v-for="key in length" :key="key">
+        <i class="vux-icon-dot" :class="{ active: key - 1 === current }"></i>
       </a>
     </div>
   </div>
@@ -41,13 +44,13 @@ import { go } from '../../libs/router'
 
 export default {
   name: 'swiper',
-  created () {
+  created() {
     this.index = this.value || 0
     if (this.index) {
       this.current = this.index
     }
   },
-  mounted () {
+  mounted() {
     this.hasTwoLoopItem()
     this.$nextTick(() => {
       if (!(this.list && this.list.length === 0)) {
@@ -58,21 +61,21 @@ export default {
     })
   },
   methods: {
-    hasTwoLoopItem () {
+    hasTwoLoopItem() {
       if (this.list.length === 2 && this.loop) {
         this.listTwoLoopItem = this.list
       } else {
         this.listTwoLoopItem = []
       }
     },
-    clickListItem (item) {
+    clickListItem(item) {
       go(item.url, this.$router)
       this.$emit('on-click-list-item', JSON.parse(JSON.stringify(item)))
     },
-    buildBackgroundUrl (item) {
+    buildBackgroundUrl(item) {
       return item.fallbackImg ? `url(${item.img}), url(${item.fallbackImg})` : `url(${item.img})`
     },
-    render (index = 0) {
+    render(index = 0) {
       this.swiper && this.swiper.destroy()
       this.swiper = new Swiper({
         container: this.$el,
@@ -84,9 +87,8 @@ export default {
         duration: this.duration,
         height: this.height || this._height,
         minMovingDistance: this.minMovingDistance,
-        imgList: this.imgList
-      })
-      .on('swiped', (prev, index) => {
+        imgList: this.imgList,
+      }).on('swiped', (prev, index) => {
         this.current = index % this.length
         this.index = index % this.length
       })
@@ -94,7 +96,7 @@ export default {
         this.swiper.go(index)
       }
     },
-    rerender () {
+    rerender() {
       if (!this.$el || this.hasRender) {
         return
       }
@@ -108,11 +110,11 @@ export default {
         this.render(this.value)
       })
     },
-    destroy () {
+    destroy() {
       this.hasRender = false
       this.swiper && this.swiper.destroy()
     },
-    getHeight () {
+    getHeight() {
       const hasHeight = parseInt(this.height, 10)
       if (hasHeight) return this.height
       if (!hasHeight) {
@@ -121,88 +123,88 @@ export default {
         }
         return '180px'
       }
-    }
+    },
   },
   props: {
     list: {
       type: Array,
-      default () {
+      default() {
         return []
-      }
+      },
     },
     direction: {
       type: String,
-      default: 'horizontal'
+      default: 'horizontal',
     },
     showDots: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showDescMask: {
       type: Boolean,
-      default: true
+      default: true,
     },
     dotsPosition: {
       type: String,
-      default: 'right'
+      default: 'right',
     },
     dotsClass: String,
     auto: Boolean,
     loop: Boolean,
     interval: {
       type: Number,
-      default: 3000
+      default: 3000,
     },
     threshold: {
       type: Number,
-      default: 50
+      default: 50,
     },
     duration: {
       type: Number,
-      default: 300
+      default: 300,
     },
     height: {
       type: String,
-      default: 'auto'
+      default: 'auto',
     },
     aspectRatio: Number,
     minMovingDistance: {
       type: Number,
-      default: 0
+      default: 0,
     },
     value: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
-  data () {
+  data() {
     return {
       hasRender: false,
       current: this.index || 0,
       xheight: 'auto',
       length: this.list.length,
       index: 0,
-      listTwoLoopItem: [] // issue #1484
+      listTwoLoopItem: [], // issue #1484
     }
   },
   watch: {
-    auto (val) {
+    auto(val) {
       if (!val) {
         this.swiper && this.swiper.stop()
       } else {
         this.swiper && this.swiper._auto()
       }
     },
-    list (val, oldVal) {
+    list(val, oldVal) {
       if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
         this.rerender()
       }
     },
-    current (currentIndex) {
+    current(currentIndex) {
       this.index = currentIndex
       this.$emit('on-index-change', currentIndex)
     },
-    index (val) {
+    index(val) {
       const _this = this
       if (val !== this.current) {
         this.$nextTick(() => {
@@ -211,15 +213,14 @@ export default {
       }
       this.$emit('input', val)
     },
-    value (val) {
+    value(val) {
       this.index = val
-    }
+    },
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.destroy()
-  }
+  },
 }
-
 </script>
 
 <style lang="less">
@@ -231,7 +232,8 @@ export default {
   overflow: hidden;
   position: relative;
 
-  > .@{pre}-indicator, .@{pre}-indicator-right {
+  > .@{pre}-indicator,
+  .@{pre}-indicator-right {
     position: absolute;
     right: 15px;
     bottom: 10px;
@@ -251,13 +253,12 @@ export default {
       > .@{pre}-icon-dot.active {
         background-color: @swiper-indicator-active-color;
       }
-
     }
   }
 
   > .@{pre}-indicator-center {
     right: 50%;
-    transform: translateX(50%)
+    transform: translateX(50%);
   }
 
   > .@{pre}-indicator-left {
@@ -298,15 +299,14 @@ export default {
           font-size: 16px;
           padding: 20px 50px 12px 13px;
           margin: 0;
-          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .7) 100%);
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.7) 100%);
           color: #fff;
-          text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           word-wrap: normal;
         }
-
       }
     }
   }

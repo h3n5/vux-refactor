@@ -1,17 +1,35 @@
 <template>
-  <div class="vux-search-box" :class="{ 'vux-search-fixed': isFixed }"
-    :style="{ top: isFixed ? top : '', position: fixPosition }">
+  <div
+    class="vux-search-box"
+    :class="{ 'vux-search-fixed': isFixed }"
+    :style="{ top: isFixed ? top : '', position: fixPosition }"
+  >
     <div class="weui-search-bar" :class="{ 'weui-search-bar_focusing': !isCancel || currentValue }">
       <slot name="left"></slot>
       <form class="weui-search-bar__form" @submit.prevent="$emit('on-submit', value)" action=".">
-        <label :for="`search_input_${uuid}`" class="vux-search-mask" @click="touch"
-          v-show="!isFixed && autoFixed"></label>
+        <label
+          :for="`search_input_${uuid}`"
+          class="vux-search-mask"
+          @click="touch"
+          v-show="!isFixed && autoFixed"
+        ></label>
         <div class="weui-search-bar__box">
           <i class="weui-icon-search"></i>
-          <input v-model="currentValue" ref="input" :type="type" autocomplete="off" class="weui-search-bar__input"
-            :id="`search_input_${uuid}`" :placeholder="placeholder" :required="required" @focus="onFocus" @blur="onBlur"
-            @compositionstart="onComposition($event, 'start')" @compositionend="onComposition($event, 'end')"
-            @input="onComposition($event, 'input')" />
+          <input
+            v-model="currentValue"
+            ref="input"
+            :type="type"
+            autocomplete="off"
+            class="weui-search-bar__input"
+            :id="`search_input_${uuid}`"
+            :placeholder="placeholder"
+            :required="required"
+            @focus="onFocus"
+            @blur="onBlur"
+            @compositionstart="onComposition($event, 'start')"
+            @compositionend="onComposition($event, 'end')"
+            @input="onComposition($event, 'input')"
+          />
           <a href="javascript:" class="weui-icon-clear" @click="clear" v-show="currentValue"></a>
         </div>
         <label :for="`search_input_${uuid}`" class="weui-search-bar__label" v-show="!isFocus && !value">
@@ -19,13 +37,14 @@
           <span>{{ placeholder || $t('placeholder') }}</span>
         </label>
       </form>
-      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancel">{{ cancelText || $t('cancel_text') }}
+      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancel">
+        {{ cancelText || $t('cancel_text') }}
       </a>
       <slot name="right"></slot>
     </div>
     <div class="weui-cells vux-search_show" v-show="isFixed">
       <slot></slot>
-      <div class="weui-cell weui-cell_access" v-for="item in results" @click="handleResultClick(item)">
+      <div class="weui-cell weui-cell_access" v-for="(item, i) in results" :key="i" @click="handleResultClick(item)">
         <div class="weui-cell__bd weui-cell_primary">
           <p>{{ item.title }}</p>
         </div>
@@ -42,9 +61,13 @@
     cancel_text: 取消
     placeholder: 搜索
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
-import uuidMixin from '@/mixins/uuid'
+import uuidMixin from '@/mixins/uuid.js'
 
 export default {
   name: 'search',
@@ -52,37 +75,37 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'search'
+      default: 'search',
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placeholder: String,
     cancelText: String,
     value: {
       type: String,
-      default: ''
+      default: '',
     },
     results: {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     autoFixed: {
       type: Boolean,
-      default: true
+      default: true,
     },
     top: {
       type: String,
-      default: '0px'
+      default: '0px',
     },
     position: {
       type: String,
-      default: 'fixed'
+      default: 'fixed',
     },
-    autoScrollToTop: Boolean
+    autoScrollToTop: Boolean,
   },
   created() {
     if (this.value) {
@@ -95,7 +118,7 @@ export default {
         return this.position === 'absolute' ? 'absolute' : 'fixed'
       }
       return 'static'
-    }
+    },
   },
   methods: {
     emitEvent() {
@@ -162,7 +185,7 @@ export default {
     onBlur() {
       this.isFocus = false
       this.$emit('on-blur')
-    }
+    },
   },
   data() {
     return {
@@ -170,7 +193,7 @@ export default {
       currentValue: '',
       isCancel: true,
       isFocus: false,
-      isFixed: false
+      isFixed: false,
     }
   },
   watch: {
@@ -184,12 +207,13 @@ export default {
             window.scrollTo(0, 0)
           }, 150)
         }
-      } else { }
+      } else {
+      }
     },
     value(val) {
       this.currentValue = val
-    }
-  }
+    },
+  },
 }
 </script>
 

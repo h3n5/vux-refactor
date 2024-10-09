@@ -10,9 +10,9 @@
 
 <script>
 import objectAssign from 'object-assign'
-import XScroll from 'vux-xscroll/build/cmd/xscroll.js'
-import Pulldown from 'vux-xscroll/build/cmd/plugins/pulldown'
-import Pullup from 'vux-xscroll/build/cmd/plugins/pullup'
+import * as XScroll from './build/cmd/xscroll.js'
+import * as Pulldown from './build/cmd/plugins/pulldown.js'
+import * as Pullup from './build/cmd/plugins/pullup.js'
 
 const pulldownDefaultConfig = () => ({
   content: 'Pull Down To Refresh',
@@ -21,7 +21,7 @@ const pulldownDefaultConfig = () => ({
   downContent: 'Pull Down To Refresh',
   upContent: 'Release To Refresh',
   loadingContent: 'Loading...',
-  clsPrefix: 'xs-plugin-pulldown-'
+  clsPrefix: 'xs-plugin-pulldown-',
 })
 
 const pullupDefaultConfig = () => ({
@@ -32,7 +32,7 @@ const pullupDefaultConfig = () => ({
   downContent: 'Release To Refresh',
   upContent: 'Pull Up To Refresh',
   loadingContent: 'Loading...',
-  clsPrefix: 'xs-plugin-pullup-'
+  clsPrefix: 'xs-plugin-pullup-',
 })
 
 export default {
@@ -43,9 +43,9 @@ export default {
       default: () => {
         return {
           pulldownStatus: '',
-          pullupStatus: ''
+          pullupStatus: '',
         }
-      }
+      },
     },
     height: String,
     lockX: Boolean,
@@ -54,63 +54,63 @@ export default {
     scrollbarY: Boolean,
     bounce: {
       type: Boolean,
-      default: true
+      default: true,
     },
     useOriginScroll: {
       type: Boolean,
-      default: false
+      default: false,
     },
     useTransition: {
       type: Boolean,
-      default: true
+      default: true,
     },
     preventDefault: {
       type: Boolean,
-      default: false
+      default: false,
     },
     stopPropagation: Boolean,
     boundryCheck: {
       type: Boolean,
-      default: true
+      default: true,
     },
     gpuAcceleration: {
       type: Boolean,
-      default: true
+      default: true,
     },
     usePulldown: {
       type: Boolean,
-      default: false
+      default: false,
     },
     usePullup: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
-    * refer to: http://xscroll.github.io/node_modules/xscroll/doc/PullDown.html
-    */
+     * refer to: http://xscroll.github.io/node_modules/xscroll/doc/PullDown.html
+     */
     pulldownConfig: {
       type: Object,
-      default () {
+      default() {
         return {}
-      }
+      },
     },
     pullupConfig: {
       type: Object,
-      default () {
+      default() {
         return {}
-      }
+      },
     },
     enableHorizontalSwiping: {
       type: Boolean,
-      default: false
+      default: false,
     },
     scrollBottomOffset: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   methods: {
-    reset (scrollPosition, duration, easing) {
+    reset(scrollPosition, duration, easing) {
       if (scrollPosition) {
         if (typeof scrollPosition.left !== 'undefined') {
           this._xscroll.scrollLeft(scrollPosition.left, duration, easing)
@@ -121,30 +121,30 @@ export default {
       }
       this._xscroll && this._xscroll.resetSize()
     },
-    donePulldown () {
+    donePulldown() {
       this.pulldown.reset(() => {
         // repaint
         this.reset()
       })
       this.currentValue.pulldownStatus = 'default'
     },
-    disablePullup () {
+    disablePullup() {
       // this._xscroll.unplug(this.pullup)
       this.pullup.stop()
       this.currentValue.pullupStatus = 'disabled'
     },
-    enablePullup () {
+    enablePullup() {
       this.currentValue.pullupStatus = 'default'
       this.pullup.restart()
     },
-    donePullup () {
+    donePullup() {
       this.pullup.complete()
       this.reset()
       this.currentValue.pullupStatus = 'default'
     },
-    getStyles () {
+    getStyles() {
       let height = this.height
-      if (!this.height && (this.$el && !this.$el.style.height) && this.lockX) {
+      if (!this.height && this.$el && !this.$el.style.height && this.lockX) {
         height = `${document.documentElement.clientHeight}px`
         this.reset()
       }
@@ -153,15 +153,15 @@ export default {
         height = `${document.documentElement.clientHeight + parseInt(this.height)}px`
       }
       this.styles = {
-        height: `${height}`
+        height: `${height}`,
       }
-    }
+    },
   },
-  created () {
+  created() {
     if (!this.value) {
       this.currentValue = {
         pulldownStatus: '',
-        pullupStatus: ''
+        pullupStatus: '',
       }
     } else {
       this.currentValue = this.value
@@ -172,10 +172,10 @@ export default {
       }, 100)
     }
   },
-  data () {
+  data() {
     return {
       currentValue: {},
-      styles: {}
+      styles: {},
     }
   },
   watch: {
@@ -183,9 +183,9 @@ export default {
       handler: function (val) {
         this.$emit('input', pure(val))
       },
-      deep: true
+      deep: true,
     },
-    height () {
+    height() {
       this.getStyles()
     },
     value: {
@@ -203,10 +203,10 @@ export default {
           this.enablePullup()
         }
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
-  mounted () {
+  mounted() {
     this.uuid = Math.random().toString(36).substring(3, 8)
     this.$nextTick(() => {
       this.$el.setAttribute('id', `vux-scroller-${this.uuid}`)
@@ -231,7 +231,7 @@ export default {
         preventDefault: this.preventDefault,
         boundryCheck: this.boundryCheck,
         gpuAcceleration: this.gpuAcceleration,
-        stopPropagation: this.stopPropagation
+        stopPropagation: this.stopPropagation,
       })
 
       this._xscroll.on('scroll', () => {
@@ -239,7 +239,7 @@ export default {
           const top = this._xscroll.getScrollTop()
           this.$emit('on-scroll', {
             top: top,
-            left: this._xscroll.getScrollLeft()
+            left: this._xscroll.getScrollLeft(),
           })
           const containerHeight = this._xscroll.containerHeight
           const scrollHeight = this._xscroll.height
@@ -307,10 +307,10 @@ export default {
     })
     this.getStyles()
   },
-  updated () {
+  updated() {
     this.reset()
   },
-  destroyed () {
+  destroyed() {
     if (this.pullup) {
       this._xscroll.unplug(this.pullup)
       this.pullup.pluginDestructor()
@@ -322,10 +322,10 @@ export default {
     window.removeEventListener('orientationchange', this.handleOrientationchange, false)
     this._xscroll.destroy()
     this._xscroll = null
-  }
+  },
 }
 
-function pure (obj) {
+function pure(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 </script>

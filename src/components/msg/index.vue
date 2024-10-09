@@ -11,8 +11,16 @@
     <div class="weui-msg__opr-area">
       <p class="weui-btn-area">
         <slot name="buttons">
-          <a v-for="button in buttons" href="javascript:;" class="weui-btn" :class="`weui-btn_${button.type}`"
-            @click="onClick(button.onClick, button.link)">{{ $t(button.text) }}</a>
+          <a
+            v-for="(button, i) in buttons"
+            href="javascript:;"
+            :key="i"
+            class="weui-btn"
+            :class="`weui-btn_${button.type}`"
+            @click="onClick(button.onClick, button.link)"
+          >
+            {{ $t(button.text) }}
+          </a>
         </slot>
       </p>
     </div>
@@ -29,13 +37,13 @@ export default {
     onClick(handler, link) {
       typeof handler === 'function' && handler()
       link && go(link, this.$router)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="less">
-@import '../../styles/weui/icon/weui_icon_font.less';
-@import '../../styles/weui/widget/weui_page/weui_msg.less';
-@import '../../styles/weui/widget/weui-button/weui-button.less';
+@import '@/styles/weui/icon/weui_icon_font.less';
+@import '@/styles/weui/widget/weui_page/weui_msg.less';
+@import '@/styles/weui/widget/weui-button/weui-button.less';
 </style>

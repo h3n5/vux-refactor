@@ -1,6 +1,10 @@
 <template>
-  <a href="javascript:;" class="weui-tabbar__item" :class="{ 'weui-bar__item_on': isActive, 'vux-tabbar-simple': simple }"
-    @click="onItemClick(true)">
+  <a
+    href="javascript:;"
+    class="weui-tabbar__item"
+    :class="{ 'weui-bar__item_on': isActive, 'vux-tabbar-simple': simple }"
+    @click="onItemClick(true)"
+  >
     <div class="weui-tabbar__icon" :class="[iconClass || $parent.iconClass, { 'vux-reddot': showDot }]" v-if="!simple">
       <slot name="icon" v-if="!simple && !(hasActiveIcon && isActive)"></slot>
       <slot name="icon-active" v-if="!simple && hasActiveIcon && isActive"></slot>
@@ -16,12 +20,12 @@
 
 <script>
 import { childMixin } from '@/mixins/multi-items'
-import Badge from '../badge'
+import Badge from '@/components/badge/index.vue'
 
 export default {
   name: 'tabbar-item',
   components: {
-    Badge
+    Badge,
   },
   mounted() {
     if (!this.$slots.icon) {
@@ -35,22 +39,22 @@ export default {
   props: {
     showDot: {
       type: Boolean,
-      default: false
+      default: false,
     },
     badge: String,
     link: [String, Object],
-    iconClass: String
+    iconClass: String,
   },
   computed: {
     isActive() {
       return this.$parent.index === this.currentIndex
-    }
+    },
   },
   data() {
     return {
       simple: false,
-      hasActiveIcon: false
+      hasActiveIcon: false,
     }
-  }
+  },
 }
 </script>

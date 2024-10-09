@@ -1,131 +1,169 @@
 <template>
-	<div class="vux-x-input weui-cell"
-		:class="{
-			'weui-cell_warn': showWarn,
-			'disabled': disabled,
-			'vux-x-input-has-right-full': hasRightFullHeightSlot
-		}">
+  <div
+    class="vux-x-input weui-cell"
+    :class="{
+      'weui-cell_warn': showWarn,
+      disabled: disabled,
+      'vux-x-input-has-right-full': hasRightFullHeightSlot,
+    }"
+  >
     <div class="weui-cell__hd">
       <div :style="labelStyles" v-if="hasRestrictedLabel">
         <slot name="restricted-label"></slot>
       </div>
       <slot name="label">
-        <label class="weui-label" :class="labelClass" :style="{width: labelWidth || $parent.labelWidth || labelWidthComputed, textAlign: $parent.labelAlign, marginRight: $parent.labelMarginRight}" v-if="title" v-html="title" :for="`vux-x-input-${uuid}`"></label>
+        <label
+          class="weui-label"
+          :class="labelClass"
+          :style="{
+            width: labelWidth || $parent.labelWidth || labelWidthComputed,
+            textAlign: $parent.labelAlign,
+            marginRight: $parent.labelMarginRight,
+          }"
+          v-if="title"
+          v-html="title"
+          :for="`vux-x-input-${uuid}`"
+        ></label>
         <inline-desc v-if="inlineDesc">{{ inlineDesc }}</inline-desc>
       </slot>
     </div>
-    <div class="weui-cell__bd weui-cell__primary" :class="placeholderAlign ? `vux-x-input-placeholder-${placeholderAlign}` : ''">
+    <div
+      class="weui-cell__bd weui-cell__primary"
+      :class="placeholderAlign ? `vux-x-input-placeholder-${placeholderAlign}` : ''"
+    >
       <input
-      :id="`vux-x-input-${uuid}`"
-      v-if="!type || type === 'text'"
-      class="weui-input"
-      :maxlength="max"
-      :autocomplete="autocomplete"
-      :autocapitalize="autocapitalize"
-      :autocorrect="autocorrect"
-      :spellcheck="spellcheck"
-      :style="inputStyle"
-      type="text"
-      :name="name"
-      :pattern="pattern"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="disabled"
-      v-model="currentValue"
-      @focus="focusHandler"
-      @blur="onBlur"
-      @keyup="onKeyUp"
-      ref="input"/>
+        :id="`vux-x-input-${uuid}`"
+        v-if="!type || type === 'text'"
+        class="weui-input"
+        :maxlength="max"
+        :autocomplete="autocomplete"
+        :autocapitalize="autocapitalize"
+        :autocorrect="autocorrect"
+        :spellcheck="spellcheck"
+        :style="inputStyle"
+        type="text"
+        :name="name"
+        :pattern="pattern"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :disabled="disabled"
+        v-model="currentValue"
+        @focus="focusHandler"
+        @blur="onBlur"
+        @keyup="onKeyUp"
+        ref="input"
+      />
       <input
-      :id="`vux-x-input-${uuid}`"
-      v-if="type === 'number'"
-      class="weui-input"
-      :maxlength="max"
-      :autocomplete="autocomplete"
-      :autocapitalize="autocapitalize"
-      :autocorrect="autocorrect"
-      :spellcheck="spellcheck"
-      :style="inputStyle"
-      type="number"
-      :name="name"
-      :pattern="pattern"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="disabled"
-      v-model="currentValue"
-      @focus="focusHandler"
-      @blur="onBlur"
-      @keyup="onKeyUp"
-      ref="input"/>
+        :id="`vux-x-input-${uuid}`"
+        v-if="type === 'number'"
+        class="weui-input"
+        :maxlength="max"
+        :autocomplete="autocomplete"
+        :autocapitalize="autocapitalize"
+        :autocorrect="autocorrect"
+        :spellcheck="spellcheck"
+        :style="inputStyle"
+        type="number"
+        :name="name"
+        :pattern="pattern"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :disabled="disabled"
+        v-model="currentValue"
+        @focus="focusHandler"
+        @blur="onBlur"
+        @keyup="onKeyUp"
+        ref="input"
+      />
       <input
-      :id="`vux-x-input-${uuid}`"
-      v-if="type === 'email'"
-      class="weui-input"
-      :maxlength="max"
-      :autocomplete="autocomplete"
-      :autocapitalize="autocapitalize"
-      :autocorrect="autocorrect"
-      :spellcheck="spellcheck"
-      :style="inputStyle"
-      type="email"
-      :name="name"
-      :pattern="pattern"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="disabled"
-      v-model="currentValue"
-      @focus="focusHandler"
-      @blur="onBlur"
-      @keyup="onKeyUp"
-      ref="input"/>
+        :id="`vux-x-input-${uuid}`"
+        v-if="type === 'email'"
+        class="weui-input"
+        :maxlength="max"
+        :autocomplete="autocomplete"
+        :autocapitalize="autocapitalize"
+        :autocorrect="autocorrect"
+        :spellcheck="spellcheck"
+        :style="inputStyle"
+        type="email"
+        :name="name"
+        :pattern="pattern"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :disabled="disabled"
+        v-model="currentValue"
+        @focus="focusHandler"
+        @blur="onBlur"
+        @keyup="onKeyUp"
+        ref="input"
+      />
       <input
-      :id="`vux-x-input-${uuid}`"
-      v-if="type === 'password'"
-      class="weui-input"
-      :maxlength="max"
-      :autocomplete="autocomplete"
-      :autocapitalize="autocapitalize"
-      :autocorrect="autocorrect"
-      :spellcheck="spellcheck"
-      :style="inputStyle"
-      type="password"
-      :name="name"
-      :pattern="pattern"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="disabled"
-      v-model="currentValue"
-      @focus="focusHandler"
-      @blur="onBlur"
-      @keyup="onKeyUp"
-      ref="input"/>
+        :id="`vux-x-input-${uuid}`"
+        v-if="type === 'password'"
+        class="weui-input"
+        :maxlength="max"
+        :autocomplete="autocomplete"
+        :autocapitalize="autocapitalize"
+        :autocorrect="autocorrect"
+        :spellcheck="spellcheck"
+        :style="inputStyle"
+        type="password"
+        :name="name"
+        :pattern="pattern"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :disabled="disabled"
+        v-model="currentValue"
+        @focus="focusHandler"
+        @blur="onBlur"
+        @keyup="onKeyUp"
+        ref="input"
+      />
       <input
-      :id="`vux-x-input-${uuid}`"
-      v-if="type === 'tel'"
-      class="weui-input"
-      :maxlength="max"
-      :autocomplete="autocomplete"
-      :autocapitalize="autocapitalize"
-      :autocorrect="autocorrect"
-      :spellcheck="spellcheck"
-      :style="inputStyle"
-      type="tel"
-      :name="name"
-      :pattern="pattern"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="disabled"
-      v-model="currentValue"
-      @focus="focusHandler"
-      @blur="onBlur"
-      @keyup="onKeyUp"
-      ref="input"/>
+        :id="`vux-x-input-${uuid}`"
+        v-if="type === 'tel'"
+        class="weui-input"
+        :maxlength="max"
+        :autocomplete="autocomplete"
+        :autocapitalize="autocapitalize"
+        :autocorrect="autocorrect"
+        :spellcheck="spellcheck"
+        :style="inputStyle"
+        type="tel"
+        :name="name"
+        :pattern="pattern"
+        :placeholder="placeholder"
+        :readonly="readonly"
+        :disabled="disabled"
+        v-model="currentValue"
+        @focus="focusHandler"
+        @blur="onBlur"
+        @keyup="onKeyUp"
+        ref="input"
+      />
     </div>
     <div class="weui-cell__ft">
-      <icon type="clear" v-show="!hasRightFullHeightSlot && !equalWith && showClear && currentValue !== '' && !readonly && !disabled && isFocus" @touchstart.native="clear"></icon>
+      <icon
+        type="clear"
+        v-show="
+          !hasRightFullHeightSlot && !equalWith && showClear && currentValue !== '' && !readonly && !disabled && isFocus
+        "
+        @touchstart.native="clear"
+      ></icon>
 
-      <icon @click.native="onClickErrorIcon" class="vux-input-icon" type="warn" :title="!valid ? firstError : ''" v-show="showWarn"></icon>
-      <icon @click.native="onClickErrorIcon" class="vux-input-icon" type="warn" v-if="!novalidate && hasLengthEqual && dirty && equalWith && !valid"></icon>
+      <icon
+        @click.native="onClickErrorIcon"
+        class="vux-input-icon"
+        type="warn"
+        :title="!valid ? firstError : ''"
+        v-show="showWarn"
+      ></icon>
+      <icon
+        @click.native="onClickErrorIcon"
+        class="vux-input-icon"
+        type="warn"
+        v-if="!novalidate && hasLengthEqual && dirty && equalWith && !valid"
+      ></icon>
 
       <icon type="success" v-show="!novalidate && equalWith && equalWith === currentValue && valid"></icon>
 
@@ -138,49 +176,46 @@
       </div>
     </div>
 
-    <toast
-    v-model="showErrorToast"
-    type="text"
-    width="auto"
-    :time="600">{{ firstError }}</toast>
+    <toast v-model="showErrorToast" type="text" width="auto" :time="600">{{ firstError }}</toast>
   </div>
 </template>
 
 <script>
 import Base from '@/libs/base'
-import Icon from '../icon'
-import Toast from '../toast'
-import InlineDesc from '../inline-desc'
+import Icon from '../icon/index.vue'
+import Toast from '../toast/index.vue'
+import InlineDesc from '../inline-desc/index.vue'
 
 import isEmail from 'validator/lib/isEmail'
 import isMobilePhone from 'validator/lib/isMobilePhone'
 
-import Debounce from '../../tools/debounce'
+import Debounce from '../../tools/debounce/index.js'
 
 import mask from 'vanilla-masker'
 
 const validators = {
-  'email': {
+  email: {
     fn: isEmail,
-    msg: '邮箱格式'
+    msg: '邮箱格式',
   },
   'china-mobile': {
-    fn (str) {
+    fn(str) {
       return isMobilePhone(str, 'zh-CN')
     },
-    msg: '手机号码'
+    msg: '手机号码',
   },
   'china-name': {
-    fn (str) {
+    fn(str) {
       return str.length >= 2 && str.length <= 6
     },
-    msg: '中文姓名'
-  }
+    msg: '中文姓名',
+  },
 }
 export default {
   name: 'x-input',
-  created () {
-    this.currentValue = (this.value === undefined || this.value === null) ? '' : (this.mask ? this.maskValue(this.value) : this.value)
+  created() {
+    this.currentValue =
+      this.value === undefined || this.value === null ? '' : this.mask ? this.maskValue(this.value) : this.value
     /* istanbul ignore if */
     if (process.env.NODE_ENV === 'development') {
       if (!this.title && !this.placeholder && !this.currentValue) {
@@ -198,7 +233,7 @@ export default {
       }, this.debounce)
     }
   },
-  beforeMount () {
+  beforeMount() {
     if (this.$slots && this.$slots['restricted-label']) {
       this.hasRestrictedLabel = true
     }
@@ -206,7 +241,7 @@ export default {
       this.hasRightFullHeightSlot = true
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this._debounce) {
       this._debounce.cancel()
     }
@@ -215,16 +250,16 @@ export default {
   components: {
     Icon,
     InlineDesc,
-    Toast
+    Toast,
   },
   props: {
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     placeholder: String,
     value: [String, Number],
@@ -238,30 +273,30 @@ export default {
     max: Number,
     showClear: {
       type: Boolean,
-      default: true
+      default: true,
     },
     equalWith: String,
     textAlign: String,
     // https://github.com/yisibl/blog/issues/3
     autocomplete: {
       type: String,
-      default: 'off'
+      default: 'off',
     },
     autocapitalize: {
       type: String,
-      default: 'off'
+      default: 'off',
     },
     autocorrect: {
       type: String,
-      default: 'off'
+      default: 'off',
     },
     spellcheck: {
       type: String,
-      default: 'false'
+      default: 'false',
     },
     novalidate: {
       type: Boolean,
-      default: false
+      default: false,
     },
     iconType: String,
     debounce: Number,
@@ -270,50 +305,53 @@ export default {
     mask: String,
     shouldToastError: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
-    labelStyles () {
-      const {$parent = {}} = this
+    labelStyles() {
+      const { $parent = {} } = this
       return {
         width: this.labelWidthComputed || $parent.labelWidth || this.labelWidthComputed,
         textAlign: $parent.labelAlign,
-        marginRight: $parent.labelMarginRight
+        marginRight: $parent.labelMarginRight,
       }
     },
-    labelClass () {
+    labelClass() {
       return {
-        'vux-cell-justify': this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
+        'vux-cell-justify':
+          this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'),
       }
     },
-    pattern () {
+    pattern() {
       if (this.keyboard === 'number' || this.isType === 'china-mobile') {
         return '[0-9]*'
       }
     },
-    labelWidthComputed () {
+    labelWidthComputed() {
       const width = this.title.replace(/[^x00-xff]/g, '00').length / 2 + 1
       if (width < 10) {
         return width + 'em'
       }
     },
-    hasErrors () {
+    hasErrors() {
       return Object.keys(this.errors).length > 0
     },
-    inputStyle () {
+    inputStyle() {
       if (this.textAlign) {
         return {
-          textAlign: this.textAlign
+          textAlign: this.textAlign,
         }
       }
     },
-    showWarn () {
-      return !this.novalidate && !this.equalWith && !this.valid && this.firstError && (this.touched || this.forceShowError)
-    }
+    showWarn() {
+      return (
+        !this.novalidate && !this.equalWith && !this.valid && this.firstError && (this.touched || this.forceShowError)
+      )
+    },
   },
   methods: {
-    scrollIntoView (time = 0) {
+    scrollIntoView(time = 0) {
       // alert('scroll into view')
       if (/iphone/i.test(navigator.userAgent)) {
         // return
@@ -326,34 +364,34 @@ export default {
         }, time)
       }
     },
-    onClickErrorIcon () {
+    onClickErrorIcon() {
       if (this.shouldToastError && this.firstError) {
         this.showErrorToast = true
       }
       this.$emit('on-click-error-icon', this.firstError)
     },
-    maskValue (val) {
+    maskValue(val) {
       const val1 = this.mask ? mask.toPattern(val, this.mask) : val
       return val1
     },
-    reset (value = '') {
+    reset(value = '') {
       this.dirty = false
       this.currentValue = value
       this.firstError = ''
       this.valid = true
     },
-    clear () {
+    clear() {
       this.currentValue = ''
       this.focus()
       this.$emit('on-click-clear-icon')
     },
-    focus () {
+    focus() {
       this.$refs.input.focus()
     },
-    blur () {
+    blur() {
       this.$refs.input.blur()
     },
-    focusHandler ($event) {
+    focusHandler($event) {
       this.$emit('on-focus', this.currentValue, $event)
       this.isFocus = true
       // this.scrollIntoView(500)
@@ -365,23 +403,23 @@ export default {
       }, 1000)
       // $event.target.
     },
-    onBlur ($event) {
+    onBlur($event) {
       this.setTouched()
       this.validate()
       this.isFocus = false
       this.$emit('on-blur', this.currentValue, $event)
     },
-    onKeyUp (e) {
+    onKeyUp(e) {
       if (e.key === 'Enter') {
         e.target.blur()
         this.$emit('on-enter', this.currentValue, e)
       }
     },
-    getError () {
+    getError() {
       let key = Object.keys(this.errors)[0]
       this.firstError = this.errors[key]
     },
-    validate () {
+    validate() {
       if (typeof this.equalWith !== 'undefined') {
         this.validateEqual()
         return
@@ -409,10 +447,10 @@ export default {
             value = this.currentValue.replace(/\s+/g, '')
           }
 
-          this.valid = validator[ 'fn' ](value)
+          this.valid = validator['fn'](value)
           if (!this.valid) {
             this.forceShowError = true
-            this.errors.format = validator[ 'msg' ] + '格式不对哦~'
+            this.errors.format = validator['msg'] + '格式不对哦~'
             this.getError()
             return
           } else {
@@ -459,7 +497,7 @@ export default {
 
       this.valid = true
     },
-    validateEqual () {
+    validateEqual() {
       if (!this.equalWith && this.currentValue) {
         this.valid = false
         this.errors.equal = '输入不一致'
@@ -481,7 +519,7 @@ export default {
       }
     },
     // #2810
-    _getInputMaskSelection (selection, direction, maskVal, loop) {
+    _getInputMaskSelection(selection, direction, maskVal, loop) {
       if (!this.mask || (loop && direction === 0)) {
         return selection
       }
@@ -495,9 +533,9 @@ export default {
         }
       }
       return selection
-    }
+    },
   },
-  data () {
+  data() {
     return {
       hasRightFullHeightSlot: false,
       hasRestrictedLabel: false,
@@ -507,22 +545,22 @@ export default {
       valid: true,
       currentValue: '',
       showErrorToast: false,
-      isFocus: false
+      isFocus: false,
     }
   },
   watch: {
-    mask (val) {
+    mask(val) {
       if (val && this.currentValue) {
         this.currentValue = this.maskValue(this.currentValue)
       }
     },
-    valid () {
+    valid() {
       this.getError()
     },
-    value (val) {
+    value(val) {
       this.currentValue = val
     },
-    equalWith (newVal) {
+    equalWith(newVal) {
       if (newVal && this.equalWith) {
         if (newVal.length === this.equalWith.length) {
           this.hasLengthEqual = true
@@ -532,7 +570,7 @@ export default {
         this.validate()
       }
     },
-    currentValue (newVal, oldVal) {
+    currentValue(newVal, oldVal) {
       let selection = null
       if (!this.equalWith && newVal) {
         this.validateEqual()
@@ -569,8 +607,8 @@ export default {
       } else {
         this.$emit('on-change', newVal)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -589,7 +627,8 @@ export default {
 .vux-x-input .vux-input-icon {
   font-size: 21px;
 }
-.vux-input-icon.weui-icon-warn:before, .vux-input-icon.weui-icon-success:before {
+.vux-input-icon.weui-icon-warn:before,
+.vux-input-icon.weui-icon-success:before {
   font-size: 21px;
 }
 .vux-x-input .weui-icon {
@@ -611,9 +650,9 @@ export default {
   margin-left: 5px;
   height: @weuiCellHeight;
   vertical-align: middle;
-	& img {
-		height: @weuiCellHeight;
-	}
+  & img {
+    height: @weuiCellHeight;
+  }
 }
 .vux-x-input-has-right-full {
   padding-top: 0;

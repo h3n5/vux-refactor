@@ -1,6 +1,5 @@
 <template>
   <div class="inline-calendar" :class="{ 'is-weekend-highlight': highlightWeekend }">
-
     <div class="calendar-header" v-show="!hideHeader">
       <div class="calendar-year">
         <span @click="go(year - 1, month)">
@@ -26,19 +25,34 @@
     <table>
       <thead v-show="!hideWeekList">
         <tr>
-          <th v-for="(week, index) in _weeksList" class="week" :class="`is-week-list-${index}`">{{ week ||
-            $t('week_day_' + index) }}</th>
+          <th v-for="(week, index) in _weeksList" :key="index" class="week" :class="`is-week-list-${index}`">
+            {{ week || $t('week_day_' + index) }}
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(day, k1) in days">
-          <td v-for="(child, k2) in day" :data-date="formatDate(year, month, child)" :data-current="currentValue"
-            :class="buildClass(k2, child)" @click="select(k1, k2, child)">
-            <slot :year="year" :month="month" :child="processDateItem(child)/* deprecated, use date instead */"
-              :date="processDateItem(child)" class-name="vux-calendar-each-date" :row="k1" :col="k2"
+        <tr v-for="(day, k1) in days" :key="k1">
+          <td
+            v-for="(child, k2) in day"
+            :key="k2"
+            :data-date="formatDate(year, month, child)"
+            :data-current="currentValue"
+            :class="buildClass(k2, child)"
+            @click="select(k1, k2, child)"
+          >
+            <slot
+              :year="year"
+              :month="month"
+              :child="processDateItem(child) /* deprecated, use date instead */"
+              :date="processDateItem(child)"
+              class-name="vux-calendar-each-date"
+              :row="k1"
+              :col="k2"
               :raw-date="formatDate(year, month, child)"
               :show-date="replaceText(child.day, formatDate(year, month, child))"
-              :is-show="showChild(year, month, child)" name="each-day">
+              :is-show="showChild(year, month, child)"
+              name="each-day"
+            >
               <span class="vux-calendar-each-date" :style="getMarkStyle(child)" v-show="showChild(year, month, child)">
                 {{ replaceText(child.day, formatDate(year, month, child)) }}
                 <span class="vux-calendar-top-tip" v-if="isShowTopTip(child)" :style="isShowTopTip(child, 'style')">
@@ -73,13 +87,17 @@
     week_day_5: 五
     week_day_6: 六
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
 import format from '../datetime/format'
 import { getDays, zero, isBetween } from './util'
 import props from './props'
 import calendarMarksMixin from '@/mixins/calendar-marks'
-
+import i18n from '@/i18n.js'
 export default {
   name: 'inline-calendar',
   mixins: [calendarMarksMixin],
@@ -93,7 +111,7 @@ export default {
       today: format(new Date(), 'YYYY-MM-DD'),
       months: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
       currentValue: '',
-      viewChangeEventCount: -1
+      viewChangeEventCount: -1,
     }
   },
   created() {
@@ -117,19 +135,16 @@ export default {
       }
       if (!this.weeksList || !this.weeksList.length) {
         // tip for older vux-loader
-        if (typeof V_LOCALE === 'undefined') {
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('[VUX warn] 抱歉，inline-calendar 组件需要升级 vux-loader 到最新版本才能正常使用')
-          }
+        const V_LOCALE = i18n.locale
+        if (V_LOCALE === 'en') {
+          // eslint-disable-line
+          return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+        } else if (V_LOCALE === 'zh-CN') {
+          // eslint-disable-line
           return ['日', '一', '二', '三', '四', '五', '六']
-        } else {
-          if (V_LOCALE === 'en') { // eslint-disable-line
-            return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-          } else if (V_LOCALE === 'zh-CN') { // eslint-disable-line
-            return ['日', '一', '二', '三', '四', '五', '六']
-          } else if (V_LOCALE === 'MULTI') { // eslint-disable-line
-            return [0, 0, 0, 0, 0, 0, 0]
-          }
+        } else if (V_LOCALE === 'MULTI') {
+          // eslint-disable-line
+          return [0, 0, 0, 0, 0, 0, 0]
         }
       }
     },
@@ -142,7 +157,7 @@ export default {
     },
     currentYearMonth() {
       return this.year + this.month
-    }
+    },
   },
   watch: {
     value(val) {
@@ -188,23 +203,27 @@ export default {
       const lastDate = lastLine[lastLine.length - 1]
 
       let days = []
-      this.days.forEach(line => {
+      this.days.forEach((line) => {
         days = days.concat(line)
       })
-      days = days.filter(date => {
+      days = days.filter((date) => {
         return !date.isLastMonth && !date.isNextMonth
       })
       this.viewChangeEventCount++
-      this.$emit('on-view-change', {
-        year: this.year,
-        month: this.month + 1,
-        firstDate: this.days[0][0].formatedDate,
-        lastDate: lastDate.formatedDate,
-        firstCurrentMonthDate: days[0].formatedDate,
-        lastCurrentMonthDate: days[days.length - 1].formatedDate,
-        allDates: this.days
-      }, this.viewChangeEventCount)
-    }
+      this.$emit(
+        'on-view-change',
+        {
+          year: this.year,
+          month: this.month + 1,
+          firstDate: this.days[0][0].formatedDate,
+          lastDate: lastDate.formatedDate,
+          firstCurrentMonthDate: days[0].formatedDate,
+          lastCurrentMonthDate: days[days.length - 1].formatedDate,
+          allDates: this.days,
+        },
+        this.viewChangeEventCount
+      )
+    },
   },
   methods: {
     processDateItem(item) {
@@ -284,10 +303,10 @@ export default {
         }
       }
       const className = {
-        'current': isCurrent,
+        current: isCurrent,
         'is-disabled': this.isDisabled(child),
         'is-today': child.isToday,
-        [`is-week-${index}`]: true
+        [`is-week-${index}`]: true,
       }
       return className
     },
@@ -302,7 +321,7 @@ export default {
         rangeEnd: this.convertDate(this.endDate),
         returnSixRows: this.returnSixRows,
         disablePast: this.disablePast,
-        disableFuture: this.disableFuture
+        disableFuture: this.disableFuture,
       })
 
       if (this.year === data.year && this.month === data.month && !force) {
@@ -351,7 +370,8 @@ export default {
         // not in range
         if (!this.isBetween(data.formatedDate)) {
           return
-        } else { // in range but disabled by disableDateFunction
+        } else {
+          // in range but disabled by disableDateFunction
           if (this.disableDateFunction && this.disableDateFunction(data)) {
             return
           }
@@ -393,20 +413,24 @@ export default {
     },
     showChild(year, month, child) {
       if (this.replaceText(child.day, this.formatDate(year, month, child))) {
-        return (!child.isLastMonth && !child.isNextMonth) || (child.isLastMonth && this.showLastMonth) || (child.isNextMonth && this.showNextMonth)
+        return (
+          (!child.isLastMonth && !child.isNextMonth) ||
+          (child.isLastMonth && this.showLastMonth) ||
+          (child.isNextMonth && this.showNextMonth)
+        )
       } else {
         return false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="less">
 @import '../../styles/variable.less';
 
-.calendar-year>span,
-.calendar-month>span {
+.calendar-year > span,
+.calendar-month > span {
   position: absolute;
   top: 0;
   left: 0;
@@ -416,8 +440,8 @@ export default {
   height: 24px;
 }
 
-.calendar-year>span.calendar-header-right-arrow,
-.calendar-month>span.calendar-header-right-arrow {
+.calendar-year > span.calendar-header-right-arrow,
+.calendar-month > span.calendar-header-right-arrow {
   left: auto;
   right: 0;
 }
@@ -469,7 +493,7 @@ export default {
   overflow: hidden;
 }
 
-.calendar-header>div {
+.calendar-header > div {
   float: left;
   width: 50%;
   text-align: center;
@@ -492,7 +516,7 @@ export default {
   width: 30px;
   margin: 5px;
   color: #39b5b8;
-  font-family: "SimSun";
+  font-family: 'SimSun';
 }
 
 .calendar-title {
@@ -523,7 +547,7 @@ export default {
   width: 100%;
   background-color: @calendar-bg-color;
   border-radius: 2px;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .inline-calendar td.is-today,
@@ -541,16 +565,16 @@ export default {
   position: absolute;
   left: 30px;
   top: -10px;
-  content: "";
+  content: '';
   border: 5px solid rgba(0, 0, 0, 0);
-  border-bottom-color: #DEDEDE;
+  border-bottom-color: #dedede;
 }
 
 .calendar:after {
   position: absolute;
   left: 30px;
   top: -9px;
-  content: "";
+  content: '';
   border: 5px solid rgba(0, 0, 0, 0);
   border-bottom-color: #fff;
 }
@@ -579,7 +603,7 @@ export default {
   color: @calendar-disabled-font-color;
 }
 
-.inline-calendar td>span.vux-calendar-each-date {
+.inline-calendar td > span.vux-calendar-each-date {
   position: relative;
   display: inline-block;
   width: @calendar-each-date-item-size;
@@ -591,7 +615,7 @@ export default {
   box-sizing: border-box;
 }
 
-.inline-calendar td.current>span.vux-calendar-each-date {
+.inline-calendar td.current > span.vux-calendar-each-date {
   background-color: @calendar-selected-bg-color;
   color: #fff !important;
 }

@@ -1,8 +1,14 @@
 <template>
   <div class="vux-confirm">
-    <x-dialog v-model="showValue" :dialog-class="theme === 'android' ? 'weui-dialog weui-skin_android' : 'weui-dialog'"
-      :mask-transition="maskTransition" :dialog-transition="theme === 'android' ? 'vux-fade' : dialogTransition"
-      :hide-on-blur="hideOnBlur" :mask-z-index="maskZIndex" @on-hide="$emit('on-hide')">
+    <x-dialog
+      v-model="showValue"
+      :dialog-class="theme === 'android' ? 'weui-dialog weui-skin_android' : 'weui-dialog'"
+      :mask-transition="maskTransition"
+      :dialog-transition="theme === 'android' ? 'vux-fade' : dialogTransition"
+      :hide-on-blur="hideOnBlur"
+      :mask-z-index="maskZIndex"
+      @on-hide="$emit('on-hide')"
+    >
       <div class="weui-dialog__hd" v-if="!!title" :class="{ 'with-no-content': !showContent }">
         <strong class="weui-dialog__title">{{ title }}</strong>
       </div>
@@ -13,16 +19,34 @@
           </slot>
         </div>
         <div v-else class="vux-prompt">
-          <input class="vux-prompt-msgbox" v-bind="getInputAttrs()" v-model="msg" :placeholder="placeholder"
-            @touchend="setInputFocus" ref="input" />
+          <input
+            class="vux-prompt-msgbox"
+            v-bind="getInputAttrs()"
+            v-model="msg"
+            :placeholder="placeholder"
+            @touchend="setInputFocus"
+            ref="input"
+          />
         </div>
       </template>
       <div class="weui-dialog__ft">
-        <a v-if="showCancelButton" href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default"
-          @click="_onCancel">{{
-            cancelText || $t('cancel_text') }}</a>
-        <a v-if="showConfirmButton" href="javascript:;" class="weui-dialog__btn"
-          :class="`weui-dialog__btn_${confirmType}`" @click="_onConfirm">{{ confirmText || $t('confirm_text') }}</a>
+        <a
+          v-if="showCancelButton"
+          href="javascript:;"
+          class="weui-dialog__btn weui-dialog__btn_default"
+          @click="_onCancel"
+        >
+          {{ cancelText || $t('cancel_text') }}
+        </a>
+        <a
+          v-if="showConfirmButton"
+          href="javascript:;"
+          class="weui-dialog__btn"
+          :class="`weui-dialog__btn_${confirmType}`"
+          @click="_onConfirm"
+        >
+          {{ confirmText || $t('confirm_text') }}
+        </a>
       </div>
     </x-dialog>
   </div>
@@ -36,69 +60,73 @@
     confirm_text: 确定
     cancel_text: 取消
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
-import XDialog from '../x-dialog'
+import XDialog from '../x-dialog/index.vue'
 export default {
   name: 'confirm',
   components: {
-    XDialog
+    XDialog,
   },
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showInput: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     theme: {
       type: String,
-      default: 'ios'
+      default: 'ios',
     },
     hideOnBlur: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: String,
     confirmText: String,
     cancelText: String,
     maskTransition: {
       type: String,
-      default: 'vux-fade'
+      default: 'vux-fade',
     },
     maskZIndex: [Number, String],
     dialogTransition: {
       type: String,
-      default: 'vux-dialog'
+      default: 'vux-dialog',
     },
     content: String,
     closeOnConfirm: {
       type: Boolean,
-      default: true
+      default: true,
     },
     inputAttrs: Object,
     showContent: {
       type: Boolean,
-      default: true
+      default: true,
     },
     confirmType: {
       type: String,
-      default: 'primary'
+      default: 'primary',
     },
     showCancelButton: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showConfirmButton: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   created() {
     this.showValue = this.show
@@ -123,19 +151,21 @@ export default {
         }
         this.$emit('on-show') // emit just after msg is cleared
       }
-    }
+    },
   },
   data() {
     return {
       msg: '',
-      showValue: false
+      showValue: false,
     }
   },
   methods: {
     getInputAttrs() {
-      return this.inputAttrs || {
-        type: 'text'
-      }
+      return (
+        this.inputAttrs || {
+          type: 'text',
+        }
+      )
     },
     setInputValue(val) {
       this.msg = val
@@ -161,8 +191,8 @@ export default {
       }
       this.showValue = false
       this.$emit('on-cancel')
-    }
-  }
+    },
+  },
 }
 </script>
 

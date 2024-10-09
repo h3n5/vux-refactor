@@ -1,4 +1,4 @@
-import Eventor from '../../libs/eventor'
+import Eventor from '@/libs/eventor.js'
 
 // https://github.com/MoeKit/clocker
 var instances = []
@@ -6,17 +6,15 @@ var matchers = []
 // Miliseconds
 matchers.push(/^[0-9]*$/.source)
 // Month/Day/Year [hours:minutes:seconds]
-matchers.push(/([0-9]{1,2}\/){2}[0-9]{4}( [0-9]{1,2}(:[0-9]{2}){2})?/
-  .source)
+matchers.push(/([0-9]{1,2}\/){2}[0-9]{4}( [0-9]{1,2}(:[0-9]{2}){2})?/.source)
 // Year/Day/Month [hours:minutes:seconds] and
 // Year-Day-Month [hours:minutes:seconds]
-matchers.push(/[0-9]{4}([/-][0-9]{1,2}){2}( [0-9]{1,2}(:[0-9]{2}){2})?/
-  .source)
+matchers.push(/[0-9]{4}([/-][0-9]{1,2}){2}( [0-9]{1,2}(:[0-9]{2}){2})?/.source)
 // Cast the matchers to a regular expression object
 matchers = new RegExp(matchers.join('|'))
 // Parse a Date formatted has String to a native object
 
-function parseDateString (dateString) {
+function parseDateString(dateString) {
   // Pass through when a native object is sent
   if (dateString instanceof Date) {
     return dateString
@@ -34,29 +32,28 @@ function parseDateString (dateString) {
     }
     return new Date(dateString)
   } else {
-    throw new Error('Couldn\'t cast `' + dateString +
-      '` to a date object.')
+    throw new Error("Couldn't cast `" + dateString + '` to a date object.')
   }
 }
 // Map to convert from a directive to offset object property
 var DIRECTIVE_KEY_MAP = {
-  'Y': 'years',
-  'm': 'months',
-  'w': 'weeks',
-  'D': 'days',
-  'H': 'hours',
-  'M': 'minutes',
-  'S': 'seconds'
+  Y: 'years',
+  m: 'months',
+  w: 'weeks',
+  D: 'days',
+  H: 'hours',
+  M: 'minutes',
+  S: 'seconds',
 }
 // Returns an escaped regexp from the string
 
-function escapedRegExp (str) {
+function escapedRegExp(str) {
   var sanitize = str.toString().replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1')
   return new RegExp(sanitize)
 }
 // Time string formatter
 
-function strftime (offsetObject) {
+function strftime(offsetObject) {
   return function (format) {
     var directives = format.match(/%(-|!)?[A-Z]{1}(:[^]+)?/gi)
     var d2h = false
@@ -97,7 +94,8 @@ function strftime (offsetObject) {
         }
       }
     }
-    format = format.replace('%_M1', offsetObject.minutes_1)
+    format = format
+      .replace('%_M1', offsetObject.minutes_1)
       .replace('%_M2', offsetObject.minutes_2)
       .replace('%_S1', offsetObject.seconds_1)
       .replace('%_S2', offsetObject.seconds_2)
@@ -114,7 +112,7 @@ function strftime (offsetObject) {
 }
 // Pluralize
 
-function pluralize (format, count) {
+function pluralize(format, count) {
   var plural = 's'
   var singular = ''
   if (format) {
@@ -133,9 +131,9 @@ function pluralize (format, count) {
   }
 }
 
-function splitNumber (number) {
+function splitNumber(number) {
   number = number + ''
-  number = (number.length === 1 ? ('0' + number) : number) + ''
+  number = (number.length === 1 ? '0' + number : number) + ''
   return number.split('')
 }
 
@@ -156,7 +154,7 @@ Eventor.mixTo(Countdown)
 var pro = Countdown.prototype
 
 var fns = {
-  start () {
+  start() {
     if (this.interval !== null) {
       clearInterval(this.interval)
     }
@@ -167,13 +165,13 @@ var fns = {
     }, this.PRECISION)
     return this
   },
-  stop () {
+  stop() {
     clearInterval(this.interval)
     this.interval = null
     this._dispatchEvent('stoped')
     return this
   },
-  toggle () {
+  toggle() {
     if (this.interval) {
       this.stop()
     } else {
@@ -181,21 +179,21 @@ var fns = {
     }
     return this
   },
-  pause () {
+  pause() {
     return this.stop()
   },
-  resume () {
+  resume() {
     return this.start()
   },
-  remove () {
+  remove() {
     this.stop()
     instances[this.instanceNumber] = null
   },
-  setFinalDate (value) {
+  setFinalDate(value) {
     this.finalDate = parseDateString(value) // Cast the given date
     return this
   },
-  getOffset () {
+  getOffset() {
     this.totalSecsLeft = this.finalDate.getTime() - new Date().getTime() // In miliseconds
     this.totalSecsLeft = Math.ceil(this.totalSecsLeft / 1000)
     this.totalSecsLeft = this.totalSecsLeft < 0 ? 0 : this.totalSecsLeft
@@ -207,10 +205,10 @@ var fns = {
       days: Math.floor(this.totalSecsLeft / 60 / 60 / 24),
       weeks: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 7),
       months: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 30),
-      years: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 365)
+      years: Math.floor(this.totalSecsLeft / 60 / 60 / 24 / 365),
     }
   },
-  update () {
+  update() {
     // Calculate the offsets
     this.offset = this.getOffset()
     // split offset only for days, hours, minutes, seconds and two number like 45, do not support 100
@@ -233,14 +231,14 @@ var fns = {
     }
     return this
   },
-  _dispatchEvent (eventName) {
+  _dispatchEvent(eventName) {
     var event = {}
     event.finalDate = this.finalDate
     event.offset = this.offset
     event.strftime = strftime(this.offset)
     this.emit(eventName, event)
     this.emit('tick', event)
-  }
+  },
 }
 
 for (var i in fns) {

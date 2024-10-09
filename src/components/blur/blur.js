@@ -49,7 +49,7 @@
 
  */
 
-import Eventor from '../../libs/eventor'
+import Eventor from '../../libs/eventor.js'
 
 // Random ID generator
 var randomID = function () {
@@ -58,13 +58,12 @@ var randomID = function () {
 
 // micro lib that creates SVG elements and adds attributes to it
 var SVG = {
-
   // namespaces
   svgns: 'http://www.w3.org/2000/svg',
   xlink: 'http://www.w3.org/1999/xlink',
 
   // creating of SVG element
-  createElement (name, attrs) {
+  createElement(name, attrs) {
     var element = document.createElementNS(SVG.svgns, name)
 
     if (attrs) {
@@ -74,16 +73,18 @@ var SVG = {
   },
 
   // setting attributes
-  setAttr (element, attrs) {
+  setAttr(element, attrs) {
     for (var i in attrs) {
-      if (i === 'href') { // path of an image should be stored as xlink:href attribute
+      if (i === 'href') {
+        // path of an image should be stored as xlink:href attribute
         element.setAttributeNS(SVG.xlink, i, attrs[i])
-      } else { // other common attribute
+      } else {
+        // other common attribute
         element.setAttribute(i, attrs[i])
       }
     }
     return element
-  }
+  },
 }
 
 // backgroundBlur PUBLIC CLASS DEFINITION
@@ -113,7 +114,7 @@ Blur.DEFAULTS = {
   imageClass: '', // CSS class that will be applied to the image and to the SVG element,
   overlayClass: '', // CSS class of the element that will overlay the blur image
   duration: false, // If the image needs to be faded in, how long should that take
-  opacity: 1 // Specify the final opacity
+  opacity: 1, // Specify the final opacity
 }
 
 Blur.prototype.setBlurAmount = function (blurAmount) {
@@ -125,11 +126,9 @@ Blur.prototype.attachListeners = function () {
   this.on('ui.blur.unload', this.fadeOut.bind(this))
 }
 
-Blur.prototype.fadeIn = function () {
-}
+Blur.prototype.fadeIn = function () {}
 
-Blur.prototype.fadeOut = function () {
-}
+Blur.prototype.fadeOut = function () {}
 
 Blur.prototype.generateBlurredImage = function (url) {
   const previousImage = this.blurredImage
@@ -155,45 +154,57 @@ Blur.prototype.createOverlay = function () {
 
 Blur.prototype.createSVG = function (url, width, height) {
   var that = this
-  var svg = SVG.createElement('svg', { // our SVG element
+  var svg = SVG.createElement('svg', {
+    // our SVG element
     xmlns: SVG.svgns,
     version: '1.1',
     width: width,
     height: height,
     id: 'blurred' + this.internalID,
-    'class': this.options.imageClass,
+    class: this.options.imageClass,
     viewBox: '0 0 ' + width + ' ' + height,
-    preserveAspectRatio: 'none'
+    preserveAspectRatio: 'none',
   })
 
   var filterId = 'blur' + this.internalID // id of the filter that is called by image element
-  var filter = SVG.createElement('filter', { // filter
-    id: filterId
+  var filter = SVG.createElement('filter', {
+    // filter
+    id: filterId,
   })
 
-  var gaussianBlur = SVG.createElement('feGaussianBlur', { // gaussian blur element
-    'in': 'SourceGraphic', // "in" is keyword. Opera generates an error if we don't put quotes
-    stdDeviation: this.options.blurAmount // intensity of blur
+  var gaussianBlur = SVG.createElement('feGaussianBlur', {
+    // gaussian blur element
+    in: 'SourceGraphic', // "in" is keyword. Opera generates an error if we don't put quotes
+    stdDeviation: this.options.blurAmount, // intensity of blur
   })
 
-  var image = SVG.createElement('image', { // The image that uses the filter of blur
+  var image = SVG.createElement('image', {
+    // The image that uses the filter of blur
     x: 0,
     y: 0,
     width: width,
     height: height,
-    'externalResourcesRequired': 'true',
+    externalResourcesRequired: 'true',
     href: url,
     style: 'filter:url(#' + filterId + ')', // filter link
-    preserveAspectRatio: 'none'
+    preserveAspectRatio: 'none',
   })
 
-  image.addEventListener('load', function () {
-    that.emit('ui.blur.loaded')
-  }, true)
+  image.addEventListener(
+    'load',
+    function () {
+      that.emit('ui.blur.loaded')
+    },
+    true
+  )
 
-  image.addEventListener('SVGLoad', function () {
-    that.emit('ui.blur.loaded')
-  }, true)
+  image.addEventListener(
+    'SVGLoad',
+    function () {
+      that.emit('ui.blur.loaded')
+    },
+    true
+  )
 
   filter.appendChild(gaussianBlur) // adding the element of blur into the element of filter
   svg.appendChild(filter) // adding the filter into the SVG
@@ -215,7 +226,7 @@ Blur.prototype.createSVG = function (url, width, height) {
 Blur.prototype.createIMG = function (url, width, height) {
   var that = this
   var originalImage = this.prependImage(url)
-  var newBlurAmount = ((this.options.blurAmount * 2) > 100) ? 100 : (this.options.blurAmount * 2)
+  var newBlurAmount = this.options.blurAmount * 2 > 100 ? 100 : this.options.blurAmount * 2
   // apply special CSS attributes to the image to blur it
   const styles = {
     // filter property here the intensity of blur multipied by two is around equal to the intensity in common browsers.
@@ -223,8 +234,8 @@ Blur.prototype.createIMG = function (url, width, height) {
     // aligning of the blurred image by vertical and horizontal
     top: -this.options.blurAmount * 2.5,
     left: -this.options.blurAmount * 2.5,
-    width: width + (this.options.blurAmount * 2.5),
-    height: height + (this.options.blurAmount * 2.5)
+    width: width + this.options.blurAmount * 2.5,
+    height: height + this.options.blurAmount * 2.5,
   }
   for (var i in styles) {
     originalImage.style[i] = styles[i]
@@ -260,6 +271,6 @@ Blur.prototype.prependImage = function (url) {
 
 export default Blur
 
-function getStyle (ele, prop) {
+function getStyle(ele, prop) {
   return window.getComputedStyle(ele, null).getPropertyValue(prop)
 }

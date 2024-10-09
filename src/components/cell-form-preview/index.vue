@@ -1,7 +1,7 @@
 <template>
   <div class="weui-cell vux-cell-form-preview" :class="{ 'vux-cell-no-border-intent': !borderIntent }">
     <div class="weui-form-preview__bd">
-      <div class="weui-form-preview__item" v-for="item in list">
+      <div class="weui-form-preview__item" v-for="(item, i) in list" :key="i">
         <label class="weui-form-preview__label" v-html="$t(item.label)"></label>
         <span class="weui-form-preview__value" v-html="$t(item.value)"></span>
       </div>
@@ -16,9 +16,9 @@ export default {
     list: Array,
     borderIntent: {
       type: Boolean,
-      default: true
-    }
-  }
+      default: true,
+    },
+  },
 }
 </script>
 

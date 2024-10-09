@@ -10,28 +10,28 @@
 </template>
 
 <script>
-import Icon from '../icon'
+import Icon from '../icon/index.vue'
 
 export default {
   name: 'check-icon',
   components: {
-    Icon
+    Icon,
   },
   methods: {
     updateValue() {
       this.$emit('update:value', !this.value)
-    }
+    },
   },
   props: {
     value: {
       type: Boolean,
-      default: false
+      default: false,
     },
     type: {
       type: String,
-      default: 'default'
-    }
-  }
+      default: 'default',
+    },
+  },
 }
 </script>
 

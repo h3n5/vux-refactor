@@ -1,6 +1,11 @@
 <template>
-  <a class="vux-datetime weui-cell" :class="{ 'weui-cell_access': !readonly }" :data-cancel-text="$t('cancel_text')"
-    :data-confirm-text="$t('confirm_text')" href="javascript:">
+  <a
+    class="vux-datetime weui-cell"
+    :class="{ 'weui-cell_access': !readonly }"
+    :data-cancel-text="$t('cancel_text')"
+    :data-confirm-text="$t('confirm_text')"
+    href="javascript:"
+  >
     <slot>
       <div>
         <slot name="title">
@@ -8,12 +13,16 @@
         </slot>
         <inline-desc v-if="inlineDesc">{{ inlineDesc }}</inline-desc>
       </div>
-      <div class="weui-cell__ft vux-cell-primary vux-datetime-value" :style="{
-        textAlign: valueTextAlign
-      }">
+      <div
+        class="weui-cell__ft vux-cell-primary vux-datetime-value"
+        :style="{
+          textAlign: valueTextAlign,
+        }"
+      >
         <span class="vux-cell-placeholder" v-if="!currentValue && placeholder">{{ placeholder }}</span>
-        <span class="vux-cell-value" v-if="currentValue">{{ displayFormat ? displayFormat(currentValue) : currentValue
-          }}</span>
+        <span class="vux-cell-value" v-if="currentValue">
+          {{ displayFormat ? displayFormat(currentValue) : currentValue }}
+        </span>
         <icon class="vux-input-icon" type="warn" v-show="!valid" :title="firstError"></icon>
       </div>
     </slot>
@@ -28,14 +37,18 @@
     cancel_text: 取消
     confirm_text: 确定
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
-import Icon from '../icon'
-import Picker from './datetimepicker'
-import Group from '../group'
-import InlineDesc from '../inline-desc'
-import Uuid from '@/mixins/uuid'
-import format from '@/tools/date/format'
+import Icon from '../icon/index.vue'
+import Picker from './datetimepicker.js'
+import Group from '../group/index.vue'
+import InlineDesc from '../inline-desc/index.vue'
+import Uuid from '@/mixins/uuid.js'
+import format from '@/tools/date/format.js'
 
 export default {
   name: 'datetime',
@@ -43,7 +56,7 @@ export default {
   components: {
     Group,
     InlineDesc,
-    Icon
+    Icon,
   },
   props: {
     format: {
@@ -55,12 +68,12 @@ export default {
           return console.error('[VUX] Datetime prop:format 使用 A 时只允许的值为： YYYY-MM-DD A')
         }
         return true
-      }
+      },
     },
     title: String,
     value: {
       type: String,
-      default: ''
+      default: '',
     },
     inlineDesc: String,
     placeholder: String,
@@ -71,35 +84,35 @@ export default {
     clearText: String,
     yearRow: {
       type: String,
-      default: '{value}'
+      default: '{value}',
     },
     monthRow: {
       type: String,
-      default: '{value}'
+      default: '{value}',
     },
     dayRow: {
       type: String,
-      default: '{value}'
+      default: '{value}',
     },
     hourRow: {
       type: String,
-      default: '{value}'
+      default: '{value}',
     },
     minuteRow: {
       type: String,
-      default: '{value}'
+      default: '{value}',
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     minHour: {
       type: Number,
-      default: 0
+      default: 0,
     },
     maxHour: {
       type: Number,
-      default: 23
+      default: 23,
     },
     startDate: {
       type: String,
@@ -109,7 +122,7 @@ export default {
           console.error('[VUX] Datetime prop:start-date 必须为 YYYY-MM-DD 格式')
         }
         return val ? val.length === 10 : true
-      }
+      },
     },
     endDate: {
       type: String,
@@ -119,7 +132,7 @@ export default {
           console.error('[VUX] Datetime prop:end-date 必须为 YYYY-MM-DD 格式')
         }
         return val ? val.length === 10 : true
-      }
+      },
     },
     valueTextAlign: String,
     displayFormat: Function,
@@ -130,7 +143,7 @@ export default {
     defaultSelectedValue: String,
     computeHoursFunction: Function,
     computeDaysFunction: Function,
-    orderMap: Object
+    orderMap: Object,
   },
   created() {
     this.isFirstSetValue = false
@@ -141,7 +154,7 @@ export default {
       currentShow: false,
       currentValue: null,
       valid: true,
-      errors: {}
+      errors: {},
     }
   },
   mounted() {
@@ -167,7 +180,7 @@ export default {
       return {
         width: this.$parent.labelWidth,
         textAlign: this.$parent.labelAlign,
-        marginRight: this.$parent.labelMarginRight
+        marginRight: this.$parent.labelMarginRight,
       }
     },
     pickerOptions() {
@@ -227,7 +240,7 @@ export default {
           _this.currentShow = true
           _this.$emit('update:show', true)
           _this.$emit('on-show')
-        }
+        },
       }
       if (this.minYear) {
         options.minYear = this.minYear
@@ -246,9 +259,9 @@ export default {
         return {}
       }
       return {
-        'vux-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'
+        'vux-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify',
       }
-    }
+    },
   },
   methods: {
     getButtonText(type) {
@@ -273,7 +286,7 @@ export default {
       }
       this.valid = true
       this.errors = {}
-    }
+    },
   },
   watch: {
     readonly(val) {
@@ -323,11 +336,11 @@ export default {
         this.currentValue = val
         this.render()
       }
-    }
+    },
   },
   beforeDestroy() {
     this.picker && this.picker.destroy()
-  }
+  },
 }
 </script>
 

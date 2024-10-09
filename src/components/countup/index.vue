@@ -1,11 +1,11 @@
 <script>
-import Countup from 'countup.js'
+import CountUp from 'countup.js'
 
 export default {
   name: 'countup',
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
-      this._countup = new Countup(this.$el, this.startVal, this.endVal, this.decimals, this.duration, this.options)
+      this._countup = new CountUp(this.$el, this.startVal, this.endVal, this.decimals, this.duration, this.options)
       if (this.start) {
         this._countup.start()
       }
@@ -14,49 +14,49 @@ export default {
   props: {
     tag: {
       type: String,
-      default: 'span'
+      default: 'span',
     },
     start: {
       type: Boolean,
-      default: true
+      default: true,
     },
     startVal: {
       type: Number,
-      default: 0
+      default: 0,
     },
     endVal: {
       type: Number,
-      required: true
+      required: true,
     },
     // number of decimal places in number
     decimals: {
       type: Number,
-      default: 0
+      default: 0,
     },
     // duration in seconds
     duration: {
       type: Number,
-      default: 2
+      default: 2,
     },
     options: {
       type: Object,
-      default () {
+      default() {
         return {}
-      }
-    }
+      },
+    },
   },
-  render (h) {
+  render(h) {
     return h(this.tag, {}, [this.startVal])
   },
   watch: {
-    start (val) {
+    start(val) {
       if (val) {
         this._countup.start()
       }
     },
-    endVal (val) {
+    endVal(val) {
       this._countup.update(val)
-    }
-  }
+    },
+  },
 }
 </script>

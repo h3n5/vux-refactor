@@ -1,27 +1,50 @@
 <template>
-  <div class="vux-selector weui-cell" :class="{
-    'weui-cell_select': !readonly,
-    'weui-cell_select-after': title
-  }">
+  <div
+    class="vux-selector weui-cell"
+    :class="{
+      'weui-cell_select': !readonly,
+      'weui-cell_select-after': title,
+    }"
+  >
     <div class="weui-cell__hd" v-if="title">
-      <label :for="`vux-selector-${uuid}`" class="weui-label" :class="labelClass" :style="cleanStyle({
-        width: $parent.labelWidth,
-        textAlign: $parent.labelAlign,
-        marginRight: $parent.labelMarginRight
-      })" v-html="title"></label>
+      <label
+        :for="`vux-selector-${uuid}`"
+        class="weui-label"
+        :class="labelClass"
+        :style="
+          cleanStyle({
+            width: $parent.labelWidth,
+            textAlign: $parent.labelAlign,
+            marginRight: $parent.labelMarginRight,
+          })
+        "
+        v-html="title"
+      ></label>
     </div>
     <div class="weui-cell__bd" v-if="!readonly">
-      <select :id="`vux-selector-${uuid}`" class="weui-select" v-model="currentValue" :name="name" :style="cleanStyle({
-        direction: direction,
-        color: color
-      })">
-        <option :value="value === null ? 'null' : ''" v-if="showPlaceholder"
-          :selected="isEmptyValue(value) && !!placeholder">{{ placeholder }}</option>
-        <v-no-ssr>
-          <option disabled v-if="fixIos"></option>
-        </v-no-ssr>
-        <option :value="one.key" v-for="one in processOptions">{{ direction === 'rtl' ? one.value + '&#x200E;' :
-          one.value }}</option>
+      <select
+        :id="`vux-selector-${uuid}`"
+        class="weui-select"
+        v-model="currentValue"
+        :name="name"
+        :style="
+          cleanStyle({
+            direction: direction,
+            color: color,
+          })
+        "
+      >
+        <option
+          :value="value === null ? 'null' : ''"
+          v-if="showPlaceholder"
+          :selected="isEmptyValue(value) && !!placeholder"
+        >
+          {{ placeholder }}
+        </option>
+        <option disabled v-if="fixIos"></option>
+        <option :value="one.key" v-for="one in processOptions" :key="one.key">
+          {{ direction === 'rtl' ? one.value + '&#x200E;' : one.value }}
+        </option>
       </select>
     </div>
     <div class="weui-cell__ft vux-selector-readonly" v-else>
@@ -72,10 +95,10 @@ export default {
       }
 
       if (isObject && this.valueMap) {
-        return this.options.map(item => {
+        return this.options.map((item) => {
           return {
             key: item[this.valueMap[0]],
-            value: item[this.valueMap[1]]
+            value: item[this.valueMap[1]],
           }
         })
       }
@@ -83,7 +106,7 @@ export default {
       return this.options.map(function (item) {
         return {
           key: item,
-          value: item
+          value: item,
         }
       })
     },
@@ -96,9 +119,9 @@ export default {
     labelClass() {
       if (!this.$parent) return {}
       return {
-        'vux-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'
+        'vux-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify',
       }
-    }
+    },
   },
   methods: {
     isEmptyValue(val) {
@@ -116,15 +139,15 @@ export default {
         return this.value
       } else {
         if (!this.valueMap) {
-          return this.options.filter(one => one.key === this.value)
+          return this.options.filter((one) => one.key === this.value)
         } else {
-          return this.options.filter(one => one[this.valueMap[0]] === this.value)
+          return this.options.filter((one) => one[this.valueMap[0]] === this.value)
         }
       }
-    }
+    },
   },
   filters: {
-    findByKey
+    findByKey,
   },
   watch: {
     value(val) {
@@ -133,14 +156,14 @@ export default {
     currentValue(val) {
       this.$emit('input', val)
       this.$emit('on-change', val)
-    }
+    },
   },
   props: {
     title: String,
     direction: String,
     options: {
       type: Array,
-      required: true
+      required: true,
     },
     name: String,
     placeholder: String,
@@ -151,20 +174,20 @@ export default {
       validator(val) {
         if (!val.length || val.length !== 2) {
           if (process.env.NODE_ENV === 'development') {
-            console.error('[VUX error] selector prop:valueMap\'s length should be 2')
+            console.error("[VUX error] selector prop:valueMap's length should be 2")
           }
           return false
         }
         return true
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       currentValue: '',
-      isIOS: false
+      isIOS: false,
     }
-  }
+  },
 }
 </script>
 

@@ -3,13 +3,26 @@
     <div v-show="title" class="weui-cells__title">{{ title }}</div>
     <slot name="after-title"></slot>
     <div class="weui-cells weui-cells_checkbox">
-      <label class="weui-cell weui-check_label" :class="{
-        'vux-checklist-label-left': labelPosition === 'left'
-      }" :for="`checkbox_${uuid}_${index}`" v-for="(one, index) in currentOptions">
+      <label
+        class="weui-cell weui-check_label"
+        :class="{
+          'vux-checklist-label-left': labelPosition === 'left',
+        }"
+        :for="`checkbox_${uuid}_${index}`"
+        v-for="(one, index) in currentOptions"
+        :key="index"
+      >
         <div class="weui-cell__hd">
-          <input type="checkbox" class="weui-check" :name="`vux-checkbox-${uuid}`" :value="getKey(one)"
-            v-model="currentValue" @change="selectItem" :id="disabled ? '' : `checkbox_${uuid}_${index}`"
-            :disabled="isDisabled(getKey(one))">
+          <input
+            type="checkbox"
+            class="weui-check"
+            :name="`vux-checkbox-${uuid}`"
+            :value="getKey(one)"
+            v-model="currentValue"
+            @change="selectItem"
+            :id="disabled ? '' : `checkbox_${uuid}_${index}`"
+            :disabled="isDisabled(getKey(one))"
+          />
           <i class="weui-icon-checked vux-checklist-icon-checked"></i>
         </div>
         <div class="weui-cell__bd">
@@ -24,10 +37,10 @@
 
 <script>
 import Base from '@/libs/base'
-import Tip from '../tip'
-import Icon from '../icon'
-import InlineDesc from '../inline-desc'
-import { getValue, getLabels, getKey, getInlineDesc } from './object-filter'
+import Tip from '../tip/index.vue'
+import Icon from '../icon/index.vue'
+import InlineDesc from '../inline-desc/index.vue'
+import { getValue, getLabels, getKey, getInlineDesc } from './object-filter.js'
 import shuffle from 'array-shuffle'
 
 export default {
@@ -35,11 +48,11 @@ export default {
   components: {
     Tip,
     Icon,
-    InlineDesc
+    InlineDesc,
   },
   filters: {
     getValue,
-    getKey
+    getKey,
   },
   mixins: [Base],
   props: {
@@ -48,15 +61,15 @@ export default {
     title: String,
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     options: {
       type: Array,
-      required: true
+      required: true,
     },
     value: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     max: Number,
     min: Number,
@@ -64,19 +77,19 @@ export default {
     randomOrder: Boolean,
     checkDisabled: {
       type: Boolean,
-      default: true
+      default: true,
     },
     labelPosition: {
       type: String,
-      default: 'right'
+      default: 'right',
     },
-    disabled: Boolean
+    disabled: Boolean,
   },
   data() {
     return {
       currentValue: [],
       currentOptions: this.options,
-      tempValue: '' // used only for radio mode
+      tempValue: '', // used only for radio mode
     }
   },
   beforeUpdate() {
@@ -105,7 +118,7 @@ export default {
   },
   methods: {
     selectItem(e) {
-      this.$emit("selectItem", this.currentValue);
+      this.$emit('selectItem', this.currentValue)
     },
     getValue,
     getKey,
@@ -115,7 +128,7 @@ export default {
       return this.currentValue.map((one, index) => {
         return {
           value: one,
-          label: labels[index]
+          label: labels[index],
         }
       })
     },
@@ -127,7 +140,7 @@ export default {
         return this.currentValue.indexOf(key) === -1 && this.currentValue.length === this._max
       }
       return false
-    }
+    },
   },
   computed: {
     isRadio() {
@@ -138,7 +151,7 @@ export default {
       }
     },
     _total() {
-      return this.fillMode ? (this.options.length + 1) : this.options.length
+      return this.fillMode ? this.options.length + 1 : this.options.length
     },
     _min() {
       if (!this.required && !this.min) {
@@ -171,7 +184,7 @@ export default {
     },
     valid() {
       return this.currentValue.length >= this._min && this.currentValue.length <= this._max
-    }
+    },
   },
   watch: {
     tempValue(val) {
@@ -198,13 +211,13 @@ export default {
           if (this.required) {
             if (this.currentValue.length < this._min) {
               err = {
-                min: this._min
+                min: this._min,
               }
             }
           } else {
             if (this.currentValue.length && this.currentValue.length < this._min) {
               err = {
-                min: this._min
+                min: this._min,
               }
             }
           }
@@ -215,8 +228,8 @@ export default {
           this.$emit('on-clear-error')
         }
       }
-    }
-  }
+    },
+  },
 }
 function pure(obj) {
   return JSON.parse(JSON.stringify(obj))

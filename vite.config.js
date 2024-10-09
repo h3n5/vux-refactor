@@ -7,12 +7,12 @@ import path from 'path'
 export default {
   server: {
     host: true,
-    port: 5173
+    port: 5173,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
-    }
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   build: {
     lib: {
@@ -25,13 +25,17 @@ export default {
       external: ['vue'],
       output: {
         globals: {
-          vue: 'Vue'
-        }
-      }
-    }
+          vue: 'Vue',
+        },
+      },
+    },
   },
-  plugins: [VueI18nPlugin({
-    defaultSFCLang: 'yaml',
-    include: [path.resolve(__dirname, './src/components/**')],
-  }), vue()],
+  plugins: [
+    VueI18nPlugin({
+      defaultSFCLang: 'yaml',
+      include: [path.resolve(__dirname, './src/components/**/*.vue')],
+      runtimeOnly: false,
+    }),
+    vue(),
+  ],
 }

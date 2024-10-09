@@ -1,4 +1,4 @@
-export default function () {
+export default function props() {
   return {
     title: [String, Number],
     value: [String, Number, Array],
@@ -7,16 +7,16 @@ export default function () {
     inlineDesc: [String, Number],
     primary: {
       type: String,
-      default: 'title'
+      default: 'title',
     },
     link: [String, Object],
     valueAlign: [String, Boolean, Number],
     borderIntent: {
       type: Boolean,
-      default: true
+      default: true,
     },
     disabled: Boolean,
     arrowDirection: String, // down or up
-    alignItems: String
+    alignItems: String,
   }
 }

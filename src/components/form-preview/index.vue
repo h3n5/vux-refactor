@@ -5,16 +5,25 @@
       <em class="weui-form-preview__value" v-html="headerValue || '&nbsp;'"></em>
     </div>
     <div class="weui-form-preview__bd">
-      <div class="weui-form-preview__item" v-for="item in bodyItems">
-        <label class="weui-form-preview__label">{{ $t(item.label) }}</label>
-        <span class="weui-form-preview__value">{{ $t(item.value) }}</span>
+      <div class="weui-form-preview__item" v-for="(item, i) in bodyItems" :key="i">
+        <label class="weui-form-preview__label">{{ item.label }}</label>
+        <span class="weui-form-preview__value">{{ item.value }}</span>
       </div>
     </div>
     <div class="weui-form-preview__ft">
-      <a class="weui-form-preview__btn"
-        :class="{ 'weui-form-preview__btn_default': button.style === 'default', 'weui-form-preview__btn_primary': button.style === 'primary' }"
-        href="javascript:" v-for="button in footerButtons"
-        @click="onButtonClick(button.onButtonClick, button.link)">{{ $t(button.text) }}</a>
+      <a
+        class="weui-form-preview__btn"
+        :class="{
+          'weui-form-preview__btn_default': button.style === 'default',
+          'weui-form-preview__btn_primary': button.style === 'primary',
+        }"
+        href="javascript:"
+        v-for="(button, i) in footerButtons"
+        :key="i"
+        @click="onButtonClick(button.onButtonClick, button.link)"
+      >
+        {{ button.text }}
+      </a>
     </div>
   </div>
 </template>
@@ -31,8 +40,8 @@ export default {
       if (link) {
         go(link, this.$router)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

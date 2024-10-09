@@ -2,11 +2,16 @@
   <transition :name="transition">
     <div class="weui-loading_toast vux-loading" :class="!text ? 'vux-loading-no-text' : ''" v-show="show">
       <div class="weui-mask_transparent"></div>
-      <div class="weui-toast" :style="{
-        position: position
-      }">
+      <div
+        class="weui-toast"
+        :style="{
+          position: position,
+        }"
+      >
         <i class="weui-loading weui-icon_toast"></i>
-        <p class="weui-toast__content" v-if="text">{{ $t(text) || $t('loading') }}<slot></slot>
+        <p class="weui-toast__content" v-if="text">
+          {{ $t(text) || $t('loading') }}
+          <slot></slot>
         </p>
       </div>
     </div>
@@ -19,13 +24,17 @@
   zh-CN:
     loading: 加载
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
 export default {
   name: 'loading',
   model: {
     prop: 'show',
-    event: 'change'
+    event: 'change',
   },
   props: {
     show: Boolean,
@@ -33,14 +42,14 @@ export default {
     position: String,
     transition: {
       type: String,
-      default: 'vux-mask'
-    }
+      default: 'vux-mask',
+    },
   },
   watch: {
     show(val) {
       this.$emit('update:show', val)
-    }
-  }
+    },
+  },
 }
 </script>
 

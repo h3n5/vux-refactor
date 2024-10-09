@@ -1,14 +1,14 @@
 // http://efe.baidu.com/blog/position-sticky/
 
 // 检测iOS版本大于等于6
-function gtIOS6 () {
+function gtIOS6() {
   var userAgent = window.navigator.userAgent
   var ios = userAgent.match(/(iPad|iPhone|iPod)\s+OS\s([\d_.]+)/)
-  return ios && ios[2] && (parseInt(ios[2].replace(/_/g, '.'), 10) >= 6)
+  return ios && ios[2] && parseInt(ios[2].replace(/_/g, '.'), 10) >= 6
 }
 
 // 判断是否支持sticky属性
-function isSupportSticky () {
+function isSupportSticky() {
   var prefixTestList = ['', '-webkit-', '-ms-', '-moz-', '-o-']
   var stickyText = ''
   for (var i = 0; i < prefixTestList.length; i++) {
@@ -25,7 +25,7 @@ function isSupportSticky () {
   return isSupport
 }
 
-export default function (nav, options = {}) {
+export function stickyFunc(nav, options = {}) {
   let scrollBox = options.scrollBox || window
   let offset = options.offset || 0
   const checkStickySupport = options.checkStickySupport === true || false
@@ -33,7 +33,7 @@ export default function (nav, options = {}) {
     scrollBox = document.getElementById(scrollBox)
     if (!scrollBox) {
       if (process.env.NODE_ENV === 'development') {
-        console.error('[VUX] sticky:scroll-box element doesn\'t exist')
+        console.error(`[VUX] sticky:scroll-box element [${options.scrollBox}] doesn't exist`)
       }
       return
     }

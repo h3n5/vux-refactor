@@ -1,8 +1,12 @@
 <template>
   <div class="vux-picker">
     <flexbox :gutter="0">
-      <flexbox-item :span="columnWidth && columnWidth[index]" v-for="(one, index) in currentData" :key="index"
-        style="margin-left:0;">
+      <flexbox-item
+        :span="columnWidth && columnWidth[index]"
+        v-for="(one, index) in currentData"
+        :key="index"
+        style="margin-left: 0"
+      >
         <div class="vux-picker-item" :id="`vux-picker-${uuid}-${index}`"></div>
       </flexbox-item>
     </flexbox>
@@ -10,17 +14,17 @@
 </template>
 
 <script>
-import Scroller from './scroller'
-import { Flexbox, FlexboxItem } from '../flexbox'
-import Manager from './chain'
-import value2name from '@/filters/value2name'
-import isArray from '@/libs/is-array'
+import Scroller from './scroller.js'
+import { Flexbox, FlexboxItem } from '../flexbox/index.js'
+import Manager from './chain.js'
+import value2name from '@/filters/value2name.js'
+import isArray from '@/libs/is-array.js'
 
 export default {
   name: 'picker',
   components: {
     Flexbox,
-    FlexboxItem
+    FlexboxItem,
   },
   created() {
     if (this.columns !== 0) {
@@ -39,18 +43,18 @@ export default {
     data: Array,
     columns: {
       type: Number,
-      default: 0
+      default: 0,
     },
     fixedColumns: {
       type: Number,
-      default: 0
+      default: 0,
     },
     value: Array,
     itemClass: {
       type: String,
-      default: 'scroller-item'
+      default: 'scroller-item',
     },
-    columnWidth: Array
+    columnWidth: Array,
   },
   methods: {
     getNameValues() {
@@ -69,12 +73,14 @@ export default {
       // set first item as value
       if (value.length < count) {
         for (let i = 0; i < count; i++) {
-          if (process.env.NODE_ENV === 'development' &&
+          if (
+            process.env.NODE_ENV === 'development' &&
             typeof data[i][0] === 'undefined' &&
             isArray(this.data) &&
             this.data[0] &&
             typeof this.data[0].value !== 'undefined' &&
-            !this.columns) {
+            !this.columns
+          ) {
             console.error('[VUX error] 渲染出错，如果为联动模式，需要指定 columns(列数)')
           }
           this.$set(_this.currentValue, i, data[i][0].value || data[i][0])
@@ -83,8 +89,8 @@ export default {
 
       for (let i = 0; i < data.length; i++) {
         /**
-        * Still don't know why this happens
-        */
+         * Still don't know why this happens
+         */
         if (!document.querySelector(_this.getId(i))) {
           return
         }
@@ -104,7 +110,7 @@ export default {
             if (_this.columns !== 0) {
               _this.renderChain(i + 1)
             }
-          }
+          },
         })
         if (_this.currentValue) {
           _this.scroller[i].select(value[i])
@@ -135,7 +141,7 @@ export default {
             _this.$emit('on-change', _this.getValue())
           })
           _this.renderChain(i + 1)
-        }
+        },
       })
       // list is Array(empty) as maybe
       if (list.length) {
@@ -160,7 +166,7 @@ export default {
       if (!this.columns || (this.columns && val.length === this.store.count)) {
         this.$emit('on-change', val)
       }
-    }
+    },
   },
   data() {
     return {
@@ -168,7 +174,7 @@ export default {
       count: 0,
       uuid: '',
       currentData: this.data,
-      currentValue: this.value
+      currentValue: this.value,
     }
   },
   watch: {
@@ -233,14 +239,14 @@ export default {
           this.currentData = this.store.getColumns(this.currentValue)
         }
       }
-    }
+    },
   },
   beforeDestroy() {
     for (let i = 0; i < this.count; i++) {
       this.scroller[i] && this.scroller[i].destroy()
       this.scroller[i] = null
     }
-  }
+  },
 }
 </script>
 
