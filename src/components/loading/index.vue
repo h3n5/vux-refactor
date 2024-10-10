@@ -10,7 +10,7 @@
       >
         <i class="weui-loading weui-icon_toast"></i>
         <p class="weui-toast__content" v-if="text">
-          {{ $t(text) || $t('loading') }}
+          {{ text || $t('loading') }}
           <slot></slot>
         </p>
       </div>

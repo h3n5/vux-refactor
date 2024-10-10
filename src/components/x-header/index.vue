@@ -36,7 +36,11 @@
   zh-CN:
     back_text: 返回
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
 import objectAssign from 'object-assign'
 

@@ -62,6 +62,14 @@ const baseComponent = ref([
         label: 'Group',
         route: 'Group'.toLocaleUpperCase(),
       },
+      {
+        label: 'Icon',
+        route: 'Icon'.toLocaleUpperCase(),
+      },
+      {
+        label: 'XIcon',
+        route: 'XIcon'.toLocaleUpperCase(),
+      }
     ],
   },
   {
@@ -210,6 +218,50 @@ const baseComponent = ref([
         label: 'Alert',
         route: 'Alert'.toLocaleUpperCase(),
       },
+      {
+        label: 'Confirm',
+        route: 'Confirm'.toLocaleUpperCase(),
+      },
+      {
+        label: 'InlineLoading',
+        route: 'InlineLoading'.toLocaleUpperCase(),
+      },
+      {
+        label: 'LoadMore',
+        route: 'LoadMore'.toLocaleUpperCase(),
+      },
+      {
+        label: 'Loading',
+        route: 'Loading'.toLocaleUpperCase(),
+      },
+      {
+        label: 'Msg',
+        route: 'Msg'.toLocaleUpperCase(),
+      },
+      {
+        label: 'Popover',
+        route: 'Popover'.toLocaleUpperCase(),
+      },
+      {
+        label: 'PopupHeader',
+        route: 'PopupHeader'.toLocaleUpperCase(),
+      },
+      {
+        label: 'Popup',
+        route: 'Popup'.toLocaleUpperCase(),
+      },
+      {
+        label: 'Spinner',
+        route: 'Spinner'.toLocaleUpperCase(),
+      },
+      {
+        label: 'Toast',
+        route: 'Toast'.toLocaleUpperCase(),
+      },
+      {
+        label: 'XDialog',
+        route: 'XDialog'.toLocaleUpperCase(),
+      },
     ],
   },
   {
@@ -231,6 +283,10 @@ const baseComponent = ref([
         label: 'Header',
         route: 'XHeader'.toLocaleUpperCase(),
       },
+      {
+        label: 'Drawer',
+        route: 'Drawer'.toLocaleUpperCase(),
+      }
     ],
   },
   {

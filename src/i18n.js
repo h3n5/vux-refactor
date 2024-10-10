@@ -8,9 +8,11 @@ const i18n = createI18n(
     messages: {
       'zh-CN': {
         Start: '开始',
+        'Do you agree?': '同意不?',
       },
       'en-US': {
         Start: 'Start',
+        'Do you agree?': 'Do you agree?',
       },
     },
   },

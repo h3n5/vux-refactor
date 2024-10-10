@@ -32,7 +32,11 @@
     zh-CN:
         button_text: 确定
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
 import XDialog from '../x-dialog/index.vue'
 
@@ -84,11 +88,6 @@ export default {
     },
   },
 }
-</script>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
 </script>
 <style lang="less">
 @import './alert.less';

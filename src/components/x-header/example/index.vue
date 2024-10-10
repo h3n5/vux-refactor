@@ -53,13 +53,14 @@
 </template>
 
 <script>
-import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem } from '@/index.js'
+import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem, XIcon } from '@/index.js'
 
 export default {
   directives: {
     TransferDom,
   },
   components: {
+    XIcon,
     XHeader,
     Actionsheet,
     ButtonTab,

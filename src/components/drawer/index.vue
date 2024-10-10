@@ -1,21 +1,18 @@
-/**
-* this component is forked from: https://github.com/bajian/vue-drawer
-*/
 <template>
   <div class="vux-drawer">
-    <div :style="{transform: `translate3d(${translateX}px, 0, 0)`}"
-    class="vux-drawer-body">
+    <div :style="{ transform: `translate3d(${translateX}px, 0, 0)` }" class="vux-drawer-body">
       <slot></slot>
       <div class="drawer-mask" :class="show ? 'vux-drawer-active' : ''" @click="hideMask"></div>
     </div>
     <div
-    ref="drawer"
-    class="vux-drawer-content"
-    :style="drawerStyle"
-    :class="[placement !=='left' ? 'drawer-right' : 'drawer-left', show ? 'vux-drawer-active' : '']" >
+      ref="drawer"
+      class="vux-drawer-content"
+      :style="drawerStyle"
+      :class="[placement !== 'left' ? 'drawer-right' : 'drawer-left', show ? 'vux-drawer-active' : '']"
+    >
       <slot name="drawer"></slot>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script scoped>
@@ -24,22 +21,22 @@ export default {
   props: {
     show: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placement: {
       type: String,
-      default: 'left'
+      default: 'left',
     },
     showMode: {
       type: String,
-      default: 'overlay'
+      default: 'overlay',
     },
-    drawerStyle: Object
+    drawerStyle: Object,
   },
-  data () {
+  data() {
     return {
       drawerWidth: 0,
-      translateX: 0
+      translateX: 0,
     }
   },
   watch: {
@@ -57,31 +54,31 @@ export default {
       } else {
         this.translateX = this.placement === 'left' ? this.drawerWidth : -this.drawerWidth
       }
-    }
+    },
   },
   methods: {
-    hideMask () {
+    hideMask() {
       this.$emit('update:show', false)
-    }
+    },
   },
-  mounted () {
+  mounted() {
     this.$nextTick(function () {
       this.drawerWidth = this.$refs.drawer.clientWidth
     })
-  }
+  },
 }
 </script>
 
-<style >
- .vux-drawer {
-   display: block;
-   position: relative;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
- }
- .vux-drawer > .vux-drawer-body {
+<style>
+.vux-drawer {
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.vux-drawer > .vux-drawer-body {
   height: 100%;
   position: absolute;
   top: 0;
@@ -89,7 +86,7 @@ export default {
   right: 0;
   bottom: 0;
   transition: transform ease-in-out 0.38s, visibility 0.38s;
- }
+}
 .vux-drawer > .vux-drawer-body > .drawer-mask {
   z-index: 9999;
   position: absolute;
@@ -110,7 +107,7 @@ export default {
   background-color: #fff;
   position: absolute;
   top: 0;
-  height:100%;
+  height: 100%;
   overflow: hidden;
   pointer-events: none;
   visibility: hidden;

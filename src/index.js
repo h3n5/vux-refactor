@@ -15,7 +15,7 @@ import Alert from './components/alert/index.vue'
 import XSwitch from './components/x-switch/index.vue'
 import ButtonTab from './components/button-tab/button-tab.vue'
 import ButtonTabItem from './components/button-tab/button-tab-item.vue'
-import Sticky from './components/sticky/index.vue'
+import Sticky from './components/sticky/index.vue' // todo
 import Swiper from './components/swiper/swiper.vue'
 import SwiperItem from './components/swiper/swiper-item.vue'
 import Tab from './components/tab/tab.vue'
@@ -85,7 +85,7 @@ import ColorPicker from './components/color-picker/index.vue'
 import Countdown from './components/countdown/index.vue'
 import Masker from './components/masker/index.vue'
 import XDialog from './components/x-dialog/index.vue'
-import Scroller from './components/scroller/index2.vue'
+import Scroller from './components/scroller/index.vue'
 import Spinner from './components/spinner/index.vue'
 import WechatEmotion from './components/wechat-emotion/index.vue'
 import Toast from './components/toast/index.vue'
@@ -94,6 +94,9 @@ import Loading from './components/loading/index.vue'
 import Msg from './components/msg/index.vue'
 import Popover from './components/popover/index.vue'
 import PopupHeader from './components/popup-header/index.vue'
+import InlineLoading from './components/inline-loading/index.vue'
+import XIcon from './components/x-icon/index.vue'
+import Drawer from './components/drawer/index.vue'
 // tool
 import base64 from './tools/base64/index.js'
 import cookie from './tools/cookie/index.js'
@@ -135,8 +138,7 @@ import LoadingPlugin from './plugins/loading/index.js'
 import LocalePlugin from './plugins/locale/index.js'
 import ToastPlugin from './plugins/toast/index.js'
 import WechatPlugin from './plugins/wechat/index.js'
-// i18n
-import i18n from './i18n.js'
+import './i18n.js'
 export {
   ChinaAddressV1Data,
   ChinaAddressV2Data,
@@ -158,14 +160,17 @@ export {
   ToastPlugin,
   WechatPlugin,
   WechatEmotion,
+  InlineLoading,
   Spinner,
   Scroller,
   XDialog,
   Toast,
+  Drawer,
   Confirm,
   Loading,
   Msg,
   Popover,
+  XIcon,
   PopupHeader,
   Masker,
   Countdown,
@@ -273,4 +278,15 @@ export {
   InlineXSwitch,
   TransferDomDirective,
   TransferDomDirective as TransferDom,
+}
+
+function install(Vue) {
+  const components = []
+
+  if (typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue)
+  }
+}
+export default {
+  install,
 }

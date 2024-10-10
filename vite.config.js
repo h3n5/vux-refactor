@@ -31,11 +31,11 @@ export default {
     },
   },
   plugins: [
+    vue(),
     VueI18nPlugin({
       defaultSFCLang: 'yaml',
       include: [path.resolve(__dirname, './src/components/**/*.vue')],
-      runtimeOnly: false,
+      runtimeOnly: true,
     }),
-    vue(),
   ],
 }

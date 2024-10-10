@@ -19,7 +19,7 @@
             :class="`weui-btn_${button.type}`"
             @click="onClick(button.onClick, button.link)"
           >
-            {{ $t(button.text) }}
+            {{ button.text }}
           </a>
         </slot>
       </p>

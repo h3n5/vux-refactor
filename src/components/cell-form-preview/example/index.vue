@@ -8,7 +8,6 @@
 </template>
 
 <i18n>
-
   zh-CN:
     Total: 合计
     $1024: '￥1024'
@@ -23,36 +22,23 @@
     Fish: Fish
 </i18n>
 <script setup>
+import { ref } from 'vue'
+import { CellFormPreview, Group, Cell } from '@/index.js'
 import { useI18n } from 'vue-i18n-bridge'
 const { t } = useI18n()
 const $t = t
-</script>
-<script>
-import { CellFormPreview, Group, Cell } from '@/index.js'
-
-export default {
-  components: {
-    CellFormPreview,
-    Group,
-    Cell,
+const list = ref([
+  {
+    label: t('Apple'),
+    value: '3.29',
   },
-  data() {
-    return {
-      list: [
-        {
-          label: 'Apple',
-          value: '3.29',
-        },
-        {
-          label: 'Banana',
-          value: '1.04',
-        },
-        {
-          label: 'Fish',
-          value: '8.00',
-        },
-      ],
-    }
+  {
+    label: t('Banana'),
+    value: '1.04',
   },
-}
+  {
+    label: t('Fish'),
+    value: '8.00',
+  },
+])
 </script>

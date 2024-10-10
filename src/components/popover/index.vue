@@ -1,8 +1,7 @@
 <template>
   <div v-click-outside="onClickedOutside">
     <span ref="trigger" @click="toggle">
-      <slot>
-      </slot>
+      <slot></slot>
     </span>
     <div class="vux-popover" v-transfer-dom ref="popover" :style="popoverStyle" v-show="show">
       <div :class="arrowClass"></div>
@@ -16,8 +15,8 @@
 </template>
 
 <script>
-import ClickOutside from '@/directives/click-outside'
-import TransferDom from '@/directives/transfer-dom'
+import ClickOutside from '@/directives/click-outside/index.js'
+import TransferDom from '@/directives/transfer-dom/index.js'
 
 export default {
   name: 'popover',
@@ -32,15 +31,15 @@ export default {
   },
   directives: {
     TransferDom,
-    ClickOutside
+    ClickOutside,
   },
   props: {
     content: String,
     placement: String,
     gutter: {
       type: Number,
-      default: 5
-    }
+      default: 5,
+    },
   },
   methods: {
     reset() {
@@ -51,9 +50,7 @@ export default {
     init(isReset) {
       const trigger = this.$refs.trigger.children[0]
       const popover = this.$refs.popover
-      const scrollTop = window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       switch (this.placement) {
         case 'top':
           this.position.left = trigger.offsetLeft - popover.offsetWidth / 2 + trigger.offsetWidth / 2
@@ -61,11 +58,13 @@ export default {
           break
         case 'left':
           this.position.left = trigger.offsetLeft - popover.offsetWidth - this.gutter
-          this.position.top = scrollTop + trigger.getBoundingClientRect().top + trigger.offsetHeight / 2 - popover.offsetHeight / 2
+          this.position.top =
+            scrollTop + trigger.getBoundingClientRect().top + trigger.offsetHeight / 2 - popover.offsetHeight / 2
           break
         case 'right':
           this.position.left = trigger.offsetLeft + trigger.offsetWidth + this.gutter
-          this.position.top = scrollTop + trigger.getBoundingClientRect().top + trigger.offsetHeight / 2 - popover.offsetHeight / 2
+          this.position.top =
+            scrollTop + trigger.getBoundingClientRect().top + trigger.offsetHeight / 2 - popover.offsetHeight / 2
           break
         case 'bottom':
           this.position.left = trigger.offsetLeft - popover.offsetWidth / 2 + trigger.offsetWidth / 2
@@ -81,7 +80,8 @@ export default {
       this.popoverStyle = {
         top: this.position.top + 'px',
         left: this.position.left + 'px',
-        display: isReset ? this.popoverStyle.display : 'none'
+        // display: isReset ? this.popoverStyle.display : 'none',
+        // it should control by v-show
       }
     },
     onClickedOutside() {
@@ -90,7 +90,7 @@ export default {
         this.$emit('on-hide')
       }
     },
-    toggle() {
+    toggle(e) {
       this.show = !this.show
       if (this.show) {
         this.$nextTick(() => {
@@ -98,16 +98,16 @@ export default {
         })
       }
       this.$emit(`on-${this.show === true ? 'show' : 'hide'}`)
-    }
+    },
   },
   data() {
     return {
       position: {
         top: 0,
-        left: 0
+        left: 0,
       },
       show: true,
-      popoverStyle: {}
+      popoverStyle: {},
     }
   },
   computed: {
@@ -117,15 +117,15 @@ export default {
         'vux-popover-arrow-up': this.placement === 'bottom',
         'vux-popover-arrow-right': this.placement === 'left',
         'vux-popover-arrow-left': this.placement === 'right',
-        'vux-popover-arrow-down': this.placement === 'top'
+        'vux-popover-arrow-down': this.placement === 'top',
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="less">
-@import '../../styles/variable.less';
+@import '@/styles/variable.less';
 
 .vux-popover {
   position: absolute;

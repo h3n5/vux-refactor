@@ -30,6 +30,7 @@
 
 <i18n>
   en:
+    Use as a module: "Use as a module"
     Show Me: "Show Me"
     Use as a plugin: "Use as a plugin"
     Congratulations: "Congratulations"
@@ -37,6 +38,7 @@
     Do you agree?: "Do you agree?"
     Will auto close in 3s: "Will auto close in 3s"
   zh-CN:
+    Use as a module: "以模块方式调用"
     Show Me: "显示"
     Use as a plugin: "以插件方式调用"
     Congratulations: "恭喜"

@@ -10,9 +10,9 @@
 
 <script>
 import objectAssign from 'object-assign'
-import * as XScroll from './build/cmd/xscroll.js'
-import * as Pulldown from './build/cmd/plugins/pulldown.js'
-import * as Pullup from './build/cmd/plugins/pullup.js'
+import './build/standalone/xscroll.min.js'
+import './build/standalone/plugins/pulldown.min.js'
+import './build/standalone/plugins/pullup.min.js'
 
 const pulldownDefaultConfig = () => ({
   content: 'Pull Down To Refresh',

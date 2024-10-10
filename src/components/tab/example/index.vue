@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <ViewBox>
     <tab>
       <tab-item selected @on-item-click="onItemClick">已发货</tab-item>
       <tab-item @on-item-click="onItemClick">未发货</tab-item>
@@ -163,7 +163,7 @@
       </tab>
     </Sticky>
     <br v-for="i in 40" :key="i" />
-  </div>
+  </ViewBox>
 </template>
 
 <i18n>
@@ -172,13 +172,18 @@ en:
 zh-CN:
   set bar-active-color: "设置选中tab的颜色"
 </i18n>
-
+<script setup>
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
+const $t = t
+</script>
 <script>
-import { Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem } from '@/index.js'
+import { Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem, ViewBox } from '@/index.js'
 const list = () => ['精选', '美食', '电影', '酒店', '外卖']
 
 export default {
   components: {
+    ViewBox,
     Tab,
     TabItem,
     Sticky,
