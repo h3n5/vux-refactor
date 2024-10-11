@@ -29,7 +29,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, XAddress, XButton, Cell } from '@/index.js'
+import { Group, XAddress, XButton, Cell } from 'vux-refactor'
 import value2name from '@/filters/value2name.js'
 import ChinaAddressV4Data from '@/datas/china_address.json'
 export default {

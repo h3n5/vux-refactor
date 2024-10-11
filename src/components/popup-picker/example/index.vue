@@ -108,7 +108,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Datetime, PopupPicker, Group, Cell, Picker, XButton, Divider, XSwitch } from '@/index.js'
+import { Datetime, PopupPicker, Group, Cell, Picker, XButton, Divider, XSwitch } from 'vux-refactor'
 
 export default {
   components: {

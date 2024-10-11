@@ -44,7 +44,7 @@
     跳转到首页: "跳转到首页"
 </i18n>
 <script setup>
-import { FormPreview } from '@/index.js'
+import { FormPreview } from 'vux-refactor'
 import { useI18n } from 'vue-i18n-bridge'
 import { ref } from 'vue'
 const { t } = useI18n()

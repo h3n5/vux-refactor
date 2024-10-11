@@ -33,7 +33,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Qrcode, Divider } from '@/index.js'
+import { Qrcode, Divider } from 'vux-refactor'
 
 export default {
   mounted() {

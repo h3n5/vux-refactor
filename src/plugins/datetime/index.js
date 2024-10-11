@@ -1,7 +1,6 @@
 import Datetime from '@/components/datetime/datetimepicker.js'
 import ObjectAssign from 'object-assign'
-/* just for importing style and avoid less-loader issue */
-import DatetimeComponent from '@/components/datetime/index.vue' // eslint-disable-line
+import DatetimeComponent from '@/components/datetime/index.vue'
 
 const libs = {
   show: function (options = {}) {
@@ -29,7 +28,9 @@ export default {
       let $vm = new _Datetime({
         el: div,
       })
-      $vm.$el.style.display = 'none'
+      if ($vm.$el.style) {
+        $vm.$el.style.display = 'none'
+      }
       $vm.$el.className += ' vux-datetime-style-inject'
       document.body.appendChild($vm.$el)
     }

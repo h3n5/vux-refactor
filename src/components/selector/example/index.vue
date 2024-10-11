@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { Selector, Group, Cell, CellBox, XButton } from '@/index.js'
+import { Selector, Group, Cell, CellBox, XButton } from 'vux-refactor'
 
 export default {
   components: {

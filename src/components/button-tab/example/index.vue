@@ -63,7 +63,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { ButtonTab, ButtonTabItem, Divider } from '@/index.js'
+import { ButtonTab, ButtonTabItem, Divider } from 'vux-refactor'
 
 export default {
   components: {

@@ -119,7 +119,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { GroupTitle, Swipeout, SwipeoutItem, SwipeoutButton, XButton } from '@/index.js'
+import { GroupTitle, Swipeout, SwipeoutItem, SwipeoutButton, XButton } from 'vux-refactor'
 
 export default {
   components: {

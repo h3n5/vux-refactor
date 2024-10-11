@@ -33,7 +33,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { InlineLoading } from '@/index.js'
+import { InlineLoading } from 'vux-refactor'
 
 export default {
   components: {

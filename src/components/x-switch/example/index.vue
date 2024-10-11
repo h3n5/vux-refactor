@@ -47,7 +47,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { XSwitch, Group, Cell } from '@/index.js'
+import { XSwitch, Group, Cell } from 'vux-refactor'
 
 export default {
   components: {

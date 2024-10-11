@@ -58,7 +58,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Grid, GridItem, GroupTitle } from '@/index.js'
+import { Grid, GridItem, GroupTitle } from 'vux-refactor'
 
 export default {
   components: {

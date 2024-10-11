@@ -79,7 +79,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Toast, Group, XSwitch, XButton } from '@/index.js'
+import { Toast, Group, XSwitch, XButton } from 'vux-refactor'
 export default {
   components: {
     Toast,

@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { XButton, Box, GroupTitle, Group, Flexbox, FlexboxItem, Divider } from '@/index.js'
+import { XButton, Box, GroupTitle, Group, Flexbox, FlexboxItem, Divider } from 'vux-refactor'
 
 export default {
   components: {

@@ -21,7 +21,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { CheckIcon } from '@/index.js'
+import { CheckIcon } from 'vux-refactor'
 
 export default {
   components: {

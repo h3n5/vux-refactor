@@ -53,13 +53,13 @@
   </div>
 </template>
 
-<i18n>
-  en:
-    cancel_text: cancel
-    placeholder: Search
-  zh-CN:
-    cancel_text: 取消
-    placeholder: 搜索
+<i18n lang="yaml">
+en:
+  cancel_text: cancel
+  placeholder: Search
+zh-CN:
+  cancel_text: 取消
+  placeholder: 搜索
 </i18n>
 <script setup>
 import { useI18n } from 'vue-i18n-bridge'

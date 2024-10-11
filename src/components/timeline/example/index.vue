@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { Timeline, TimelineItem, XButton } from '@/index.js'
+import { Timeline, TimelineItem, XButton } from 'vux-refactor'
 
 export default {
   components: {

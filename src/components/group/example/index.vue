@@ -93,7 +93,7 @@ import {
   XAddress,
   XTextarea,
   XSwitch,
-} from '@/index.js'
+} from 'vux-refactor'
 
 export default {
   components: {

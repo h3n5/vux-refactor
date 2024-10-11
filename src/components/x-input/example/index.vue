@@ -156,7 +156,7 @@
 </template>
 
 <script>
-import { XInput, Group, XButton, Cell } from '@/index.js'
+import { XInput, Group, XButton, Cell } from 'vux-refactor'
 
 export default {
   components: {

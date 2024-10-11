@@ -47,7 +47,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Badge, Group, Cell } from '@/index.js'
+import { Badge, Group, Cell } from 'vux-refactor'
 
 export default {
   components: {

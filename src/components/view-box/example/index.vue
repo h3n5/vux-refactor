@@ -4,5 +4,5 @@
   </ViewBox>
 </template>
 <script setup>
-import { ViewBox } from '@/index.js'
+import { ViewBox } from 'vux-refactor'
 </script>

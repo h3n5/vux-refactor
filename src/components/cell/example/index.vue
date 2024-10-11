@@ -166,7 +166,7 @@
 </i18n>
 
 <script>
-import { Cell, CellBox, CellFormPreview, Group, Badge } from '@/index.js'
+import { Cell, CellBox, CellFormPreview, Group, Badge } from 'vux-refactor'
 
 export default {
   mounted() {

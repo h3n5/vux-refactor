@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { XImg } from '@/index.js'
+import { XImg } from 'vux-refactor'
 export default {
   components: {
     XImg,

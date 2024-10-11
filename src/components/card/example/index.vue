@@ -79,7 +79,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Divider, Card } from '@/index.js'
+import { Divider, Card } from 'vux-refactor'
 
 export default {
   components: {

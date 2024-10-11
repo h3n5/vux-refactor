@@ -47,7 +47,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, Cell, Marquee, MarqueeItem, Divider } from '@/index.js'
+import { Group, Cell, Marquee, MarqueeItem, Divider } from 'vux-refactor'
 
 export default {
   components: {

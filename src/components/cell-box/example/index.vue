@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { Group, Cell, CellBox } from '@/index.js'
+import { Group, Cell, CellBox } from 'vux-refactor'
 
 export default {
   components: {

@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { Rater, Group, Cell, Range } from '@/index.js'
+import { Rater, Group, Cell, Range } from 'vux-refactor'
 
 export default {
   components: {

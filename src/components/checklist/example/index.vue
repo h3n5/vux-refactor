@@ -125,7 +125,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, CellBox, Checklist, Cell, Divider, XButton } from '@/index.js'
+import { Group, CellBox, Checklist, Cell, Divider, XButton } from 'vux-refactor'
 import _ from 'lodash'
 
 export default {

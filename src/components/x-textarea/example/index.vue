@@ -63,7 +63,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { XTextarea, Group, XInput } from '@/index.js'
+import { XTextarea, Group, XInput } from 'vux-refactor'
 
 export default {
   components: {

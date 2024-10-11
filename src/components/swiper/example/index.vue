@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import { Swiper, GroupTitle, SwiperItem, XButton, Divider } from '@/index.js'
+import { Swiper, GroupTitle, SwiperItem, XButton, Divider } from 'vux-refactor'
 
 const baseList = [
   {

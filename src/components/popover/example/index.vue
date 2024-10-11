@@ -56,7 +56,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Popover } from '@/index.js'
+import { Popover } from 'vux-refactor'
 
 export default {
   components: {

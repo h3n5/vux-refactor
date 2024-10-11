@@ -76,7 +76,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Flow, FlowState, FlowLine } from '@/index.js'
+import { Flow, FlowState, FlowLine } from 'vux-refactor'
 
 export default {
   components: {

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { Box, Icon } from '@/index.js'
+import { Box, Icon } from 'vux-refactor'
 
 export default {
   components: {

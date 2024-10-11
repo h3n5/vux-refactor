@@ -99,7 +99,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, Calendar, Cell, Badge, CellBox, XButton } from '@/index.js'
+import { Group, Calendar, Cell, Badge, CellBox, XButton } from 'vux-refactor'
 
 export default {
   components: {

@@ -59,7 +59,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Radio, Group } from '@/index.js'
+import { Radio, Group } from 'vux-refactor'
 
 export default {
   components: {

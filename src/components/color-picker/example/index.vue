@@ -32,7 +32,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { ColorPicker, Group, Cell } from '@/index.js'
+import { ColorPicker, Group, Cell } from 'vux-refactor'
 
 export default {
   components: {

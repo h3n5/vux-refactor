@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { Countup, XButton } from '@/index.js'
+import { Countup, XButton } from 'vux-refactor'
 
 export default {
   components: {

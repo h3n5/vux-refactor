@@ -312,7 +312,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Datetime, Group, XButton } from '@/index.js'
+import { Datetime, Group, XButton } from 'vux-refactor'
 
 export default {
   components: {

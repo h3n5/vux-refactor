@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import { XTable, LoadMore } from '@/index.js'
+import { XTable, LoadMore } from 'vux-refactor'
 
 export default {
   components: {

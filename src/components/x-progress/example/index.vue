@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { XProgress, Box } from '@/index.js'
+import { XProgress, Box } from 'vux-refactor'
 
 export default {
   components: {

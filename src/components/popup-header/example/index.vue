@@ -53,7 +53,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { PopupHeader, Popup, TransferDom, Group, XSwitch, Radio } from '@/index.js'
+import { PopupHeader, Popup, TransferDom, Group, XSwitch, Radio } from 'vux-refactor'
 
 export default {
   directives: {

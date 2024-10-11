@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { InlineXSwitch, XSwitch, Group } from '@/index.js'
+import { InlineXSwitch, XSwitch, Group } from 'vux-refactor'
 
 export default {
   components: {

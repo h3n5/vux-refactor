@@ -178,7 +178,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem, ViewBox } from '@/index.js'
+import { Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem, ViewBox } from 'vux-refactor'
 const list = () => ['精选', '美食', '电影', '酒店', '外卖']
 
 export default {

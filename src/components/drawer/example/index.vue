@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup>
-import { Drawer, XButton } from '@/index.js'
+import { Drawer, XButton } from 'vux-refactor'
 import { ref } from 'vue'
 const drawerVisibility = ref(false)
 </script>

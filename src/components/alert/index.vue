@@ -26,11 +26,11 @@
   </div>
 </template>
 
-<i18n>
-    en:
-        button_text: OK
-    zh-CN:
-        button_text: 确定
+<i18n lang="yaml">
+en:
+  button_text: OK
+zh-CN:
+  button_text: 确定
 </i18n>
 <script setup>
 import { useI18n } from 'vue-i18n-bridge'

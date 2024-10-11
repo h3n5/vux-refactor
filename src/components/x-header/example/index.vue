@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem, XIcon } from '@/index.js'
+import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem, XIcon } from 'vux-refactor'
 
 export default {
   directives: {

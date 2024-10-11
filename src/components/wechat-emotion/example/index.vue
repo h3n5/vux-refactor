@@ -20,7 +20,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { WechatEmotion as Emotion, Divider } from '@/index.js'
+import { WechatEmotion as Emotion, Divider } from 'vux-refactor'
 
 export default {
   components: {

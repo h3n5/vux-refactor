@@ -5,6 +5,9 @@ import path from 'path'
 
 /** @type {import('vite').UserConfig} */
 export default {
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production'),
+  },
   server: {
     host: true,
     port: 5173,
@@ -12,9 +15,11 @@ export default {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      'vux-refactor': path.resolve(__dirname, './dist/vux-refactor.es.js'),
     },
   },
   build: {
+    sourcemap: true,
     lib: {
       entry: './src/index.js',
       name: 'VuxRefactor',
@@ -35,7 +40,7 @@ export default {
     VueI18nPlugin({
       defaultSFCLang: 'yaml',
       include: [path.resolve(__dirname, './src/components/**/*.vue')],
-      runtimeOnly: true,
+      runtimeOnly: false,
     }),
   ],
 }

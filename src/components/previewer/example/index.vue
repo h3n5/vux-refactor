@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Previewer, TransferDom } from '@/index.js'
+import { Previewer, TransferDom } from 'vux-refactor'
 
 export default {
   directives: {

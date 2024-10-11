@@ -130,7 +130,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Flexbox, FlexboxItem, Divider } from '@/index.js'
+import { Flexbox, FlexboxItem, Divider } from 'vux-refactor'
 
 export default {
   components: {

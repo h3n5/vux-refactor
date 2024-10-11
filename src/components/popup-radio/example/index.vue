@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { Group, PopupRadio } from '@/index.js'
+import { Group, PopupRadio } from 'vux-refactor'
 
 export default {
   components: {

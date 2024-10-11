@@ -46,7 +46,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Step, StepItem, XButton, XHr } from '@/index.js'
+import { Step, StepItem, XButton, XHr } from 'vux-refactor'
 
 export default {
   components: {

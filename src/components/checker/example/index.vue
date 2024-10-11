@@ -257,7 +257,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Checker, CheckerItem, Divider, Group, Cell, Popup, TransferDom } from '@/index.js'
+import { Checker, CheckerItem, Divider, Group, Cell, Popup, TransferDom } from 'vux-refactor'
 
 export default {
   directives: {

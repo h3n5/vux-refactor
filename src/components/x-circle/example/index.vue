@@ -33,7 +33,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { XCircle, Range, Icon } from '@/index.js'
+import { XCircle, Range, Icon } from 'vux-refactor'
 
 export default {
   components: {

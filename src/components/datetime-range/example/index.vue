@@ -27,7 +27,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, DatetimeRange } from '@/index.js'
+import { Group, DatetimeRange } from 'vux-refactor'
 
 export default {
   components: {

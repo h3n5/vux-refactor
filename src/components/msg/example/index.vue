@@ -19,7 +19,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n-bridge'
-import { Msg } from '@/index.js'
+import { Msg } from 'vux-refactor'
 const { t } = useI18n()
 const $t = t
 const description = ref('msg description')

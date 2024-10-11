@@ -48,7 +48,7 @@
 </i18n>
 
 <script>
-import { AlertModule, Alert, Group, XSwitch, Cell, TransferDomDirective as TransferDom } from '@/index.js'
+import { AlertModule, Alert, Group, XSwitch, Cell, TransferDomDirective as TransferDom } from 'vux-refactor'
 
 export default {
   directives: {

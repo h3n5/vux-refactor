@@ -30,7 +30,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, Cell, Countdown, XSwitch } from '@/index.js'
+import { Group, Cell, Countdown, XSwitch } from 'vux-refactor'
 
 export default {
   components: {

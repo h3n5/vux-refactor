@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem, Group, Cell } from '@/index.js'
+import { Tabbar, TabbarItem, Group, Cell } from 'vux-refactor'
 
 export default {
   components: {

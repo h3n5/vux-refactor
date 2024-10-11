@@ -16,7 +16,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Divider } from '@/index.js'
+import { Divider } from 'vux-refactor'
 
 export default {
   components: {

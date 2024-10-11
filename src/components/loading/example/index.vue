@@ -37,7 +37,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Loading, Group, XSwitch, XButton, TransferDomDirective as TransferDom } from '@/index.js'
+import { Loading, Group, XSwitch, XButton, TransferDomDirective as TransferDom } from 'vux-refactor'
 
 export default {
   directives: {

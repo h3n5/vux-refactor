@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { Search, Group, Cell, XButton } from '@/index.js'
+import { Search, Group, Cell, XButton } from 'vux-refactor'
 
 export default {
   components: {

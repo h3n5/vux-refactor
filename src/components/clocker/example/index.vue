@@ -58,7 +58,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Clocker, Cell, Group } from '@/index.js'
+import { Clocker, Cell, Group } from 'vux-refactor'
 
 export default {
   components: {

@@ -216,7 +216,7 @@
 </template>
 
 <script>
-import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from '@/index.js'
+import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from 'vux-refactor'
 
 import ToggleText from './ToggleText.vue'
 

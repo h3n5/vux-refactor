@@ -60,7 +60,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, XNumber, XSwitch, Divider } from '@/index.js'
+import { Group, XNumber, XSwitch, Divider } from 'vux-refactor'
 
 export default {
   components: {

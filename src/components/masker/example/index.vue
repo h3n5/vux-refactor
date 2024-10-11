@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Masker } from '@/index.js'
+import { Masker } from 'vux-refactor'
 
 export default {
   components: {

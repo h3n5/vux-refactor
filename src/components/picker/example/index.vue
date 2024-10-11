@@ -105,7 +105,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Cell, Group, Picker, GroupTitle, XButton } from '@/index.js'
+import { Cell, Group, Picker, GroupTitle, XButton } from 'vux-refactor'
 
 let years = []
 for (var i = 2000; i <= 2030; i++) {

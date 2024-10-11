@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { Spinner, Group, Cell } from '@/index.js'
+import { Spinner, Group, Cell } from 'vux-refactor'
 
 export default {
   components: {

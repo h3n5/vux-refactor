@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { Spinner } from '@/index.js'
+import { Spinner } from 'vux-refactor'
 
 export default {
   components: {

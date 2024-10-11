@@ -45,7 +45,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { DatetimeView, XButton, Popup, TransferDom } from '@/index.js'
+import { DatetimeView, XButton, Popup, TransferDom } from 'vux-refactor'
 
 export default {
   components: {

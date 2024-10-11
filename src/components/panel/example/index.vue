@@ -29,7 +29,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Panel, Group, Radio } from '@/index.js'
+import { Panel, Group, Radio } from 'vux-refactor'
 
 export default {
   components: {

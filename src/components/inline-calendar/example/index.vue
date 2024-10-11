@@ -149,7 +149,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { InlineCalendar, Group, XSwitch, Radio, XButton, Cell, Divider } from '@/index.js'
+import { InlineCalendar, Group, XSwitch, Radio, XButton, Cell, Divider } from 'vux-refactor'
 import dayjs from 'dayjs'
 
 export default {

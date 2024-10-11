@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { VChart, VLine, VArea, VTooltip, VLegend, VBar, XButton } from '@/index.js'
+import { VChart, VLine, VArea, VTooltip, VLegend, VBar, XButton } from 'vux-refactor'
 
 export default {
   components: {

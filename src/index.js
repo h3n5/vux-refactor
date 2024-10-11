@@ -135,10 +135,11 @@ import DatetimePlugin from './plugins/datetime/index.js'
 import DevicePlugin from './plugins/device/index.js'
 import LoadingModule from './plugins/loading/module'
 import LoadingPlugin from './plugins/loading/index.js'
-import LocalePlugin from './plugins/locale/index.js'
+// import LocalePlugin from './plugins/locale/index.js'
 import ToastPlugin from './plugins/toast/index.js'
 import WechatPlugin from './plugins/wechat/index.js'
-import './i18n.js'
+// i18n
+import LocalePlugin from './i18n.js'
 export {
   ChinaAddressV1Data,
   ChinaAddressV2Data,
@@ -281,7 +282,138 @@ export {
 }
 
 function install(Vue) {
-  const components = []
+  const components = [
+    VChart,
+    VLine,
+    VArea,
+    VBar,
+    VPie,
+    VPoint,
+    VScale,
+    VAxis,
+    VGuide,
+    VTooltip,
+    VLegend,
+    XCircle,
+    InlineLoading,
+    Spinner,
+    Scroller,
+    XDialog,
+    Toast,
+    Drawer,
+    Confirm,
+    Loading,
+    Msg,
+    Popover,
+    XIcon,
+    PopupHeader,
+    Masker,
+    Countdown,
+    ColorPicker,
+    Blur,
+    Timeline,
+    TimelineItem,
+    ViewBox,
+    Grid,
+    GridItem,
+    Swipeout,
+    SwipeoutItem,
+    SwipeoutButton,
+    Range,
+    Search,
+    Rater,
+    Picker,
+    PopupRadio,
+    InlineXNumber,
+    InlineCalendar,
+    XTextarea,
+    XNumber,
+    XInput,
+    XAddress,
+    Selector,
+    PopupPicker,
+    FormPreview,
+    DatetimeView,
+    Datetime,
+    DatetimeRange,
+    Checklist,
+    Popup,
+    Checker,
+    CheckerItem,
+    CheckIcon,
+    Calendar,
+    XTable,
+    LoadMore,
+    XProgress,
+    XImg,
+    XHr,
+    Step,
+    StepItem,
+    Qrcode,
+    Previewer,
+    Radio,
+    Panel,
+    Marquee,
+    MarqueeItem,
+    Flow,
+    FlowState,
+    FlowLine,
+    Countup,
+    Clocker,
+    Card,
+    XHeader,
+    TabbarItem,
+    Tabbar,
+    TabItem,
+    Tab,
+    SwiperItem,
+    Swiper,
+    Sticky,
+    ButtonTab,
+    ButtonTabItem,
+    XSwitch,
+    Alert,
+    Actionsheet,
+    XButton,
+    Box,
+    GroupTitle,
+    Group,
+    Flexbox,
+    FlexboxItem,
+    Divider,
+    Badge,
+    Cell,
+    CellBox,
+    CellFormPreview,
+    Icon,
+    InlineXSwitch,
+  ]
+  components.forEach((component) => {
+    Vue.component(component.name, component)
+  })
+  const plugins = [
+    AjaxPlugin,
+    AlertPlugin,
+    AppPlugin,
+    BusPlugin,
+    CloseDialogsPlugin,
+    ConfirmPlugin,
+    ConfigPlugin,
+    DatetimePlugin,
+    DevicePlugin,
+    LoadingPlugin,
+    LocalePlugin,
+    ToastPlugin,
+    WechatPlugin,
+  ]
+  plugins.forEach((plugin) => {
+    Vue.use(plugin)
+  })
+
+  const directives = [TransferDomDirective]
+  directives.forEach((directive) => {
+    Vue.directive(directive.name, directive)
+  })
 
   if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue)

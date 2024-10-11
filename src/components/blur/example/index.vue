@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { Flexbox, FlexboxItem, Blur } from '@/index.js'
+import { Flexbox, FlexboxItem, Blur } from 'vux-refactor'
 
 export default {
   components: {

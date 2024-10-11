@@ -88,16 +88,34 @@
     week_day_6: 六
 </i18n>
 <script setup>
+import { computed, toRefs } from 'vue'
 import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
+import propsType from './props'
+const { t, locale } = useI18n()
 const $t = t
+const props = defineProps(propsType())
+const { weeksList } = toRefs(props)
+const _weeksList = computed(() => {
+  if (weeksList.value && weeksList.value.length) {
+    return weeksList.value
+  }
+  if (!weeksList.value || !weeksList.value.length) {
+    const V_LOCALE = locale.value
+    if (V_LOCALE === 'en') {
+      return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+    } else if (V_LOCALE === 'zh-CN') {
+      return ['日', '一', '二', '三', '四', '五', '六']
+    } else if (V_LOCALE === 'MULTI') {
+      return [0, 0, 0, 0, 0, 0, 0]
+    }
+  }
+})
 </script>
 <script>
 import format from '../datetime/format'
 import { getDays, zero, isBetween } from './util'
 import props from './props'
 import calendarMarksMixin from '@/mixins/calendar-marks'
-import i18n from '@/i18n.js'
 export default {
   name: 'inline-calendar',
   mixins: [calendarMarksMixin],
@@ -129,25 +147,6 @@ export default {
     this.render(this.renderMonth[0], this.renderMonth[1] - 1)
   },
   computed: {
-    _weeksList() {
-      if (this.weeksList && this.weeksList.length) {
-        return this.weeksList
-      }
-      if (!this.weeksList || !this.weeksList.length) {
-        // tip for older vux-loader
-        const V_LOCALE = i18n.locale
-        if (V_LOCALE === 'en') {
-          // eslint-disable-line
-          return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-        } else if (V_LOCALE === 'zh-CN') {
-          // eslint-disable-line
-          return ['日', '一', '二', '三', '四', '五', '六']
-        } else if (V_LOCALE === 'MULTI') {
-          // eslint-disable-line
-          return [0, 0, 0, 0, 0, 0, 0]
-        }
-      }
-    },
     _replaceTextList() {
       const rs = {}
       for (let i in this.replaceTextList) {

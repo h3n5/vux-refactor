@@ -23,7 +23,7 @@
 </i18n>
 <script setup>
 import { ref } from 'vue'
-import { CellFormPreview, Group, Cell } from '@/index.js'
+import { CellFormPreview, Group, Cell } from 'vux-refactor'
 import { useI18n } from 'vue-i18n-bridge'
 const { t } = useI18n()
 const $t = t

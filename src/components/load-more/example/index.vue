@@ -20,7 +20,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { LoadMore } from '@/index.js'
+import { LoadMore } from 'vux-refactor'
 
 export default {
   components: {

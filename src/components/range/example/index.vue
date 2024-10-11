@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import { XButton, Range, Group, GroupTitle, Cell } from '@/index.js'
+import { XButton, Range, Group, GroupTitle, Cell } from 'vux-refactor'
 
 export default {
   components: {

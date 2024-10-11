@@ -96,7 +96,7 @@ const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore } from '@/index.js'
+import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore } from 'vux-refactor'
 
 export default {
   components: {
