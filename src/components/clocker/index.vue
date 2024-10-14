@@ -6,7 +6,7 @@
 </template>
 <script setup>
 import { onMounted, nextTick, watch, onBeforeUnmount, useSlots, toRefs, ref } from 'vue'
-import { useI18n } from 'vue-i18n-bridge'
+import i18n from '@/locale/index.js'
 import Clocker from './clocker'
 const props = defineProps({
   time: [String, Number],
@@ -21,8 +21,6 @@ const timeString = ref('')
 const slotString = ref('')
 const cacheSlotString = ref('')
 const emit = defineEmits(['on-tick', 'on-finish'])
-const i18n = useI18n()
-const $t = i18n.t
 const locale = i18n.locale
 const slot = useSlots()
 if (typeof locale === 'undefined') {

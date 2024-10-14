@@ -1,30 +1,30 @@
 <template>
   <div>
     <group>
-      <x-switch :title="$t('Show Me')" v-model="show"></x-switch>
+      <x-switch :title="t('Show Me')" v-model="show"></x-switch>
     </group>
     <div v-transfer-dom>
-      <alert v-model="show" :title="$t('Congratulations')" @on-show="onShow" @on-hide="onHide">
-        {{ $t('Your Message is sent successfully~') }}
+      <alert v-model="show" :title="t('Congratulations')" @on-show="onShow" @on-hide="onHide">
+        {{ t('Your Message is sent successfully~') }}
       </alert>
     </div>
 
     <group title="Prop: content">
-      <x-switch :title="$t('Show Me')" v-model="show2"></x-switch>
+      <x-switch :title="t('Show Me')" v-model="show2"></x-switch>
     </group>
     <div v-transfer-dom>
-      <alert v-model="show2" :title="$t('Congratulations')" :content="$t('Your Message is sent successfully~')"></alert>
+      <alert v-model="show2" :title="t('Congratulations')" :content="t('Your Message is sent successfully~')"></alert>
     </div>
 
-    <group :title="$t('Use as a plugin')">
-      <cell :title="$t('Show Me')" @click.native="showPlugin" is-link></cell>
-      <cell :title="$t('Will auto close in 3s')" @click.native="showPluginAuto" is-link></cell>
+    <group :title="t('Use as a plugin')">
+      <cell :title="t('Show Me')" @click.native="showPlugin" is-link></cell>
+      <cell :title="t('Will auto close in 3s')" @click.native="showPluginAuto" is-link></cell>
     </group>
 
-    <group :title="$t('Use as a module')">
-      <cell :title="$t('Show Me')" @click.native="showModule" is-link></cell>
-      <cell :title="$t('Will auto close in 3s')" @click.native="showModuleAuto" is-link></cell>
-    </group>
+    <!-- <group :title="t('Use as a module')">
+      <cell :title="t('Show Me')" @click.native="showModule" is-link></cell>
+      <cell :title="t('Will auto close in 3s')" @click.native="showModuleAuto" is-link></cell>
+    </group> -->
   </div>
 </template>
 
@@ -48,8 +48,8 @@
 </i18n>
 
 <script>
-import { AlertModule, Alert, Group, XSwitch, Cell, TransferDomDirective as TransferDom } from 'vux-refactor'
-
+import { Alert, Group, XSwitch, Cell, TransferDomDirective as TransferDom } from '@/index.js'
+import { useI18n } from 'vue-i18n-bridge'
 export default {
   directives: {
     TransferDom,
@@ -67,6 +67,12 @@ export default {
       show2: false,
     }
   },
+  setup() {
+    const { t } = useI18n()
+    return {
+      t,
+    }
+  },
   methods: {
     onHide() {
       console.log('on hide')
@@ -77,7 +83,7 @@ export default {
     showPlugin() {
       this.$vux.alert.show({
         title: 'VUX is Cool',
-        content: this.$t('Do you agree?'),
+        content: this.t('Do you agree?'),
         onShow() {
           console.log("Plugin: I'm showing")
         },
@@ -89,7 +95,7 @@ export default {
     showModule() {
       AlertModule.show({
         title: 'VUX is Cool',
-        content: this.$t('Do you agree?'),
+        content: this.t('Do you agree?'),
         onShow() {
           console.log("Module: I'm showing")
         },
@@ -120,9 +126,4 @@ export default {
     clearInterval(this.timer)
   },
 }
-</script>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
 </script>

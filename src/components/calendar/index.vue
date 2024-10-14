@@ -11,8 +11,8 @@
           @on-click-left="onClickLeft"
           @on-click-right="onClickRight"
           :title="popupHeaderTitle"
-          :left-text="$t('cancel_text')"
-          :right-text="$t('confirm_text')"
+          :left-text="t('cancel_text')"
+          :right-text="t('confirm_text')"
         ></popup-header>
 
         <slot name="popup-before-calendar"></slot>
@@ -45,19 +45,6 @@
   </div>
 </template>
 
-<i18n>
-  en:
-    cancel_text: cancel
-    confirm_text: done
-  zh-CN:
-    cancel_text: 取消
-    confirm_text: 确定
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import InlineCalendar from '@/components/inline-calendar/index.vue'
 import Popup from '../popup/index.vue'
@@ -66,7 +53,7 @@ import props from '../inline-calendar/props.js'
 import TransferDom from '@/directives/transfer-dom/index.js'
 import PopupHeader from '../popup-header/index.vue'
 import format from '@/tools/date/format.js'
-
+import { localeMixin } from '@/locale/index.js'
 const getType = (value) => {
   if (typeof value === 'string') {
     return 'string'
@@ -113,6 +100,7 @@ export default {
   directives: {
     TransferDom,
   },
+  mixins: [localeMixin],
   components: {
     InlineCalendar,
     Popup,

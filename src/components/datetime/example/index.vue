@@ -1,170 +1,170 @@
 <template>
   <div>
     <div style="padding: 15px">
-      <x-button type="primary" plain @click.native="showPlugin">{{ $t('Used as a plugin') }}</x-button>
+      <x-button type="primary" plain @click.native="showPlugin">{{ t('Used as a plugin') }}</x-button>
     </div>
 
-    <group :title="$t('Default format: YYYY-MM-DD')">
+    <group :title="t('Default format: YYYY-MM-DD')">
       <datetime
         v-model="value1"
         @on-change="change"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
         @on-cancel="log('cancel')"
         @on-confirm="onConfirm"
         @on-hide="log('hide', $event)"
       ></datetime>
     </group>
 
-    <group :title="$t('Custom minute list: every 15 minutes')">
+    <group :title="t('Custom minute list: every 15 minutes')">
       <datetime
         v-model="minuteListValue"
         format="YYYY-MM-DD HH:mm"
         :minute-list="['00', '15', '30', '45']"
         @on-change="change"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
       ></datetime>
     </group>
 
-    <group :title="$t('Custom hour list')">
+    <group :title="t('Custom hour list')">
       <datetime
         v-model="hourListValue"
         format="YYYY-MM-DD HH:mm"
         :hour-list="['09', '10', '11', '12', '13', '14', '15', '16']"
         :minute-list="['00', '15', '30', '45']"
         @on-change="change"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
       ></datetime>
     </group>
 
     <group title="Readonly">
-      <datetime v-model="valueReadonly" :readonly="readonly" @on-change="change" :title="$t('Birthday')"></datetime>
+      <datetime v-model="valueReadonly" :readonly="readonly" @on-change="change" :title="t('Birthday')"></datetime>
     </group>
     <div style="padding: 15px">
-      <x-button type="primary" plain @click.native="readonly = !readonly">{{ $t('Toggle readonly') }}</x-button>
+      <x-button type="primary" plain @click.native="readonly = !readonly">{{ t('Toggle readonly') }}</x-button>
     </div>
 
-    <group :title="$t('Format display value')">
+    <group :title="t('Format display value')">
       <datetime
         v-model="formatValue"
         :display-format="formatValueFunction"
         @on-change="change"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
       ></datetime>
     </group>
 
     <div style="padding: 15px">
-      <x-button type="primary" @click.native="formatValue = '2017-11-11'">{{ $t('Set value: 2017-11-11') }}</x-button>
+      <x-button type="primary" @click.native="formatValue = '2017-11-11'">{{ t('Set value: 2017-11-11') }}</x-button>
     </div>
 
-    <group :title="$t('Define range of hours')">
+    <group :title="t('Define range of hours')">
       <datetime
         v-model="limitHourValue"
         format="YYYY-MM-DD HH:mm"
         :min-hour="9"
         :max-hour="18"
         @on-change="change"
-        :title="$t('Define range of hours')"
-        :inline-desc="$t('Working hours: 09-18')"
+        :title="t('Define range of hours')"
+        :inline-desc="t('Working hours: 09-18')"
       ></datetime>
     </group>
 
-    <group :title="$t('Set start-date and end-date') + ' 2015-11-11 ~ 2017-10-11'">
+    <group :title="t('Set start-date and end-date') + ' 2015-11-11 ~ 2017-10-11'">
       <datetime
         v-model="limitHourValue"
         :start-date="startDate"
         :end-date="endDate"
         format="YYYY-MM-DD HH:mm"
         @on-change="change"
-        :title="$t('Start time')"
+        :title="t('Start time')"
       ></datetime>
     </group>
 
-    <group :title="$t('Set end-date only') + ' 2017-10-11'">
+    <group :title="t('Set end-date only') + ' 2017-10-11'">
       <datetime
         v-model="onlySetEndDateValue"
         :end-date="onlySetEndDate"
         format="YYYY-MM-DD HH:mm"
         @on-change="change"
-        :title="$t('Start time')"
+        :title="t('Start time')"
       ></datetime>
     </group>
 
-    <group :title="$t('Format') + ': ' + format">
-      <datetime v-model="value2" :format="format" @on-change="change" :title="$t('Start time')"></datetime>
+    <group :title="t('Format') + ': ' + format">
+      <datetime v-model="value2" :format="format" @on-change="change" :title="t('Start time')"></datetime>
     </group>
 
     <div style="padding: 15px">
-      <x-button type="primary" @click.native="toggleFormat">{{ $t('Toggle format') }}</x-button>
+      <x-button type="primary" @click.native="toggleFormat">{{ t('Toggle format') }}</x-button>
     </div>
 
     <group title="noon">
       <datetime title="noon" v-model="noonValue" format="YYYY-MM-DD A"></datetime>
     </group>
 
-    <group :title="$t('Placeholder')">
+    <group :title="t('Placeholder')">
       <datetime
         v-model="value3"
         default-selected-value="2017-06-18 13"
         format="YYYY-MM-DD HH"
-        :placeholder="$t('Please select')"
+        :placeholder="t('Please select')"
         @on-change="change"
-        :title="$t('Start time')"
+        :title="t('Start time')"
       ></datetime>
     </group>
 
-    <group :title="$t('Set default-selected-value to 2017-11-11')">
+    <group :title="t('Set default-selected-value to 2017-11-11')">
       <datetime
         v-model="value3_1"
         default-selected-value="2017-11-11"
         format="YYYY-MM-DD"
-        :placeholder="$t('Please select')"
+        :placeholder="t('Please select')"
         @on-change="change"
-        :title="$t('Start time')"
-        :inline-desc="$t('Current value') + `: ${value3_1}`"
+        :title="t('Start time')"
+        :inline-desc="t('Current value') + `: ${value3_1}`"
       ></datetime>
     </group>
 
-    <group :title="$t('Set min-year and max-year')">
+    <group :title="t('Set min-year and max-year')">
       <datetime
         v-model="value4"
-        :placeholder="$t('Please select')"
+        :placeholder="t('Please select')"
         :min-year="2000"
         :max-year="2016"
         format="YYYY-MM-DD HH:mm"
         @on-change="change"
-        :title="$t('Years after 2000')"
+        :title="t('Years after 2000')"
       ></datetime>
     </group>
 
-    <group :title="$t('Prop: compute-hours-function')">
+    <group :title="t('Prop: compute-hours-function')">
       <datetime
         format="YYYY-MM-DD HH"
         v-model="computeHoursValue"
         :compute-hours-function="computeHoursFunction"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
         @on-change="change"
       ></datetime>
     </group>
 
-    <group :title="$t('Prop: compute-days-function')">
+    <group :title="t('Prop: compute-days-function')">
       <datetime
         format="YYYY-MM-DD HH"
         v-model="computeDaysValue"
         :compute-days-function="computeDaysFunction"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
         @on-change="change"
       ></datetime>
     </group>
 
-    <group :title="$t('Specified template text in Chinese')">
+    <group :title="t('Specified template text in Chinese')">
       <datetime
         v-model="value5"
-        :placeholder="$t('Please select')"
+        :placeholder="t('Please select')"
         :min-year="2000"
         :max-year="2016"
         format="YYYY-MM-DD HH:mm"
         @on-change="change"
-        :title="$t('Chinese')"
+        :title="t('Chinese')"
         year-row="{value}年"
         month-row="{value}月"
         day-row="{value}日"
@@ -175,51 +175,51 @@
       ></datetime>
     </group>
 
-    <group :title="$t('Show center button and clear the value')">
+    <group :title="t('Show center button and clear the value')">
       <datetime
         v-model="value6"
         @on-change="change"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
         clear-text="clear"
         @on-clear="clearValue"
       ></datetime>
     </group>
 
-    <group :title="$t('Show center button to set date to today')">
+    <group :title="t('Show center button to set date to today')">
       <datetime
         v-model="value7"
         @on-change="change"
-        :title="$t('Birthday')"
+        :title="t('Birthday')"
         clear-text="today"
         @on-clear="setToday"
       ></datetime>
     </group>
 
-    <group :title="$t('Custom trigger slot')">
-      <datetime v-model="value7" @on-change="change" :title="$t('Birthday')" clear-text="today" @on-clear="setToday">
-        <x-button>{{ $t('Click me') }}</x-button>
+    <group :title="t('Custom trigger slot')">
+      <datetime v-model="value7" @on-change="change" :title="t('Birthday')" clear-text="today" @on-clear="setToday">
+        <x-button>{{ t('Click me') }}</x-button>
       </datetime>
     </group>
 
-    <group :title="$t('Required')">
+    <group :title="t('Required')">
       <datetime
         v-model="value8"
-        :title="$t('Required')"
+        :title="t('Required')"
         clear-text="clear"
         @on-clear="clearValue8"
         :required="true"
       ></datetime>
     </group>
 
-    <group :title="$t('Use prop: show.sync (vue^2.3) to control visibility')">
-      <datetime v-model="value9" @on-change="change" :title="$t('Birthday')" :show.sync="visibility"></datetime>
+    <group :title="t('Use prop: show.sync (vue^2.3) to control visibility')">
+      <datetime v-model="value9" @on-change="change" :title="t('Birthday')" :show.sync="visibility"></datetime>
     </group>
 
     <div style="padding: 15px">
       <x-button type="primary" plain @click.native="visibility = true">显示</x-button>
     </div>
 
-    <group :title="$t('Default format: YYYY-MM-DD')">
+    <group :title="t('Default format: YYYY-MM-DD')">
       <datetime
         :order-map="{
           year: 3,
@@ -306,19 +306,21 @@
     "Set end-date only": "Set end-date only"
 
 </i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import { Datetime, Group, XButton } from 'vux-refactor'
+import { useI18n } from 'vue-i18n-bridge'
 
 export default {
   components: {
     Datetime,
     Group,
     XButton,
+  },
+  setup() {
+    const { t } = useI18n()
+    return {
+      t,
+    }
   },
   data() {
     return {

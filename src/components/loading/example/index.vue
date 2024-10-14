@@ -1,8 +1,8 @@
 <template>
   <div>
     <group>
-      <x-switch :title="$t('Toggle')" v-model="show1" @on-change="show1change"></x-switch>
-      <x-switch :title="$t('No loading text')" v-model="show2" @on-change="show2change"></x-switch>
+      <x-switch :title="t('Toggle')" v-model="show1" @on-change="show1change"></x-switch>
+      <x-switch :title="t('No loading text')" v-model="show2" @on-change="show2change"></x-switch>
     </group>
     <div v-transfer-dom>
       <loading :show="show1" :text="text1"></loading>
@@ -11,10 +11,10 @@
       <loading :show="show2" text=""></loading>
     </div>
     <div style="padding: 15px">
-      <x-button @click.native="showLoading" type="primary">{{ $t('Show loading') }}</x-button>
+      <x-button @click.native="showLoading" type="primary">{{ t('Show loading') }}</x-button>
     </div>
     <div style="padding: 15px">
-      <x-button @click.native="showDelayLoading" type="primary">{{ $t('Show delay loading') }}</x-button>
+      <x-button @click.native="showDelayLoading" type="primary">{{ t('Show delay loading') }}</x-button>
     </div>
   </div>
 </template>
@@ -31,12 +31,8 @@
     Show delay loading: "Show delay loading after 1s"
     No loading text: "No loading text"
 </i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
+import { useI18n } from 'vue-i18n-bridge'
 import { Loading, Group, XSwitch, XButton, TransferDomDirective as TransferDom } from 'vux-refactor'
 
 export default {
@@ -48,6 +44,12 @@ export default {
     Group,
     XSwitch,
     XButton,
+  },
+  setup() {
+    const { t } = useI18n()
+    return {
+      t,
+    }
   },
   data() {
     return {

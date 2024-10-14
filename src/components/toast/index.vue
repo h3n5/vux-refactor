@@ -4,7 +4,7 @@
     <transition :name="currentTransition">
       <div class="weui-toast" :style="{ width: width }" :class="toastClass" v-show="show">
         <i class="weui-icon-success-no-circle weui-icon_toast" v-show="type !== 'text'"></i>
-        <p class="weui-toast__content" v-if="text" :style="style" v-html="$t(text)"></p>
+        <p class="weui-toast__content" v-if="text" :style="style" v-html="text"></p>
         <p class="weui-toast__content" v-else :style="style">
           <slot></slot>
         </p>
@@ -23,27 +23,27 @@ export default {
     value: Boolean,
     time: {
       type: Number,
-      default: 2000
+      default: 2000,
     },
     type: {
       type: String,
-      default: 'success'
+      default: 'success',
     },
     transition: String,
     width: {
       type: String,
-      default: '7.6em'
+      default: '7.6em',
     },
     isShowMask: {
       type: Boolean,
-      default: false
+      default: false,
     },
     text: String,
-    position: String
+    position: String,
   },
   data() {
     return {
-      show: false
+      show: false,
     }
   },
   created() {
@@ -72,14 +72,14 @@ export default {
         'weui-toast_text': this.type === 'text',
         'vux-toast-top': this.position === 'top',
         'vux-toast-bottom': this.position === 'bottom',
-        'vux-toast-middle': this.position === 'middle'
+        'vux-toast-middle': this.position === 'middle',
       }
     },
     style() {
       if (this.type === 'text' && this.width === 'auto') {
         return { padding: '10px' }
       }
-    }
+    },
   },
   watch: {
     show(val) {
@@ -99,8 +99,8 @@ export default {
     },
     value(val) {
       this.show = val
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -141,7 +141,7 @@ export default {
 .vux-slide-from-top-leave-active,
 .vux-slide-from-bottom-enter-active,
 .vux-slide-from-bottom-leave-active {
-  transition: all 400ms cubic-bezier(.36, .66, .04, 1);
+  transition: all 400ms cubic-bezier(0.36, 0.66, 0.04, 1);
 }
 
 .weui-toast {
@@ -150,7 +150,7 @@ export default {
 }
 
 .weui-toast.weui-toast_forbidden {
-  color: #F76260;
+  color: #f76260;
 }
 
 .weui-toast.weui-toast_forbidden .weui-toast__content {
@@ -177,15 +177,15 @@ export default {
 }
 
 .weui-toast_success .weui-icon_toast:before {
-  content: "\EA08";
+  content: '\EA08';
 }
 
 .weui-toast_cancel .weui-icon_toast:before {
-  content: "\EA0D";
+  content: '\EA0D';
 }
 
 .weui-toast_forbidden .weui-icon_toast.weui-icon-success-no-circle:before {
-  content: "\EA0B";
-  color: #F76260;
+  content: '\EA0B';
+  color: #f76260;
 }
 </style>

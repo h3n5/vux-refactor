@@ -5,12 +5,20 @@
     </transition>
 
     <div class="weui-skin_android" v-if="theme === 'android'">
-      <transition name="vux-android-actionsheet" @after-enter="$emit('on-after-show')"
-        @after-leave="$emit('on-after-hide')">
+      <transition
+        name="vux-android-actionsheet"
+        @after-enter="$emit('on-after-show')"
+        @after-leave="$emit('on-after-hide')"
+      >
         <div class="weui-actionsheet" v-show="show">
           <div class="weui-actionsheet__menu">
-            <div v-for="(text, key) in menus" :key="key" class="weui-actionsheet__cell" @click="onMenuClick(text, key)"
-              v-html="(text.label || text)"></div>
+            <div
+              v-for="(text, key) in menus"
+              :key="key"
+              class="weui-actionsheet__cell"
+              @click="onMenuClick(text, key)"
+              v-html="text.label || text"
+            ></div>
           </div>
         </div>
       </transition>
@@ -21,8 +29,14 @@
         <div class="weui-actionsheet__cell" v-if="hasHeaderSlot">
           <slot name="header"></slot>
         </div>
-        <div class="weui-actionsheet__cell" v-for="(text, key) in menus" :key="key" @click="onMenuClick(text, key)"
-          v-html="(text.label || text)" :class="`vux-actionsheet-menu-${text.type || 'default'}`"></div>
+        <div
+          class="weui-actionsheet__cell"
+          v-for="(text, key) in menus"
+          :key="key"
+          @click="onMenuClick(text, key)"
+          v-html="text.label || text"
+          :class="`vux-actionsheet-menu-${text.type || 'default'}`"
+        ></div>
       </div>
       <div class="weui-actionsheet__action" @click="emitEvent('on-click-menu', 'cancel')" v-if="showCancel">
         <div class="weui-actionsheet__cell">{{ cancelText || t('cancel') }}</div>
@@ -31,29 +45,17 @@
   </div>
 </template>
 
-<i18n>
-  zh-CN:
-    cancel: 取消
-  en: 
-    cancel: cancel
-</i18n>
-
 <script>
-import { useI18n } from 'vue-i18n-bridge'
+import { localeMixin } from '@/locale/index.js'
 export default {
   name: 'actionsheet',
+  mixins: [localeMixin],
   mounted() {
     this.hasHeaderSlot = !!this.$slots.header
     this.$nextTick(() => {
       this.$tabbar = document.querySelector('.weui-tabbar')
       this.$refs.iOSMenu && this.$refs.iOSMenu.addEventListener('transitionend', this.onTransitionEnd)
     })
-  },
-  setup() {
-    const { t } = useI18n()
-    return {
-      t
-    }
   },
   props: {
     value: Boolean,
@@ -142,7 +144,7 @@ export default {
   beforeDestroy() {
     this.fixIos(100)
     this.$refs.iOSMenu && this.$refs.iOSMenu.removeEventListener('transitionend', this.onTransitionEnd)
-  }
+  },
 }
 </script>
 

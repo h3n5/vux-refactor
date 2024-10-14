@@ -39,8 +39,8 @@
       >
         <div class="vux-popup-picker-container">
           <popup-header
-            :left-text="cancelText || $t('cancel_text')"
-            :right-text="confirmText || $t('confirm_text')"
+            :left-text="cancelText || t('cancel_text')"
+            :right-text="confirmText || t('confirm_text')"
             @on-click-left="onHide(false)"
             @on-click-right="onHide(true)"
             :title="popupTitle"
@@ -59,20 +59,6 @@
     </div>
   </div>
 </template>
-
-<i18n>
-  en:
-    cancel_text: cancel
-    confirm_text: ok
-  zh-CN:
-    cancel_text: 取消
-    confirm_text: 完成
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import Picker from '../picker/index.vue'
 import Cell from '../cell/index.vue'
@@ -84,7 +70,7 @@ import array2string from '@/filters/array2String.js'
 import value2name from '@/filters/value2name.js'
 import uuidMixin from '@/libs/mixin_uuid.js'
 import TransferDom from '@/directives/transfer-dom/index.js'
-
+import { localeMixin } from '@/locale/index.js'
 const getObject = function (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
@@ -99,7 +85,7 @@ export default {
       this.showValue = this.show
     }
   },
-  mixins: [uuidMixin],
+  mixins: [uuidMixin, localeMixin],
   components: {
     Picker,
     Cell,

@@ -26,7 +26,7 @@
       <thead v-show="!hideWeekList">
         <tr>
           <th v-for="(week, index) in _weeksList" :key="index" class="week" :class="`is-week-list-${index}`">
-            {{ week || $t('week_day_' + index) }}
+            {{ week || t('week_day_' + index) }}
           </th>
         </tr>
       </thead>
@@ -69,30 +69,12 @@
   </div>
 </template>
 
-<i18n>
-  en:
-    week_day_0: Su
-    week_day_1: Mo
-    week_day_2: Tu
-    week_day_3: We
-    week_day_4: Th
-    week_day_5: Fr
-    week_day_6: Sa
-  zh-CN:
-    week_day_0: 日
-    week_day_1: 一
-    week_day_2: 二
-    week_day_3: 三
-    week_day_4: 四
-    week_day_5: 五
-    week_day_6: 六
-</i18n>
 <script setup>
 import { computed, toRefs } from 'vue'
-import { useI18n } from 'vue-i18n-bridge'
 import propsType from './props'
-const { t, locale } = useI18n()
-const $t = t
+import i18n from '@/i18n'
+const locale = i18n.locale
+const t = i18n.t
 const props = defineProps(propsType())
 const { weeksList } = toRefs(props)
 const _weeksList = computed(() => {
@@ -100,7 +82,7 @@ const _weeksList = computed(() => {
     return weeksList.value
   }
   if (!weeksList.value || !weeksList.value.length) {
-    const V_LOCALE = locale.value
+    const V_LOCALE = locale
     if (V_LOCALE === 'en') {
       return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
     } else if (V_LOCALE === 'zh-CN') {

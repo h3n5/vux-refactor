@@ -10,32 +10,22 @@
       >
         <i class="weui-loading weui-icon_toast"></i>
         <p class="weui-toast__content" v-if="text">
-          {{ text || $t('loading') }}
+          {{ text || t('loading') }}
           <slot></slot>
         </p>
       </div>
     </div>
   </transition>
 </template>
-
-<i18n>
-  en:
-    loading: loading
-  zh-CN:
-    loading: 加载
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
+import { localeMixin } from '@/locale/index.js'
 export default {
   name: 'loading',
   model: {
     prop: 'show',
     event: 'change',
   },
+  mixins: [localeMixin],
   props: {
     show: Boolean,
     text: String,

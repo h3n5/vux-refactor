@@ -2,7 +2,7 @@
 import vue from '@vitejs/plugin-vue2'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import path from 'path'
-
+import copyPlugin from 'rollup-plugin-copy'
 /** @type {import('vite').UserConfig} */
 export default {
   define: {
@@ -33,6 +33,15 @@ export default {
           vue: 'Vue',
         },
       },
+      plugins: [
+        copyPlugin({
+          targets: [
+            { src: 'src/locale/en-US.json', dest: 'dist/locale' },
+            { src: 'src/locale/zh-CN.json', dest: 'dist/locale' },
+          ],
+          hook: 'writeBundle', // notice here
+        }),
+      ],
     },
   },
   plugins: [

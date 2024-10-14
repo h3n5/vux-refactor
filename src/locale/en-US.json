@@ -1,0 +1,16 @@
+{
+  "cancel": "cancel",
+  "button_text": "OK",
+  "cancel_text": "cancel",
+  "confirm_text": "done",
+  "week_day_0": "Su",
+  "week_day_1": "Mo",
+  "week_day_2": "Tu",
+  "week_day_3": "We",
+  "week_day_4": "Th",
+  "week_day_5": "Fr",
+  "week_day_6": "Sa",
+  "loading": "loading",
+  "back_text": "Back",
+  "placeholder": "Search"
+}

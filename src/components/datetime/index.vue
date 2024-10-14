@@ -2,8 +2,8 @@
   <a
     class="vux-datetime weui-cell"
     :class="{ 'weui-cell_access': !readonly }"
-    :data-cancel-text="$t('cancel_text')"
-    :data-confirm-text="$t('confirm_text')"
+    :data-cancel-text="t('cancel_text')"
+    :data-confirm-text="t('confirm_text')"
     href="javascript:"
   >
     <slot>
@@ -29,19 +29,6 @@
   </a>
 </template>
 
-<i18n>
-  en:
-    cancel_text: cancel
-    confirm_text: done
-  zh-CN:
-    cancel_text: 取消
-    confirm_text: 确定
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import Icon from '../icon/index.vue'
 import Picker from './datetimepicker.js'
@@ -49,10 +36,10 @@ import Group from '../group/index.vue'
 import InlineDesc from '../inline-desc/index.vue'
 import Uuid from '@/mixins/uuid.js'
 import format from '@/tools/date/format.js'
-
+import { localeMixin } from '@/locale/index.js'
 export default {
   name: 'datetime',
-  mixins: [Uuid],
+  mixins: [Uuid, localeMixin],
   components: {
     Group,
     InlineDesc,

@@ -6,12 +6,16 @@ export function createVM(Vue) {
     console.error('[VUX] Alert plugin cannot be used in ssr.')
     return
   }
-  const Alert = Vue.extend(AlertComponent)
-  const $vm = new Alert({
-    el: document.createElement('div'),
-  })
-  document.body.appendChild($vm.$el)
-  return $vm
+  try {
+    const Alert = Vue.extend(AlertComponent)
+    const $vm = new Alert({
+      el: document.createElement('div'),
+    })
+    document.body.appendChild($vm.$el)
+    return $vm
+  } catch (error) {
+    console.log('AutoConsole: createVM -> error', error)
+  }
 }
 
 export function show($vm, options) {

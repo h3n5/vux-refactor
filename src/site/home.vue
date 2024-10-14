@@ -69,7 +69,7 @@ const baseComponent = ref([
       {
         label: 'XIcon',
         route: 'XIcon'.toLocaleUpperCase(),
-      }
+      },
     ],
   },
   {
@@ -286,7 +286,7 @@ const baseComponent = ref([
       {
         label: 'Drawer',
         route: 'Drawer'.toLocaleUpperCase(),
-      }
+      },
     ],
   },
   {
@@ -397,7 +397,8 @@ const baseComponent = ref([
     ],
   },
 ])
-
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
 const goRouter = (route) => {
   router.push({
     name: route,

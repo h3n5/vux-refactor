@@ -4,7 +4,7 @@
       <slot name="overwrite-left">
         <transition :name="transition">
           <a class="vux-header-back" @click.prevent v-show="_leftOptions.showBack" @click="onClickBack">
-            {{ typeof _leftOptions.backText === 'undefined' ? $t('back_text') : _leftOptions.backText }}
+            {{ typeof _leftOptions.backText === 'undefined' ? t('back_text') : _leftOptions.backText }}
           </a>
         </transition>
         <transition :name="transition">
@@ -30,20 +30,9 @@
   </div>
 </template>
 
-<i18n>
-  en:
-    back_text: Back
-  zh-CN:
-    back_text: 返回
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import objectAssign from 'object-assign'
-
+import { localeMixin } from '@/locale/index.js'
 export default {
   name: 'x-header',
   props: {
@@ -59,6 +48,7 @@ export default {
       },
     },
   },
+  mixins: [localeMixin],
   beforeMount() {
     if (this.$slots['overwrite-title']) {
       this.shouldOverWriteTitle = true

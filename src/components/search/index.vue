@@ -34,11 +34,11 @@
         </div>
         <label :for="`search_input_${uuid}`" class="weui-search-bar__label" v-show="!isFocus && !value">
           <i class="weui-icon-search"></i>
-          <span>{{ placeholder || $t('placeholder') }}</span>
+          <span>{{ placeholder || t('placeholder') }}</span>
         </label>
       </form>
       <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancel">
-        {{ cancelText || $t('cancel_text') }}
+        {{ cancelText || t('cancel_text') }}
       </a>
       <slot name="right"></slot>
     </div>
@@ -53,25 +53,12 @@
   </div>
 </template>
 
-<i18n lang="yaml">
-en:
-  cancel_text: cancel
-  placeholder: Search
-zh-CN:
-  cancel_text: 取消
-  placeholder: 搜索
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import uuidMixin from '@/mixins/uuid.js'
-
+import { localeMixin } from '@/locale/index.js'
 export default {
   name: 'search',
-  mixins: [uuidMixin],
+  mixins: [uuidMixin, localeMixin],
   props: {
     type: {
       type: String,

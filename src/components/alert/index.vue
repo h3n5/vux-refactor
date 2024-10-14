@@ -19,32 +19,22 @@
       </div>
       <div class="weui-dialog__ft">
         <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" @click="_onHide">
-          {{ buttonText || $t('button_text') }}
+          {{ buttonText || t('button_text') }}
         </a>
       </div>
     </x-dialog>
   </div>
 </template>
 
-<i18n lang="yaml">
-en:
-  button_text: OK
-zh-CN:
-  button_text: 确定
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import XDialog from '../x-dialog/index.vue'
-
+import { localeMixin } from '@/locale/index.js'
 export default {
   name: 'alert',
   components: {
     XDialog,
   },
+  mixins: [localeMixin],
   created() {
     if (typeof this.value !== 'undefined') {
       this.showValue = this.value

@@ -123,8 +123,9 @@ import VTooltip from './components/v-chart/v-tooltip.vue'
 import VLegend from './components/v-chart/v-legend.vue'
 import XCircle from './components/x-circle/index.vue'
 // plugin
+// import AlertModule from './plugins/alert/module'
+// import LoadingModule from './plugins/loading/module'
 import AjaxPlugin from './plugins/ajax/index.js'
-import AlertModule from './plugins/alert/module'
 import AlertPlugin from './plugins/alert/index.js'
 import AppPlugin from './plugins/app/index.js'
 import BusPlugin from './plugins/bus/index.js'
@@ -133,20 +134,17 @@ import ConfirmPlugin from './plugins/confirm/index.js'
 import ConfigPlugin from './plugins/config/index.js'
 import DatetimePlugin from './plugins/datetime/index.js'
 import DevicePlugin from './plugins/device/index.js'
-import LoadingModule from './plugins/loading/module'
 import LoadingPlugin from './plugins/loading/index.js'
-// import LocalePlugin from './plugins/locale/index.js'
 import ToastPlugin from './plugins/toast/index.js'
 import WechatPlugin from './plugins/wechat/index.js'
 // i18n
-import LocalePlugin from './i18n.js'
+import LocalePlugin from './locale/index.js'
 export {
   ChinaAddressV1Data,
   ChinaAddressV2Data,
   ChinaAddressV3Data,
   ChinaAddressV4Data,
   AjaxPlugin,
-  AlertModule,
   AlertPlugin,
   AppPlugin,
   BusPlugin,
@@ -155,7 +153,8 @@ export {
   ConfigPlugin,
   DatetimePlugin,
   DevicePlugin,
-  LoadingModule,
+  // AlertModule,
+  // LoadingModule,
   LoadingPlugin,
   LocalePlugin,
   ToastPlugin,
@@ -279,146 +278,4 @@ export {
   InlineXSwitch,
   TransferDomDirective,
   TransferDomDirective as TransferDom,
-}
-
-function install(Vue) {
-  const components = [
-    VChart,
-    VLine,
-    VArea,
-    VBar,
-    VPie,
-    VPoint,
-    VScale,
-    VAxis,
-    VGuide,
-    VTooltip,
-    VLegend,
-    XCircle,
-    InlineLoading,
-    Spinner,
-    Scroller,
-    XDialog,
-    Toast,
-    Drawer,
-    Confirm,
-    Loading,
-    Msg,
-    Popover,
-    XIcon,
-    PopupHeader,
-    Masker,
-    Countdown,
-    ColorPicker,
-    Blur,
-    Timeline,
-    TimelineItem,
-    ViewBox,
-    Grid,
-    GridItem,
-    Swipeout,
-    SwipeoutItem,
-    SwipeoutButton,
-    Range,
-    Search,
-    Rater,
-    Picker,
-    PopupRadio,
-    InlineXNumber,
-    InlineCalendar,
-    XTextarea,
-    XNumber,
-    XInput,
-    XAddress,
-    Selector,
-    PopupPicker,
-    FormPreview,
-    DatetimeView,
-    Datetime,
-    DatetimeRange,
-    Checklist,
-    Popup,
-    Checker,
-    CheckerItem,
-    CheckIcon,
-    Calendar,
-    XTable,
-    LoadMore,
-    XProgress,
-    XImg,
-    XHr,
-    Step,
-    StepItem,
-    Qrcode,
-    Previewer,
-    Radio,
-    Panel,
-    Marquee,
-    MarqueeItem,
-    Flow,
-    FlowState,
-    FlowLine,
-    Countup,
-    Clocker,
-    Card,
-    XHeader,
-    TabbarItem,
-    Tabbar,
-    TabItem,
-    Tab,
-    SwiperItem,
-    Swiper,
-    Sticky,
-    ButtonTab,
-    ButtonTabItem,
-    XSwitch,
-    Alert,
-    Actionsheet,
-    XButton,
-    Box,
-    GroupTitle,
-    Group,
-    Flexbox,
-    FlexboxItem,
-    Divider,
-    Badge,
-    Cell,
-    CellBox,
-    CellFormPreview,
-    Icon,
-    InlineXSwitch,
-  ]
-  components.forEach((component) => {
-    Vue.component(component.name, component)
-  })
-  const plugins = [
-    AjaxPlugin,
-    AlertPlugin,
-    AppPlugin,
-    BusPlugin,
-    CloseDialogsPlugin,
-    ConfirmPlugin,
-    ConfigPlugin,
-    DatetimePlugin,
-    DevicePlugin,
-    LoadingPlugin,
-    LocalePlugin,
-    ToastPlugin,
-    WechatPlugin,
-  ]
-  plugins.forEach((plugin) => {
-    Vue.use(plugin)
-  })
-
-  const directives = [TransferDomDirective]
-  directives.forEach((directive) => {
-    Vue.directive(directive.name, directive)
-  })
-
-  if (typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue)
-  }
-}
-export default {
-  install,
 }

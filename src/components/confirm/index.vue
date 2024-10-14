@@ -36,7 +36,7 @@
           class="weui-dialog__btn weui-dialog__btn_default"
           @click="_onCancel"
         >
-          {{ cancelText || $t('cancel_text') }}
+          {{ cancelText || t('cancel_text') }}
         </a>
         <a
           v-if="showConfirmButton"
@@ -45,33 +45,22 @@
           :class="`weui-dialog__btn_${confirmType}`"
           @click="_onConfirm"
         >
-          {{ confirmText || $t('confirm_text') }}
+          {{ confirmText || t('confirm_text') }}
         </a>
       </div>
     </x-dialog>
   </div>
 </template>
 
-<i18n>
-  en:
-    confirm_text: confirm
-    cancel_text: cancel
-  zh-CN:
-    confirm_text: 确定
-    cancel_text: 取消
-</i18n>
-<script setup>
-import { useI18n } from 'vue-i18n-bridge'
-const { t } = useI18n()
-const $t = t
-</script>
 <script>
 import XDialog from '../x-dialog/index.vue'
+import { localeMixin } from '@/locale/index.js'
 export default {
   name: 'confirm',
   components: {
     XDialog,
   },
+  mixins: [localeMixin],
   props: {
     value: {
       type: Boolean,
