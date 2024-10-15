@@ -1,22 +1,26 @@
 <template>
   <div
     class="vux-tab-wrap"
-    :class="barPosition === 'top' ? 'vux-tab-bar-top' : ''">
+    :class="barPosition === 'top' ? 'vux-tab-bar-top' : ''"
+  >
     <div class="vux-tab-container">
       <div
         class="vux-tab"
-        :class="[{'vux-tab-no-animate': !animate},{ scrollable }]"
-        ref="nav">
+        :class="[{ 'vux-tab-no-animate': !animate }, { scrollable }]"
+        ref="nav"
+      >
         <slot></slot>
         <div
           v-if="animate"
           class="vux-tab-ink-bar"
           :class="barClass"
-          :style="barStyle">
+          :style="barStyle"
+        >
           <span
             class="vux-tab-bar-inner"
             :style="innerBarStyle"
-            v-if="customBarWidth"></span>
+            v-if="customBarWidth"
+          ></span>
         </div>
       </div>
     </div>
@@ -24,23 +28,23 @@
 </template>
 
 <script>
-import { parentMixin } from '../../mixins/multi-items'
+import { parentMixin } from "../../mixins/multi-items";
 
 export default {
-  name: 'tab',
+  name: "tab",
   mixins: [parentMixin],
-  mounted () {
+  mounted() {
     // stop bar anmination on first loading
     this.$nextTick(() => {
       setTimeout(() => {
-        this.hasReady = true
-      }, 0)
-    })
+        this.hasReady = true;
+      }, 0);
+    });
   },
   props: {
     lineWidth: {
       type: Number,
-      default: 3
+      default: 3,
     },
     activeColor: String,
     barActiveColor: String,
@@ -48,134 +52,147 @@ export default {
     disabledColor: String,
     animate: {
       type: Boolean,
-      default: true
+      default: true,
     },
     customBarWidth: [Function, String],
     preventDefault: Boolean,
     scrollThreshold: {
       type: Number,
-      default: 4
+      default: 4,
     },
     barPosition: {
       type: String,
-      default: 'bottom',
-      validator (val) {
-        return ['bottom', 'top'].indexOf(val) !== -1
-      }
-    }
+      default: "bottom",
+      validator(val) {
+        return ["bottom", "top"].indexOf(val) !== -1;
+      },
+    },
   },
   computed: {
-    barLeft () {
+    barLeft() {
       if (this.hasReady) {
-        const nav = this.$refs.nav
-        const count = this.scrollable ? (nav.offsetWidth / this.$children[this.currentIndex || 0].$el.getBoundingClientRect().width) : this.number
-        return `${this.currentIndex * (100 / count)}%`
+        const nav = this.$refs.nav;
+        const count = this.scrollable
+          ? nav.offsetWidth /
+            this.$children[this.currentIndex || 0].$el.getBoundingClientRect()
+              .width
+          : this.number;
+        return `${this.currentIndex * (100 / count)}%`;
       }
     },
-    barRight () {
+    barRight() {
       if (this.hasReady) {
-        const nav = this.$refs.nav
-        const count = this.scrollable ? (nav.offsetWidth / this.$children[this.currentIndex || 0].$el.getBoundingClientRect().width) : this.number
-        return `${(count - this.currentIndex - 1) * (100 / count)}%`
+        const nav = this.$refs.nav;
+        const count = this.scrollable
+          ? nav.offsetWidth /
+            this.$children[this.currentIndex || 0].$el.getBoundingClientRect()
+              .width
+          : this.number;
+        return `${(count - this.currentIndex - 1) * (100 / count)}%`;
       }
     },
     // when prop:custom-bar-width
-    innerBarStyle () {
+    innerBarStyle() {
       return {
-        width: typeof this.customBarWidth === 'function' ? this.customBarWidth(this.currentIndex) : this.customBarWidth,
-        background: this.barActiveColor || this.activeColor
-      }
+        width:
+          typeof this.customBarWidth === "function"
+            ? this.customBarWidth(this.currentIndex)
+            : this.customBarWidth,
+        background: this.barActiveColor || this.activeColor,
+      };
     },
     // end
-    barStyle () {
+    barStyle() {
       const commonStyle = {
         left: this.barLeft,
         right: this.barRight,
-        display: 'block',
-        height: this.lineWidth + 'px',
-        transition: !this.hasReady ? 'none' : null
-      }
+        display: "block",
+        height: this.lineWidth + "px",
+        transition: !this.hasReady ? "none" : null,
+      };
       if (!this.customBarWidth) {
-        commonStyle.background = this.barActiveColor || this.activeColor
+        commonStyle.background = this.barActiveColor || this.activeColor;
       } else {
-        commonStyle.background = 'transparent' // when=prop:custom-bar-width
+        commonStyle.background = "transparent"; // when=prop:custom-bar-width
       }
-      return commonStyle
+      return commonStyle;
     },
-    barClass () {
+    barClass() {
       return {
-        'vux-tab-ink-bar-transition-forward': this.direction === 'forward',
-        'vux-tab-ink-bar-transition-backward': this.direction === 'backward'
-      }
+        "vux-tab-ink-bar-transition-forward": this.direction === "forward",
+        "vux-tab-ink-bar-transition-backward": this.direction === "backward",
+      };
     },
-    scrollable () {
-      return this.number > this.scrollThreshold
-    }
+    scrollable() {
+      return this.number > this.scrollThreshold;
+    },
   },
   watch: {
-    currentIndex (newIndex, oldIndex) {
-      this.direction = newIndex > oldIndex ? 'forward' : 'backward'
-      this.$emit('on-index-change', newIndex, oldIndex)
-      this.hasReady && this.scrollToActiveTab()
-    }
+    currentIndex(newIndex, oldIndex) {
+      this.direction = newIndex > oldIndex ? "forward" : "backward";
+      this.$emit("on-index-change", newIndex, oldIndex);
+      this.hasReady && this.scrollToActiveTab();
+    },
   },
-  data () {
+  data() {
     return {
-      direction: 'forward',
-      right: '100%',
-      hasReady: false
-    }
+      direction: "forward",
+      right: "100%",
+      hasReady: false,
+    };
   },
   methods: {
-    scrollToActiveTab () {
+    scrollToActiveTab() {
       if (!this.scrollable || !this.$children || !this.$children.length) {
-        return
+        return;
       }
-      const currentIndexTab = this.$children[this.currentIndex].$el
-      let count = 0
+      const currentIndexTab = this.$children[this.currentIndex].$el;
+      let count = 0;
       // scroll animation
       const step = () => {
-        const scrollDuration = 15
-        const nav = this.$refs.nav
-        nav.scrollLeft += (currentIndexTab.offsetLeft - (nav.offsetWidth - currentIndexTab.offsetWidth) / 2 - nav.scrollLeft) / scrollDuration
+        const scrollDuration = 15;
+        const nav = this.$refs.nav;
+        nav.scrollLeft +=
+          (currentIndexTab.offsetLeft -
+            (nav.offsetWidth - currentIndexTab.offsetWidth) / 2 -
+            nav.scrollLeft) /
+          scrollDuration;
         if (++count < scrollDuration) {
-          window.requestAnimationFrame(step)
+          window.requestAnimationFrame(step);
         }
-      }
-      window.requestAnimationFrame(step)
-    }
-  }
-}
+      };
+      window.requestAnimationFrame(step);
+    },
+  },
+};
 </script>
 
 
 <style lang="less">
-@import '../../styles/variable.less';
+@import "../../styles/variable.less";
 
 @prefixClass: vux-tab;
 @easing-in-out: cubic-bezier(0.35, 0, 0.25, 1);
-@effect-duration: .3s;
+@effect-duration: 0.3s;
 
 .@{prefixClass} {
-
   &-ink-bar {
     position: absolute;
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: @tab-bar-active-color;
+    background-color: var(--tab-bar-active-color);
     text-align: center;
 
     &-transition-forward {
       transition: right @effect-duration @easing-in-out,
-      left @effect-duration @easing-in-out @effect-duration * 0.3;
+        left @effect-duration @easing-in-out @effect-duration * 0.3;
     }
     &-transition-backward {
       transition: right @effect-duration @easing-in-out @effect-duration * 0.3,
-      left @effect-duration @easing-in-out;
+        left @effect-duration @easing-in-out;
     }
   }
-
 }
 
 .vux-tab-bar-top .@{prefixClass} {
@@ -205,32 +222,39 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  background: linear-gradient(180deg, #e5e5e5, #e5e5e5, rgba(229, 229, 229, 0)) bottom left no-repeat;
+  background: linear-gradient(180deg, #e5e5e5, #e5e5e5, rgba(229, 229, 229, 0))
+    bottom left no-repeat;
   background-size: 100% 1px;
   font-size: 14px;
   text-align: center;
   line-height: 44px;
-  color: @tab-text-default-color;
+  color: var(--tab-text-default-color);
 }
 
 .vux-tab .vux-tab-item.vux-tab-selected {
-  color: @tab-text-active-color;
-  border-bottom: 3px solid @tab-text-active-color;
+  color: var(--tab-text-active-color);
+  border-bottom: 3px solid var(--tab-text-active-color);
 }
 
 .vux-tab-bar-top {
   .vux-tab .vux-tab-item {
-    background: linear-gradient(180deg, #e5e5e5, #e5e5e5, rgba(229, 229, 229, 0)) top left no-repeat;
+    background: linear-gradient(
+        180deg,
+        #e5e5e5,
+        #e5e5e5,
+        rgba(229, 229, 229, 0)
+      )
+      top left no-repeat;
     background-size: 100% 1px;
   }
   .vux-tab .vux-tab-item.vux-tab-selected {
     border-bottom: none;
-    border-top: 3px solid @tab-text-active-color;
+    border-top: 3px solid var(--tab-text-active-color);
   }
 }
 
 .vux-tab .vux-tab-item.vux-tab-disabled {
-  color: @tab-text-disabled-color;
+  color: var(--tab-text-disabled-color);
 }
 
 .vux-tab.vux-tab-no-animate .vux-tab-item.vux-tab-selected {
@@ -240,7 +264,7 @@ export default {
 /** when=prop:custom-bar-width **/
 .vux-tab-bar-inner {
   display: block;
-  background-color: @tab-text-active-color;
+  background-color: var(--tab-text-active-color);
   margin: auto;
   height: 100%;
   transition: width 0.3s @easing-in-out;
@@ -297,5 +321,4 @@ export default {
 .scrollable .vux-tab-item {
   flex: 0 0 22%;
 }
-
 </style>

@@ -3,7 +3,11 @@
     <div>
       <p
         v-html="title"
-        :style="{ width: $parent.labelWidth, textAlign: $parent.labelAlign, marginRight: $parent.labelMarginRight }"
+        :style="{
+          width: $parent.labelWidth,
+          textAlign: $parent.labelAlign,
+          marginRight: $parent.labelMarginRight,
+        }"
         :class="labelClass"
       ></p>
     </div>
@@ -71,9 +75,9 @@
 </template>
 
 <script>
-import Big from 'big.js'
+import Big from "big.js";
 export default {
-  name: 'x-number',
+  name: "x-number",
   props: {
     min: Number,
     max: Number,
@@ -84,12 +88,12 @@ export default {
     },
     value: {
       validator(value) {
-        if (typeof value === 'number') {
-          return true
-        } else if (typeof value === 'string') {
-          return value === ''
+        if (typeof value === "number") {
+          return true;
+        } else if (typeof value === "string") {
+          return value === "";
         }
-        return false
+        return false;
       },
       default: 0,
     },
@@ -101,80 +105,90 @@ export default {
     },
     width: {
       type: String,
-      default: '50px',
+      default: "50px",
     },
     buttonStyle: {
       type: String,
-      default: 'square',
+      default: "square",
     },
     align: {
       type: String,
-      default: 'right',
+      default: "right",
     },
   },
   created() {
-    this.currentValue = this.value
+    this.currentValue = this.value;
   },
   data() {
     return {
       currentValue: 0,
-    }
+    };
   },
   computed: {
     disabledMin() {
-      return typeof this.min === 'undefined' ? false : this.currentValue === '' ? true : this.currentValue <= this.min
+      return typeof this.min === "undefined"
+        ? false
+        : this.currentValue === ""
+        ? true
+        : this.currentValue <= this.min;
     },
     disabledMax() {
-      return typeof this.max === 'undefined' ? false : this.currentValue === '' ? true : this.currentValue >= this.max
+      return typeof this.max === "undefined"
+        ? false
+        : this.currentValue === ""
+        ? true
+        : this.currentValue >= this.max;
     },
     labelClass() {
-      if (!this.$parent) return {}
+      if (!this.$parent) return {};
       return {
-        'vux-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify',
-      }
+        "vux-cell-justify":
+          this.$parent.labelAlign === "justify" ||
+          this.$parent.$parent.labelAlign === "justify",
+      };
     },
   },
   watch: {
     currentValue(newValue, old) {
-      if (newValue !== '') {
-        if (typeof this.min !== 'undefined' && this.currentValue < this.min) {
-          this.currentValue = this.min
+      if (newValue !== "") {
+        if (typeof this.min !== "undefined" && this.currentValue < this.min) {
+          this.currentValue = this.min;
         }
         if (this.max && this.currentValue > this.max) {
-          this.currentValue = this.max
+          this.currentValue = this.max;
         }
       }
-      this.$emit('input', this.currentValue)
+      this.$emit("input", this.currentValue);
     },
     value(newValue) {
-      this.currentValue = newValue
-      this.$emit('on-change', newValue)
+      this.currentValue = newValue;
+      this.$emit("on-change", newValue);
     },
   },
   methods: {
     add() {
       if (!this.disabledMax) {
-        const x = new Big(this.currentValue)
-        this.currentValue = x.plus(this.step) * 1
+        const x = new Big(this.currentValue);
+        this.currentValue = x.plus(this.step) * 1;
       }
     },
     sub() {
       if (!this.disabledMin) {
-        const x = new Big(this.currentValue)
-        this.currentValue = x.minus(this.step) * 1
+        const x = new Big(this.currentValue);
+        this.currentValue = x.minus(this.step) * 1;
       }
     },
     blur() {
-      if (this.currentValue === '') {
-        this.currentValue = 0
+      if (this.currentValue === "") {
+        this.currentValue = 0;
       }
     },
   },
-}
+};
 </script>
 
 <style lang="less">
-@import '../../styles/weui/widget/weui_cell/weui_cell_global';
+@import "../../styles/weui/widget/weui_cell/weui_cell_global";
 
 .vux-cell-primary {
   flex: 1;
@@ -183,7 +197,7 @@ export default {
   float: left;
   height: 20px;
   font-size: 20px;
-  color: @number-input-font-color;
+  color: var(--number-input-font-color);
   appearance: none;
   border: 1px solid #ececec;
   padding: 3px 0;
@@ -198,21 +212,21 @@ export default {
   height: 20px;
   font-size: 25px;
   line-height: 18px;
-  color: @number-button-font-color;
-  border: 1px solid @number-square-button-enabled-border-color;
+  color: var(--number-button-font-color);
+  border: 1px solid var(--number-square-button-enabled-border-color);
 }
 .vux-number-round .vux-number-selector {
   width: 20px;
   border-radius: 13px;
 }
 .vux-number-selector svg {
-  fill: @number-button-font-color;
+  fill: var(--number-button-font-color);
 }
 .vux-number-selector.vux-number-disabled svg {
   fill: #ccc;
 }
 .vux-number-round .vux-number-selector.vux-number-disabled {
-  border-color: @number-round-button-disabled-border-color;
+  border-color: var(--number-round-button-disabled-border-color);
 }
 .vux-number-round .vux-number-selector.vux-number-disabled svg {
   fill: #ccc;
@@ -235,7 +249,7 @@ export default {
 .vux-number-round .vux-number-selector-sub,
 .vux-number-round .vux-number-selector-plus {
   padding: 2px;
-  border: 1px solid @number-round-button-enabled-border-color;
+  border: 1px solid var(--number-round-button-enabled-border-color);
   text-align: center;
 }
 </style>

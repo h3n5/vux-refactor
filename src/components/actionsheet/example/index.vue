@@ -33,7 +33,12 @@
       @on-after-show="log('after show')"
     ></actionsheet>
 
-    <actionsheet v-model="show2" :menus="menus2" @on-click-menu="click" show-cancel></actionsheet>
+    <actionsheet
+      v-model="show2"
+      :menus="menus2"
+      @on-click-menu="click"
+      show-cancel
+    ></actionsheet>
 
     <actionsheet
       v-model="show3"
@@ -43,7 +48,12 @@
       show-cancel
     ></actionsheet>
 
-    <actionsheet v-model="show5" :menus="menus5" show-cancel @on-click-menu="click5"></actionsheet>
+    <actionsheet
+      v-model="show5"
+      :menus="menus5"
+      show-cancel
+      @on-click-menu="click5"
+    ></actionsheet>
 
     <actionsheet v-model="show6" :menus="menus1">
       <p slot="header" v-html="$t('Actionsheet header')"></p>
@@ -58,7 +68,7 @@
       @on-after-show="log('after show')"
     ></actionsheet>
 
-    <toast v-model="showSuccess">{{ $t('Deleted~') }}</toast>
+    <toast v-model="showSuccess">{{ $t("Deleted~") }}</toast>
 
     <div v-transfer-dom>
       <actionsheet
@@ -106,91 +116,99 @@
         Prevent auto closing: '不自动关闭'
   </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
-import { ref } from 'vue'
-const { t } = useI18n()
-const $t = t
-import Actionsheet from '../index.vue'
-import Group from '@/components/group/index.vue'
-import XSwitch from '@/components/x-switch/index.vue'
-import Toast from '@/components/toast/index.vue'
-import * as vTransferDom from '@/directives/transfer-dom'
-const show1 = ref(false)
-const show2 = ref(false)
-const show3 = ref(false)
-const show4 = ref(false)
-const show5 = ref(false)
-const show6 = ref(false)
-const show7 = ref(false)
-const show8 = ref(false)
+import { useI18n } from "vue-i18n-bridge";
+import { ref } from "vue";
+const { t } = useI18n();
+const $t = t;
 
-const showSuccess = ref(false)
+import {
+  LoadingModule,
+  Actionsheet,
+  Group,
+  XSwitch,
+  Toast,
+  TransferDom as vTransferDom,
+} from "@/index.js";
+const show1 = ref(false);
+const show2 = ref(false);
+const show3 = ref(false);
+const show4 = ref(false);
+const show5 = ref(false);
+const show6 = ref(false);
+const show7 = ref(false);
+const show8 = ref(false);
+
+const showSuccess = ref(false);
 function log(e) {
-  return window.console.log(e)
+  return window.console.log(e);
 }
 
 const menus1 = ref({
-  menu1: t('Share to friends'),
-  menu2: t('Share to timeline'),
-})
+  menu1: t("Share to friends"),
+  menu2: t("Share to timeline"),
+});
 const menus2 = {
-  menu1: $t('Take Photo'),
-  menu2: $t('Choose from photos'),
-}
+  menu1: $t("Take Photo"),
+  menu2: $t("Choose from photos"),
+};
 const menus3 = {
-  'title.noop': $t('Actionsheet header'),
+  "title.noop": $t("Actionsheet header"),
   delete: '<span style="color:red">Delete</span>',
-}
+};
 const menus5 = [
   {
-    label: $t('Actionsheet header'),
-    type: 'info',
+    label: $t("Actionsheet header"),
+    type: "info",
   },
   {
-    label: 'Primary',
-    type: 'primary',
-    value: 'primary',
-    otherProp: 'hey',
+    label: "Primary",
+    type: "primary",
+    value: "primary",
+    otherProp: "hey",
   },
   {
-    label: 'Warn',
-    type: 'warn',
+    label: "Warn",
+    type: "warn",
   },
   {
-    label: 'Disabled',
-    type: 'disabled',
+    label: "Disabled",
+    type: "disabled",
   },
   {
-    label: 'Default',
+    label: "Default",
   },
-]
+];
 const menu7 = {
-  menu1: '北京烤鸭',
-  menu2: '陕西油泼面',
-  menu3: '西安肉夹馍',
-}
+  menu1: "北京烤鸭",
+  menu2: "陕西油泼面",
+  menu3: "西安肉夹馍",
+};
 const menus8 = {
-  menu1: $t('Close me'),
-  menu2: $t('Close me'),
-}
-// todo
+  menu1: $t("Close me"),
+  menu2: $t("Close me"),
+};
 const demo8doClose = () => {
-  this.$vux.loading.show({
-    text: 'processing',
-  })
+  LoadingModule.show({
+    text: "processing",
+  });
   setTimeout(() => {
-    this.$vux.loading.hide()
-    show8.value = false
-  }, 1000)
-}
+    LoadingModule.hide();
+    show8.value = false;
+  }, 1000);
+};
 
 function click(key) {
-  console.log(key)
+  console.log(key);
 }
 function click5(key, item) {
-  console.log(key, item)
+  console.log(key, item);
 }
 function onDelete() {
-  showSuccess.value = true
+  showSuccess.value = true;
 }
 </script>
+<style lang="less">
+:root {
+  --actionsheet-label-primary-color: red;
+}
+</style>

@@ -124,7 +124,7 @@ import VLegend from './components/v-chart/v-legend.vue'
 import XCircle from './components/x-circle/index.vue'
 // plugin
 // import AlertModule from './plugins/alert/module'
-// import LoadingModule from './plugins/loading/module'
+import LoadingModule from './plugins/loading/module'
 import AjaxPlugin from './plugins/ajax/index.js'
 import AlertPlugin from './plugins/alert/index.js'
 import AppPlugin from './plugins/app/index.js'
@@ -154,7 +154,7 @@ export {
   DatetimePlugin,
   DevicePlugin,
   // AlertModule,
-  // LoadingModule,
+  LoadingModule,
   LoadingPlugin,
   LocalePlugin,
   ToastPlugin,
