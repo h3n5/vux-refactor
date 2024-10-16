@@ -6,7 +6,8 @@
   "module": "dist/vux-refactor.es.js",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build"
+    "build": "vite build",
+    "doc": "vite build --config vite.doc.config.js"
   },
   "keywords": [],
   "author": "",
