@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative">
+  <div class="page-theme" style="position: relative">
     <div class="varlet-logo">
       <h1 class="varlet-home__title">
         <svg
@@ -28,410 +28,410 @@
     </div>
     <div class="router-view__block" v-for="(bc, i) in baseComponent" :key="i">
       <p style="padding: 10px">{{ bc.name }}</p>
-      <div
+      <Cell
+        :title="item.label"
         class="varlet-home__cell"
         v-for="(item, index) in bc.children"
         :key="index"
-        @click="goRouter(item.route)"
-      >
-        <span>{{ item.label }}</span>
-        <i
-          class="var-icon var-icon--set var-icon-chevron-right"
-          style="transition-duration: 0ms; font-size: 14px"
-        ></i>
-      </div>
+        is-link
+        @click.native="goRouter(item.route)"
+      ></Cell>
     </div>
   </div>
 </template>
 <script setup>
-import { ref } from "vue-demi";
-import router from "@/router";
+import { ref } from 'vue-demi'
+import { Cell } from 'vux-refactor'
+import router from '@/router'
 const baseComponent = ref([
   {
-    name: "定制",
+    name: '定制',
     children: [
       {
-        label: "国际化",
-        route: "Internationalization",
+        label: '国际化',
+        route: 'Internationalization'
       },
       {
-        label: "主题",
-        route: "Theme",
-      },
-    ],
+        label: '主题',
+        route: 'Theme'
+      }
+    ]
   },
   {
-    name: "基础组件",
+    name: '基础组件',
     children: [
       {
-        label: "Button",
-        route: "XButton".toLocaleUpperCase(),
+        label: 'Button',
+        route: 'XButton'.toLocaleUpperCase()
       },
       {
-        label: "Cell",
-        route: "Cell".toLocaleUpperCase(),
+        label: 'Cell',
+        route: 'Cell'.toLocaleUpperCase()
       },
       {
-        label: "CellBox",
-        route: "CellBox".toLocaleUpperCase(),
+        label: 'CellBox',
+        route: 'CellBox'.toLocaleUpperCase()
       },
       {
-        label: "CellFormPreview",
-        route: "CellFormPreview".toLocaleUpperCase(),
+        label: 'CellFormPreview',
+        route: 'CellFormPreview'.toLocaleUpperCase()
       },
       {
-        label: "Group",
-        route: "Group".toLocaleUpperCase(),
+        label: 'Group',
+        route: 'Group'.toLocaleUpperCase()
       },
       {
-        label: "Icon",
-        route: "Icon".toLocaleUpperCase(),
+        label: 'Icon',
+        route: 'Icon'.toLocaleUpperCase()
       },
       {
-        label: "XIcon",
-        route: "XIcon".toLocaleUpperCase(),
-      },
-    ],
+        label: 'XIcon',
+        route: 'XIcon'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "布局组件",
+    name: '布局组件',
     children: [
       {
-        label: "Divider",
-        route: "Divider".toLocaleUpperCase(),
+        label: 'Divider',
+        route: 'Divider'.toLocaleUpperCase()
       },
       {
-        label: "Flexbox",
-        route: "Flexbox".toLocaleUpperCase(),
+        label: 'Flexbox',
+        route: 'Flexbox'.toLocaleUpperCase()
       },
       {
-        label: "Grid",
-        route: "Grid".toLocaleUpperCase(),
+        label: 'Grid',
+        route: 'Grid'.toLocaleUpperCase()
       },
       {
-        label: "Sticky",
-        route: "Sticky".toLocaleUpperCase(),
+        label: 'Sticky',
+        route: 'Sticky'.toLocaleUpperCase()
       },
       {
-        label: "ViewBox",
-        route: "ViewBox".toLocaleUpperCase(),
-      },
-    ],
+        label: 'ViewBox',
+        route: 'ViewBox'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "表单组件",
+    name: '表单组件',
     children: [
       {
-        label: "CheckIcon",
-        route: "CheckIcon".toLocaleUpperCase(),
+        label: 'CheckIcon',
+        route: 'CheckIcon'.toLocaleUpperCase()
       },
       {
-        label: "Checker",
-        route: "Checker".toLocaleUpperCase(),
+        label: 'Checker',
+        route: 'Checker'.toLocaleUpperCase()
       },
       {
-        label: "Checklist",
-        route: "Checklist".toLocaleUpperCase(),
+        label: 'Checklist',
+        route: 'Checklist'.toLocaleUpperCase()
       },
       {
-        label: "FormPreview",
-        route: "FormPreview".toLocaleUpperCase(),
+        label: 'FormPreview',
+        route: 'FormPreview'.toLocaleUpperCase()
       },
       {
-        label: "InlineXNumber",
-        route: "InlineXNumber".toLocaleUpperCase(),
+        label: 'InlineXNumber',
+        route: 'InlineXNumber'.toLocaleUpperCase()
       },
       {
-        label: "InlineXSwitch",
-        route: "InlineXSwitch".toLocaleUpperCase(),
+        label: 'InlineXSwitch',
+        route: 'InlineXSwitch'.toLocaleUpperCase()
       },
       {
-        label: "Picker",
-        route: "Picker".toLocaleUpperCase(),
+        label: 'Picker',
+        route: 'Picker'.toLocaleUpperCase()
       },
       {
-        label: "PopupPicker",
-        route: "PopupPicker".toLocaleUpperCase(),
+        label: 'PopupPicker',
+        route: 'PopupPicker'.toLocaleUpperCase()
       },
       {
-        label: "PopupRadio",
-        route: "PopupRadio".toLocaleUpperCase(),
+        label: 'PopupRadio',
+        route: 'PopupRadio'.toLocaleUpperCase()
       },
       {
-        label: "Radio",
-        route: "Radio".toLocaleUpperCase(),
+        label: 'Radio',
+        route: 'Radio'.toLocaleUpperCase()
       },
       {
-        label: "Range",
-        route: "Range".toLocaleUpperCase(),
+        label: 'Range',
+        route: 'Range'.toLocaleUpperCase()
       },
       {
-        label: "Rater",
-        route: "Rater".toLocaleUpperCase(),
+        label: 'Rater',
+        route: 'Rater'.toLocaleUpperCase()
       },
       {
-        label: "Search",
-        route: "Search".toLocaleUpperCase(),
+        label: 'Search',
+        route: 'Search'.toLocaleUpperCase()
       },
       {
-        label: "Selector",
-        route: "Selector".toLocaleUpperCase(),
+        label: 'Selector',
+        route: 'Selector'.toLocaleUpperCase()
       },
       {
-        label: "Swipeout",
-        route: "Swipeout".toLocaleUpperCase(),
+        label: 'Swipeout',
+        route: 'Swipeout'.toLocaleUpperCase()
       },
       {
-        label: "XAddress",
-        route: "XAddress".toLocaleUpperCase(),
+        label: 'XAddress',
+        route: 'XAddress'.toLocaleUpperCase()
       },
       {
-        label: "XInput",
-        route: "XInput".toLocaleUpperCase(),
+        label: 'XInput',
+        route: 'XInput'.toLocaleUpperCase()
       },
       {
-        label: "XNumber",
-        route: "XNumber".toLocaleUpperCase(),
+        label: 'XNumber',
+        route: 'XNumber'.toLocaleUpperCase()
       },
       {
-        label: "XSwitch",
-        route: "XSwitch".toLocaleUpperCase(),
+        label: 'XSwitch',
+        route: 'XSwitch'.toLocaleUpperCase()
       },
       {
-        label: "XTextarea",
-        route: "XTextarea".toLocaleUpperCase(),
-      },
-    ],
+        label: 'XTextarea',
+        route: 'XTextarea'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "日期组件",
+    name: '日期组件',
     children: [
       {
-        label: "Calendar",
-        route: "Calendar".toLocaleUpperCase(),
+        label: 'Calendar',
+        route: 'Calendar'.toLocaleUpperCase()
       },
       {
-        label: "InlineCalendar",
-        route: "InlineCalendar".toLocaleUpperCase(),
+        label: 'InlineCalendar',
+        route: 'InlineCalendar'.toLocaleUpperCase()
       },
       {
-        label: "Datetime",
-        route: "Datetime".toLocaleUpperCase(),
+        label: 'Datetime',
+        route: 'Datetime'.toLocaleUpperCase()
       },
       {
-        label: "DatetimeRange",
-        route: "DatetimeRange".toLocaleUpperCase(),
+        label: 'DatetimeRange',
+        route: 'DatetimeRange'.toLocaleUpperCase()
       },
       {
-        label: "DatetimeView",
-        route: "DatetimeView".toLocaleUpperCase(),
-      },
-    ],
+        label: 'DatetimeView',
+        route: 'DatetimeView'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "弹窗组件",
+    name: '弹窗组件',
     children: [
       {
-        label: "Actionsheet",
-        route: "actionsheet".toLocaleUpperCase(),
+        label: 'Actionsheet',
+        route: 'actionsheet'.toLocaleUpperCase()
       },
       {
-        label: "Alert",
-        route: "Alert".toLocaleUpperCase(),
+        label: 'Alert',
+        route: 'Alert'.toLocaleUpperCase()
       },
       {
-        label: "Confirm",
-        route: "Confirm".toLocaleUpperCase(),
+        label: 'Confirm',
+        route: 'Confirm'.toLocaleUpperCase()
       },
       {
-        label: "InlineLoading",
-        route: "InlineLoading".toLocaleUpperCase(),
+        label: 'InlineLoading',
+        route: 'InlineLoading'.toLocaleUpperCase()
       },
       {
-        label: "LoadMore",
-        route: "LoadMore".toLocaleUpperCase(),
+        label: 'LoadMore',
+        route: 'LoadMore'.toLocaleUpperCase()
       },
       {
-        label: "Loading",
-        route: "Loading".toLocaleUpperCase(),
+        label: 'Loading',
+        route: 'Loading'.toLocaleUpperCase()
       },
       {
-        label: "Msg",
-        route: "Msg".toLocaleUpperCase(),
+        label: 'Msg',
+        route: 'Msg'.toLocaleUpperCase()
       },
       {
-        label: "Popover",
-        route: "Popover".toLocaleUpperCase(),
+        label: 'Popover',
+        route: 'Popover'.toLocaleUpperCase()
       },
       {
-        label: "PopupHeader",
-        route: "PopupHeader".toLocaleUpperCase(),
+        label: 'PopupHeader',
+        route: 'PopupHeader'.toLocaleUpperCase()
       },
       {
-        label: "Popup",
-        route: "Popup".toLocaleUpperCase(),
+        label: 'Popup',
+        route: 'Popup'.toLocaleUpperCase()
       },
       {
-        label: "Spinner",
-        route: "Spinner".toLocaleUpperCase(),
+        label: 'Spinner',
+        route: 'Spinner'.toLocaleUpperCase()
       },
       {
-        label: "Toast",
-        route: "Toast".toLocaleUpperCase(),
+        label: 'Toast',
+        route: 'Toast'.toLocaleUpperCase()
       },
       {
-        label: "XDialog",
-        route: "XDialog".toLocaleUpperCase(),
-      },
-    ],
+        label: 'XDialog',
+        route: 'XDialog'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "导航组件",
+    name: '导航组件',
     children: [
       {
-        label: "ButtonTab",
-        route: "ButtonTab".toLocaleUpperCase(),
+        label: 'ButtonTab',
+        route: 'ButtonTab'.toLocaleUpperCase()
       },
       {
-        label: "Tab",
-        route: "Tab".toLocaleUpperCase(),
+        label: 'Tab',
+        route: 'Tab'.toLocaleUpperCase()
       },
       {
-        label: "Tabbar",
-        route: "Tabbar".toLocaleUpperCase(),
+        label: 'Tabbar',
+        route: 'Tabbar'.toLocaleUpperCase()
       },
       {
-        label: "Header",
-        route: "XHeader".toLocaleUpperCase(),
+        label: 'Header',
+        route: 'XHeader'.toLocaleUpperCase()
       },
       {
-        label: "Drawer",
-        route: "Drawer".toLocaleUpperCase(),
-      },
-    ],
+        label: 'Drawer',
+        route: 'Drawer'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "数据展示",
+    name: '数据展示',
     children: [
       {
-        label: "Badge",
-        route: "Badge".toLocaleUpperCase(),
+        label: 'Badge',
+        route: 'Badge'.toLocaleUpperCase()
       },
       {
-        label: "Timeline",
-        route: "Timeline".toLocaleUpperCase(),
+        label: 'Timeline',
+        route: 'Timeline'.toLocaleUpperCase()
       },
       {
-        label: "Card",
-        route: "Card".toLocaleUpperCase(),
+        label: 'Card',
+        route: 'Card'.toLocaleUpperCase()
       },
       {
-        label: "Clocker",
-        route: "Clocker".toLocaleUpperCase(),
+        label: 'Clocker',
+        route: 'Clocker'.toLocaleUpperCase()
       },
       {
-        label: "Countup",
-        route: "Countup".toLocaleUpperCase(),
+        label: 'Countup',
+        route: 'Countup'.toLocaleUpperCase()
       },
       {
-        label: "Flow",
-        route: "Flow".toLocaleUpperCase(),
+        label: 'Flow',
+        route: 'Flow'.toLocaleUpperCase()
       },
       {
-        label: "Marquee",
-        route: "Marquee".toLocaleUpperCase(),
+        label: 'Marquee',
+        route: 'Marquee'.toLocaleUpperCase()
       },
       {
-        label: "Panel",
-        route: "Panel".toLocaleUpperCase(),
+        label: 'Panel',
+        route: 'Panel'.toLocaleUpperCase()
       },
       {
-        label: "Previewer",
-        route: "Previewer".toLocaleUpperCase(),
+        label: 'Previewer',
+        route: 'Previewer'.toLocaleUpperCase()
       },
       {
-        label: "Qrcode",
-        route: "Qrcode".toLocaleUpperCase(),
+        label: 'Qrcode',
+        route: 'Qrcode'.toLocaleUpperCase()
       },
       {
-        label: "Step",
-        route: "Step".toLocaleUpperCase(),
+        label: 'Step',
+        route: 'Step'.toLocaleUpperCase()
       },
       {
-        label: "Swiper",
-        route: "Swiper".toLocaleUpperCase(),
+        label: 'Swiper',
+        route: 'Swiper'.toLocaleUpperCase()
       },
       {
-        label: "XImg",
-        route: "XImg".toLocaleUpperCase(),
+        label: 'XImg',
+        route: 'XImg'.toLocaleUpperCase()
       },
       {
-        label: "XProgress",
-        route: "XProgress".toLocaleUpperCase(),
+        label: 'XProgress',
+        route: 'XProgress'.toLocaleUpperCase()
       },
       {
-        label: "XTable",
-        route: "XTable".toLocaleUpperCase(),
-      },
-    ],
+        label: 'XTable',
+        route: 'XTable'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "图表组件",
+    name: '图表组件',
     children: [
       {
-        label: "VChart",
-        route: "VChart".toLocaleUpperCase(),
+        label: 'VChart',
+        route: 'VChart'.toLocaleUpperCase()
       },
       {
-        label: "XCircle",
-        route: "XCircle".toLocaleUpperCase(),
-      },
-    ],
+        label: 'XCircle',
+        route: 'XCircle'.toLocaleUpperCase()
+      }
+    ]
   },
   {
-    name: "其它组件",
+    name: '其它组件',
     children: [
       {
-        label: "Blur",
-        route: "Blur".toLocaleUpperCase(),
+        label: 'Blur',
+        route: 'Blur'.toLocaleUpperCase()
       },
       {
-        label: "ColorPicker",
-        route: "ColorPicker".toLocaleUpperCase(),
+        label: 'ColorPicker',
+        route: 'ColorPicker'.toLocaleUpperCase()
       },
       {
-        label: "Countdown",
-        route: "Countdown".toLocaleUpperCase(),
+        label: 'Countdown',
+        route: 'Countdown'.toLocaleUpperCase()
       },
       {
-        label: "Masker",
-        route: "Masker".toLocaleUpperCase(),
+        label: 'Masker',
+        route: 'Masker'.toLocaleUpperCase()
       },
       {
-        label: "Scroller",
-        route: "Scroller".toLocaleUpperCase(),
+        label: 'Scroller',
+        route: 'Scroller'.toLocaleUpperCase()
       },
       {
-        label: "WechatEmotion",
-        route: "WechatEmotion".toLocaleUpperCase(),
-      },
-    ],
-  },
-]);
-import { useI18n } from "vue-i18n-bridge";
-const { t } = useI18n();
+        label: 'WechatEmotion',
+        route: 'WechatEmotion'.toLocaleUpperCase()
+      }
+    ]
+  }
+])
+import { useI18n } from 'vue-i18n-bridge'
+const { t } = useI18n()
 const goRouter = (route) => {
   router.push({
-    name: route,
-  });
-};
+    name: route
+  })
+}
 </script>
 <style lang="less">
 * {
   margin: 0;
   padding: 0;
 }
-
+.page-theme {
+  background: var(--theme-color);
+  color: var(--cell-label-color);
+}
 .varlet-logo {
   padding: 10px;
 }
@@ -475,7 +475,7 @@ const goRouter = (route) => {
   color: #555;
 
   .varlet-home__cell {
-    background: #fff;
+    // background: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -507,7 +507,7 @@ const goRouter = (route) => {
       font-weight: 400;
       font-style: normal;
       line-height: 1;
-      content: ">";
+      content: '>';
     }
   }
 }
