@@ -1,11 +1,16 @@
 <template>
-  <div class="inline-calendar" :class="{ 'is-weekend-highlight': highlightWeekend }">
+  <div
+    class="inline-calendar"
+    :class="{ 'is-weekend-highlight': highlightWeekend }"
+  >
     <div class="calendar-header" v-show="!hideHeader">
       <div class="calendar-year">
         <span @click="go(year - 1, month)">
           <a class="year-prev vux-prev-icon" href="javascript:"></a>
         </span>
-        <a class="calendar-year-txt calendar-title" href="javascript:">{{ year }}</a>
+        <a class="calendar-year-txt calendar-title" href="javascript:">{{
+          year
+        }}</a>
         <span class="calendar-header-right-arrow" @click="go(year + 1, month)">
           <a class="year-next vux-next-icon" href="javascript:"></a>
         </span>
@@ -15,7 +20,9 @@
         <span @click="prev">
           <a class="month-prev vux-prev-icon" href="javascript:"></a>
         </span>
-        <a class="calendar-month-txt calendar-title" href="javascript:">{{ months[month] }}</a>
+        <a class="calendar-month-txt calendar-title" href="javascript:">{{
+          months[month]
+        }}</a>
         <span @click="next" class="calendar-header-right-arrow">
           <a class="month-next vux-next-icon" href="javascript:"></a>
         </span>
@@ -25,8 +32,13 @@
     <table>
       <thead v-show="!hideWeekList">
         <tr>
-          <th v-for="(week, index) in _weeksList" :key="index" class="week" :class="`is-week-list-${index}`">
-            {{ week || t('week_day_' + index) }}
+          <th
+            v-for="(week, index) in _weeksList"
+            :key="index"
+            class="week"
+            :class="`is-week-list-${index}`"
+          >
+            {{ week || t("week_day_" + index) }}
           </th>
         </tr>
       </thead>
@@ -49,18 +61,34 @@
               :row="k1"
               :col="k2"
               :raw-date="formatDate(year, month, child)"
-              :show-date="replaceText(child.day, formatDate(year, month, child))"
+              :show-date="
+                replaceText(child.day, formatDate(year, month, child))
+              "
               :is-show="showChild(year, month, child)"
               name="each-day"
             >
-              <span class="vux-calendar-each-date" :style="getMarkStyle(child)" v-show="showChild(year, month, child)">
+              <span
+                class="vux-calendar-each-date"
+                :style="getMarkStyle(child)"
+                v-show="showChild(year, month, child)"
+              >
                 {{ replaceText(child.day, formatDate(year, month, child)) }}
-                <span class="vux-calendar-top-tip" v-if="isShowTopTip(child)" :style="isShowTopTip(child, 'style')">
-                  <span>{{ isShowTopTip(child, 'text') }}</span>
+                <span
+                  class="vux-calendar-top-tip"
+                  v-if="isShowTopTip(child)"
+                  :style="isShowTopTip(child, 'style')"
+                >
+                  <span>{{ isShowTopTip(child, "text") }}</span>
                 </span>
               </span>
-              <span class="vux-calendar-dot" v-if="isShowBottomDot(child)"></span>
-              <div v-html="renderFunction(k1, k2, child)" v-show="showChild(year, month, child)"></div>
+              <span
+                class="vux-calendar-dot"
+                v-if="isShowBottomDot(child)"
+              ></span>
+              <div
+                v-html="renderFunction(k1, k2, child)"
+                v-show="showChild(year, month, child)"
+              ></div>
             </slot>
           </td>
         </tr>
@@ -70,36 +98,34 @@
 </template>
 
 <script setup>
-import { computed, toRefs } from 'vue'
-import propsType from './props'
-import i18n from '@/i18n'
-const locale = i18n.locale
-const t = i18n.t
-const props = defineProps(propsType())
-const { weeksList } = toRefs(props)
+import { computed, toRefs } from "vue-demi";
+import propsType from "./props";
+import i18n from "@/locale/index.js";
+const t = i18n.t;
+const props = defineProps(propsType());
+const { weeksList } = toRefs(props);
 const _weeksList = computed(() => {
   if (weeksList.value && weeksList.value.length) {
-    return weeksList.value
+    return weeksList.value;
   }
-  if (!weeksList.value || !weeksList.value.length) {
-    const V_LOCALE = locale
-    if (V_LOCALE === 'en') {
-      return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-    } else if (V_LOCALE === 'zh-CN') {
-      return ['日', '一', '二', '三', '四', '五', '六']
-    } else if (V_LOCALE === 'MULTI') {
-      return [0, 0, 0, 0, 0, 0, 0]
-    }
+
+  const V_LOCALE = i18n.locale;
+  if (V_LOCALE === "en_GB") {
+    return ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+  } else if (V_LOCALE === "zh_CN") {
+    return ["日", "一", "二", "三", "四", "五", "六"];
+  } else if (V_LOCALE === "MULTI") {
+    return [0, 0, 0, 0, 0, 0, 0];
   }
-})
+});
 </script>
 <script>
-import format from '../datetime/format'
-import { getDays, zero, isBetween } from './util'
-import props from './props'
-import calendarMarksMixin from '@/mixins/calendar-marks'
+import format from "../datetime/format";
+import { getDays, zero, isBetween } from "./util";
+import props from "./props";
+import calendarMarksMixin from "@/mixins/calendar-marks";
 export default {
-  name: 'inline-calendar',
+  name: "inline-calendar",
   mixins: [calendarMarksMixin],
   props: props(),
   data() {
@@ -108,91 +134,92 @@ export default {
       year: 0,
       month: 0,
       days: [],
-      today: format(new Date(), 'YYYY-MM-DD'),
-      months: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-      currentValue: '',
+      today: format(new Date(), "YYYY-MM-DD"),
+      months: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+      currentValue: "",
       viewChangeEventCount: -1,
-    }
+    };
   },
   created() {
-    this.currentValue = this.value
-    this.multi = Object.prototype.toString.call(this.currentValue) === '[object Array]'
+    this.currentValue = this.value;
+    this.multi =
+      Object.prototype.toString.call(this.currentValue) === "[object Array]";
 
     if (this.multi) {
       for (let i = 0; i < this.currentValue.length; i++) {
-        this.$set(this.currentValue, i, this.convertDate(this.currentValue[i]))
+        this.$set(this.currentValue, i, this.convertDate(this.currentValue[i]));
       }
     } else {
-      this.currentValue = this.convertDate(this.currentValue)
+      this.currentValue = this.convertDate(this.currentValue);
     }
 
-    this.render(this.renderMonth[0], this.renderMonth[1] - 1)
+    this.render(this.renderMonth[0], this.renderMonth[1] - 1);
   },
   computed: {
     _replaceTextList() {
-      const rs = {}
+      const rs = {};
       for (let i in this.replaceTextList) {
-        rs[this.convertDate(i)] = this.replaceTextList[i]
+        rs[this.convertDate(i)] = this.replaceTextList[i];
       }
-      return rs
+      return rs;
     },
     currentYearMonth() {
-      return this.year + this.month
+      return this.year + this.month;
     },
   },
   watch: {
     value(val) {
-      this.currentValue = this.multi ? val : this.convertDate(val)
+      this.currentValue = this.multi ? val : this.convertDate(val);
     },
     currentValue(val, oldVal) {
-      this.$emit('input', this.currentValue)
-      this.$emit('on-change', this.currentValue)
+      this.$emit("input", this.currentValue);
+      this.$emit("on-change", this.currentValue);
 
       if (this.renderOnValueChange) {
         // if on the same year+month, stay quiet
         if (val && oldVal && val.slice(0, 7) === oldVal.slice(0, 7)) {
-          return
+          return;
         }
-        this.render(null, null, 'value change')
+        this.render(null, null, "value change");
       }
     },
     renderFunction() {
-      this.render(this.year, this.month, this.currentValue)
+      this.render(this.year, this.month, this.currentValue);
     },
     renderMonth(val) {
       if (val && val.length === 2) {
-        this.render(val[0], val[1] - 1)
+        this.render(val[0], val[1] - 1);
       }
     },
     returnSixRows(val) {
-      this.render(this.year, this.month)
+      this.render(this.year, this.month);
     },
     startDate(val) {
-      this.render(this.year, this.month)
+      this.render(this.year, this.month);
     },
     endDate(val) {
-      this.render(this.year, this.month)
+      this.render(this.year, this.month);
     },
     disablePast() {
-      this.render(this.year, this.month)
+      this.render(this.year, this.month);
     },
     disableFuture() {
-      this.render(this.year, this.month)
+      this.render(this.year, this.month);
     },
     currentYearMonth() {
-      const lastLine = this.days[this.days.length - 1]
-      const lastDate = lastLine[lastLine.length - 1]
+      const lastLine = this.days[this.days.length - 1];
+      const lastDate = lastLine[lastLine.length - 1];
 
-      let days = []
+      let days = [];
       this.days.forEach((line) => {
-        days = days.concat(line)
-      })
+        days = days.concat(line);
+      });
       days = days.filter((date) => {
-        return !date.isLastMonth && !date.isNextMonth
-      })
-      this.viewChangeEventCount++
+        return !date.isLastMonth && !date.isNextMonth;
+      });
+      this.viewChangeEventCount++;
       this.$emit(
-        'on-view-change',
+        "on-view-change",
         {
           year: this.year,
           month: this.month + 1,
@@ -203,97 +230,109 @@ export default {
           allDates: this.days,
         },
         this.viewChangeEventCount
-      )
+      );
     },
   },
   methods: {
     processDateItem(item) {
-      const temp = JSON.parse(JSON.stringify(item))
-      temp.isDisabled = this.isDisabled(item)
-      temp.isBetween = this.isBetween(item.formatedDate)
-      return temp
+      const temp = JSON.parse(JSON.stringify(item));
+      temp.isDisabled = this.isDisabled(item);
+      temp.isBetween = this.isBetween(item.formatedDate);
+      return temp;
     },
     isBetween(formatedDate) {
-      return isBetween(formatedDate, this.disablePast, this.disableFuture, this.startDate, this.endDate)
+      return isBetween(
+        formatedDate,
+        this.disablePast,
+        this.disableFuture,
+        this.startDate,
+        this.endDate
+      );
     },
     isDisabled(date) {
-      let disabled = !this.isBetween(date.formatedDate)
-      disabled = disabled || (date.isWeekend && this.disableWeekend)
-      disabled = disabled || date.isNextMonth || date.isLastMonth
+      let disabled = !this.isBetween(date.formatedDate);
+      disabled = disabled || (date.isWeekend && this.disableWeekend);
+      disabled = disabled || date.isNextMonth || date.isLastMonth;
 
       if (!this.disableDateFunction) {
-        return disabled
+        return disabled;
       } else {
-        const value = this.disableDateFunction(date)
-        if (typeof value === 'undefined') {
-          return disabled
+        const value = this.disableDateFunction(date);
+        if (typeof value === "undefined") {
+          return disabled;
         } else {
-          return value
+          return value;
         }
       }
     },
     switchViewToToday() {
-      const today = new Date()
-      this.render(today.getFullYear(), today.getMonth())
+      const today = new Date();
+      this.render(today.getFullYear(), today.getMonth());
     },
     switchViewToCurrentValue() {
       if (!this.currentValue || (this.multi && !this.currentValue.length)) {
-        return
+        return;
       }
 
-      let value
-      let year
-      let month
-      if (typeof this.currentValue === 'string') {
-        value = this.currentValue
+      let value;
+      let year;
+      let month;
+      if (typeof this.currentValue === "string") {
+        value = this.currentValue;
       } else {
-        value = this.currentValue[0]
+        value = this.currentValue[0];
       }
-      const splitList = value.split('-')
-      year = parseInt(splitList[0], 10)
-      month = parseInt(splitList[1], 10)
-      this.switchViewToMonth(year, month)
+      const splitList = value.split("-");
+      year = parseInt(splitList[0], 10);
+      month = parseInt(splitList[1], 10);
+      this.switchViewToMonth(year, month);
     },
     switchViewToMonth(year, month) {
       if (!year || !month) {
-        return this.switchViewToToday()
+        return this.switchViewToToday();
       }
-      this.render(year, month - 1)
+      this.render(year, month - 1);
     },
     getDates() {
-      return this.days
+      return this.days;
     },
     replaceText(day, formatDay) {
-      let text = this._replaceTextList[formatDay]
-      if (!text && typeof text === 'undefined') {
-        return day
+      let text = this._replaceTextList[formatDay];
+      if (!text && typeof text === "undefined") {
+        return day;
       } else {
-        return text
+        return text;
       }
     },
     convertDate(date) {
-      return date === 'TODAY' ? this.today : date
+      return date === "TODAY" ? this.today : date;
     },
     buildClass(index, child) {
-      let isCurrent = false
+      let isCurrent = false;
       if (!child.isLastMonth && !child.isNextMonth) {
         if (this.multi && this.currentValue.length > 0) {
-          isCurrent = this.currentValue.indexOf(this.formatDate(this.year, this.month, child)) > -1
+          isCurrent =
+            this.currentValue.indexOf(
+              this.formatDate(this.year, this.month, child)
+            ) > -1;
         } else {
-          isCurrent = this.currentValue === this.formatDate(this.year, this.month, child)
+          isCurrent =
+            this.currentValue === this.formatDate(this.year, this.month, child);
         }
       }
       const className = {
         current: isCurrent,
-        'is-disabled': this.isDisabled(child),
-        'is-today': child.isToday,
+        "is-disabled": this.isDisabled(child),
+        "is-today": child.isToday,
         [`is-week-${index}`]: true,
-      }
-      return className
+      };
+      return className;
     },
     render(year, month, force = false) {
-      let data = null
-      const value = this.multi ? this.currentValue[this.currentValue.length - 1] : this.currentValue
+      let data = null;
+      const value = this.multi
+        ? this.currentValue[this.currentValue.length - 1]
+        : this.currentValue;
       data = getDays({
         year: year,
         month: month,
@@ -303,93 +342,103 @@ export default {
         returnSixRows: this.returnSixRows,
         disablePast: this.disablePast,
         disableFuture: this.disableFuture,
-      })
+      });
 
       if (this.year === data.year && this.month === data.month && !force) {
-        return
+        return;
       }
-      this.year = data.year
-      this.month = data.month
-      this.days = data.days
+      this.year = data.year;
+      this.month = data.month;
+      this.days = data.days;
     },
     formatDate: (year, month, child) => {
-      return [year, zero(child.month + 1), zero(child.day)].join('-')
+      return [year, zero(child.month + 1), zero(child.day)].join("-");
     },
     prev() {
       if (this.month === 0) {
-        this.month = 11
-        this.year = this.year - 1
+        this.month = 11;
+        this.year = this.year - 1;
       } else {
-        this.month = this.month - 1
+        this.month = this.month - 1;
       }
-      this.render(this.year, this.month, true)
+      this.render(this.year, this.month, true);
     },
     next() {
       if (this.month === 11) {
-        this.month = 0
-        this.year = this.year + 1
+        this.month = 0;
+        this.year = this.year + 1;
       } else {
-        this.month = this.month + 1
+        this.month = this.month + 1;
       }
-      this.render(this.year, this.month, true)
+      this.render(this.year, this.month, true);
     },
     go(year, month) {
-      this.render(year, month, true)
+      this.render(year, month, true);
     },
     select(k1, k2, data) {
       if (data.isLastMonth && !this.showLastMonth) {
-        return
+        return;
       }
       if (data.isNextMonth && !this.showNextMonth) {
-        return
+        return;
       }
       if (!this.isBetween(data.formatedDate)) {
-        return
+        return;
       }
 
       if (this.isDisabled(data)) {
         // not in range
         if (!this.isBetween(data.formatedDate)) {
-          return
+          return;
         } else {
           // in range but disabled by disableDateFunction
           if (this.disableDateFunction && this.disableDateFunction(data)) {
-            return
+            return;
           }
           if (data.isWeekend && this.disableWeekend) {
-            return
+            return;
           }
         }
       }
-      let _currentValue = null
+      let _currentValue = null;
       if (!data.isLastMonth && !data.isNextMonth) {
-        this.days[k1][k2].current = true
-        _currentValue = [this.year, zero(this.month + 1), zero(this.days[k1][k2].day)].join('-')
+        this.days[k1][k2].current = true;
+        _currentValue = [
+          this.year,
+          zero(this.month + 1),
+          zero(this.days[k1][k2].day),
+        ].join("-");
       } else {
-        _currentValue = [data.year, zero(data.month + 1), zero(data.day)].join('-')
+        _currentValue = [data.year, zero(data.month + 1), zero(data.day)].join(
+          "-"
+        );
       }
       if (this.multi) {
-        let index = this.currentValue.indexOf(_currentValue)
+        let index = this.currentValue.indexOf(_currentValue);
         if (index > -1) {
-          this.currentValue.splice(index, 1)
+          this.currentValue.splice(index, 1);
         } else {
-          this.currentValue.push(_currentValue)
+          this.currentValue.push(_currentValue);
         }
       } else {
-        this.currentValue = _currentValue
-        this.$emit('on-select-single-date', this.currentValue)
+        this.currentValue = _currentValue;
+        this.$emit("on-select-single-date", this.currentValue);
       }
 
       if (this.multi) {
         for (let i = 0; i < this.currentValue.length; i++) {
-          this.$set(this.currentValue, i, this.convertDate(this.currentValue[i]))
+          this.$set(
+            this.currentValue,
+            i,
+            this.convertDate(this.currentValue[i])
+          );
         }
       } else {
-        this.currentValue = this.convertDate(this.currentValue)
+        this.currentValue = this.convertDate(this.currentValue);
       }
 
       if (this.renderOnValueChange) {
-        this.render(null, null)
+        this.render(null, null);
       }
     },
     showChild(year, month, child) {
@@ -398,17 +447,17 @@ export default {
           (!child.isLastMonth && !child.isNextMonth) ||
           (child.isLastMonth && this.showLastMonth) ||
           (child.isNextMonth && this.showNextMonth)
-        )
+        );
       } else {
-        return false
+        return false;
       }
     },
   },
-}
+};
 </script>
 
 <style lang="less">
-@import '../../styles/variable.less';
+@import "../../styles/variable.less";
 
 .calendar-year > span,
 .calendar-month > span {
@@ -497,7 +546,7 @@ export default {
   width: 30px;
   margin: 5px;
   color: #39b5b8;
-  font-family: 'SimSun';
+  font-family: "SimSun";
 }
 
 .calendar-title {
@@ -546,7 +595,7 @@ export default {
   position: absolute;
   left: 30px;
   top: -10px;
-  content: '';
+  content: "";
   border: 5px solid rgba(0, 0, 0, 0);
   border-bottom-color: #dedede;
 }
@@ -555,7 +604,7 @@ export default {
   position: absolute;
   left: 30px;
   top: -9px;
-  content: '';
+  content: "";
   border: 5px solid rgba(0, 0, 0, 0);
   border-bottom-color: #fff;
 }

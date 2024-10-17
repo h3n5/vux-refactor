@@ -1,5 +1,5 @@
 <script setup>
-import { watchEffect } from 'vue'
+import { watchEffect } from 'vue-demi'
 import { Repl, ReplStore } from 'vue2-repl'
 
 // retrieve some configuration options from the URL

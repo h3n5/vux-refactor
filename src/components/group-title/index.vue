@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: 'group-title'
-}
+  name: "group-title",
+};
 </script>
 
 <style lang="less">
-@import '../../styles/weui/widget/weui_cell/weui_access';
-@import '../../styles/weui/widget/weui_cell/weui_cell_global';
+@import "../../styles/weui/widget/weui_cell/weui_access.less";
+@import "../../styles/weui/widget/weui_cell/weui_cell_global";
 </style>

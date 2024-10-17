@@ -10,10 +10,10 @@ if (!$vm) {
 const manager = {}
 
 export default {
-  show (options) {
+  show(options) {
     return show.call(manager, $vm, options)
   },
-  hide () {
+  hide() {
     return hide.call(manager, $vm)
-  }
+  },
 }

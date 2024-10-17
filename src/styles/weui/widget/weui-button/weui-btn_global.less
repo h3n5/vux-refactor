@@ -12,7 +12,9 @@
   text-align: center;
   text-decoration: none;
   color: @weuiBtnFontColor;
-  line-height: unit((@weuiBtnHeight / @weuiBtnFontSize));
+  line-height: 2.33333333;
+  // line-height: unit((@weuiBtnHeight / @weuiBtnFontSize));
+  // line-height: calc((@weuiBtnHeight / @weuiBtnFontSize));
   border-radius: @weuiBtnBorderRadius;
   .setTapColor();
   overflow: hidden;
@@ -27,7 +29,8 @@
     transform: scale(0.5);
     transform-origin: 0 0;
     box-sizing: border-box;
-    border-radius: @weuiBtnBorderRadius*2;
+    // border-radius: @weuiBtnBorderRadius*2;
+    border-radius: calc(@weuiBtnBorderRadius * 2);
   }
 }
 .weui-btn_inline {

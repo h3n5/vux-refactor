@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, nextTick, watch, onBeforeUnmount, useSlots, toRefs, ref } from 'vue'
+import { onMounted, nextTick, watch, onBeforeUnmount, useSlots, toRefs, ref } from 'vue-demi'
 import i18n from '@/locale/index.js'
 import Clocker from './clocker'
 const props = defineProps({

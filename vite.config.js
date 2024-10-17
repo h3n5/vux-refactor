@@ -8,6 +8,9 @@ export default {
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
   },
+  optimizeDeps: {
+    exclude: ['vue-demi'],
+  },
   server: {
     host: true,
     port: 5173,
