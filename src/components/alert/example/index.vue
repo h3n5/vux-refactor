@@ -21,10 +21,10 @@
       <cell :title="t('Will auto close in 3s')" @click.native="showPluginAuto" is-link></cell>
     </group>
 
-    <!-- <group :title="t('Use as a module')">
+    <group :title="t('Use as a module')">
       <cell :title="t('Show Me')" @click.native="showModule" is-link></cell>
       <cell :title="t('Will auto close in 3s')" @click.native="showModuleAuto" is-link></cell>
-    </group> -->
+    </group>
   </div>
 </template>
 
@@ -48,29 +48,23 @@
 </i18n>
 
 <script>
-import { Alert, Group, XSwitch, Cell, TransferDomDirective as TransferDom } from '@/index.js'
+import { AlertModule, TransferDomDirective as TransferDom } from 'vux-refactor'
 import { useI18n } from 'vue-i18n-bridge'
 export default {
   directives: {
-    TransferDom,
-  },
-  components: {
-    Alert,
-    Group,
-    XSwitch,
-    Cell,
+    TransferDom
   },
   data() {
     return {
       show: false,
       show1: false,
-      show2: false,
+      show2: false
     }
   },
   setup() {
     const { t } = useI18n()
     return {
-      t,
+      t
     }
   },
   methods: {
@@ -89,7 +83,7 @@ export default {
         },
         onHide() {
           console.log("Plugin: I'm hiding now")
-        },
+        }
       })
     },
     showModule() {
@@ -101,7 +95,7 @@ export default {
         },
         onHide() {
           console.log("Module: I'm hiding now")
-        },
+        }
       })
     },
     showModuleAuto() {
@@ -115,7 +109,7 @@ export default {
       setTimeout(() => {
         this.$vux.alert.hide()
       }, 3000)
-    },
+    }
   },
   mounted() {
     this.timer = setInterval(() => {
@@ -124,6 +118,6 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.timer)
-  },
+  }
 }
 </script>

@@ -54,6 +54,10 @@ const baseComponent = ref([
       {
         label: '主题',
         route: 'Theme'
+      },
+      {
+        label: '按需引入',
+        route: 'DynamicImport'
       }
     ]
   },

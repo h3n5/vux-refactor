@@ -1,4 +1,4 @@
-import Actionsheet from './components/actionsheet/index.vue'
+import Actionsheet from './components/actionsheet/index.js'
 import XButton from './components/x-button/index.vue'
 import Box from './components/box/index.vue'
 import GroupTitle from './components/group-title/index.vue'
@@ -123,7 +123,7 @@ import VTooltip from './components/v-chart/v-tooltip.vue'
 import VLegend from './components/v-chart/v-legend.vue'
 import XCircle from './components/x-circle/index.vue'
 // plugin
-// import AlertModule from './plugins/alert/module'
+import AlertModule from './plugins/alert/module'
 import LoadingModule from './plugins/loading/module'
 import AjaxPlugin from './plugins/ajax/index.js'
 import AlertPlugin from './plugins/alert/index.js'
@@ -139,7 +139,10 @@ import ToastPlugin from './plugins/toast/index.js'
 import WechatPlugin from './plugins/wechat/index.js'
 // i18n
 import LocalePlugin from './locale/index.js'
+// resolver
+import VuxRefactorResolver from './resolver/index.js'
 export {
+  VuxRefactorResolver,
   ChinaAddressV1Data,
   ChinaAddressV2Data,
   ChinaAddressV3Data,
@@ -153,7 +156,7 @@ export {
   ConfigPlugin,
   DatetimePlugin,
   DevicePlugin,
-  // AlertModule,
+  AlertModule,
   LoadingModule,
   LoadingPlugin,
   LocalePlugin,
@@ -277,5 +280,5 @@ export {
   Icon,
   InlineXSwitch,
   TransferDomDirective,
-  TransferDomDirective as TransferDom,
+  TransferDomDirective as TransferDom
 }

@@ -26,7 +26,6 @@ export function StyleProvider(styleVars) {
   }
 
   const styles = formatStyleVars(styleVars ?? {})
-  console.log('AutoConsole: styles', styles)
   const content = Object.entries(styles).reduce((content, [key, value]) => {
     content += `${key}:${value};`
     return content

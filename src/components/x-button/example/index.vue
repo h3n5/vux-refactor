@@ -87,17 +87,16 @@
 </template>
 
 <script>
-import { XButton, Box, GroupTitle, Group, Flexbox, FlexboxItem, Divider } from 'vux-refactor'
+import { Box, GroupTitle, Group, Flexbox, FlexboxItem, Divider } from 'vux-refactor'
 
 export default {
   components: {
-    XButton,
     Box,
     GroupTitle,
     Group,
     Flexbox,
     FlexboxItem,
-    Divider,
+    Divider
   },
   methods: {
     change(value) {
@@ -106,14 +105,14 @@ export default {
     processButton001() {
       this.submit001 = 'processing'
       this.disable001 = true
-    },
+    }
   },
   data() {
     return {
       submit001: 'click me',
-      disable001: false,
+      disable001: false
     }
-  },
+  }
 }
 </script>
 

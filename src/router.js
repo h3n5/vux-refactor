@@ -5,22 +5,27 @@ const defaultRouters = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('./site/home.vue'),
+    component: () => import('./site/home.vue')
   },
   {
     path: '/Internationalization',
     name: 'Internationalization',
-    component: () => import('./site/Internationalization.vue'),
+    component: () => import('./site/Internationalization.vue')
   },
   {
     path: '/Theme',
     name: 'Theme',
-    component: () => import('./site/Theme.vue'),
+    component: () => import('./site/Theme.vue')
   },
+  {
+    path: '/DynamicImport',
+    name: 'DynamicImport',
+    component: () => import('./site/DynamicImport.vue')
+  }
 ]
 
 const router = new VueRouter({
-  routes: defaultRouters,
+  routes: defaultRouters
 })
 
 const modules = import.meta.glob('./components/**/example/index.vue')
@@ -30,7 +35,7 @@ for (const mod in modules) {
   router.addRoute({
     path: '/' + name,
     name: name.toLocaleUpperCase(),
-    component: modules[mod],
+    component: modules[mod]
   })
 }
 
