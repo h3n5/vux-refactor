@@ -28,30 +28,7 @@ export default ({ mode }) => {
       }
     },
     build: {
-      sourcemap: true,
-      lib: {
-        entry: './src/index.js',
-        name: 'VuxRefactor',
-        formats: ['es', 'umd'],
-        fileName: (format) => `vux-refactor.${format}.js`
-      },
-      rollupOptions: {
-        external: ['vue'],
-        output: {
-          globals: {
-            vue: 'Vue'
-          }
-        },
-        plugins: [
-          copyPlugin({
-            targets: [
-              { src: 'src/locale/en-US.json', dest: 'dist/locale' },
-              { src: 'src/locale/zh-CN.json', dest: 'dist/locale' }
-            ],
-            hook: 'writeBundle'
-          })
-        ]
-      }
+      outDir: 'docs'
     },
     plugins: isProduction
       ? [
