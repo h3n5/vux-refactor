@@ -1,4 +1,3 @@
-// vite.config.js
 import vue from '@vitejs/plugin-vue2'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import path from 'path'
@@ -11,6 +10,7 @@ export default ({ mode }) => {
   const isProduction = mode === 'production'
 
   return {
+    base: '/',
     define: {
       'process.env.NODE_ENV': JSON.stringify('production')
     },
