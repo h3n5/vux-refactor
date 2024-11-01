@@ -55,19 +55,19 @@ export default {
   components: {
     Group,
     Cell,
-    XIcon,
+    XIcon
   },
   methods: {
     console() {
       console.log('click')
-    },
-  },
+    }
+  }
 }
 </script>
 
 <style>
 .vux-x-icon {
-  fill: #f70968;
+  color: #f70968;
 }
 .cell-x-icon {
   display: block;

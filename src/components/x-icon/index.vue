@@ -4,7 +4,7 @@
     :class="className"
     :style="{
       color,
-      fontSize: toSizeUnit(size),
+      fontSize: toSizeUnit(size)
     }"
   />
 </template>
@@ -19,16 +19,16 @@ export default {
   props: {
     type: {
       type: String,
-      required: true,
+      required: true
     },
     size: {
       type: [Number, String],
-      default: 30,
+      default: 30
     },
     color: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return {}
@@ -36,8 +36,8 @@ export default {
   computed: {
     className() {
       const icon = this.type
-      return `var-icon--set var-icon-${icon}`
-    },
+      return `var-icon--set var-icon-${icon} vux-x-icon vux-x-icon-${icon}`
+    }
   },
   methods: {
     toSizeUnit(value) {
@@ -50,8 +50,8 @@ export default {
       }
 
       return String(value)
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="less">

@@ -1,5 +1,5 @@
 <template>
-  <ViewBox>
+  <ViewBox class="view-box">
     <br />
     <br />
     <div class="space-btn" @click="spaceChange">显示间隔</div>
@@ -8,7 +8,7 @@
       <Sticky
         scroll-box="vux_view_box_body"
         ref="sticky"
-        :offset="46"
+        :offset="0"
         :check-sticky-support="false"
         :disabled="disabled"
       >
@@ -33,7 +33,7 @@ export default {
     Tab,
     TabItem,
     Sticky,
-    ViewBox,
+    ViewBox
   },
   data() {
     return {
@@ -41,7 +41,7 @@ export default {
       disabled:
         typeof navigator !== 'undefined' &&
         /iphone/i.test(navigator.userAgent) &&
-        /ucbrowser/i.test(navigator.userAgent),
+        /ucbrowser/i.test(navigator.userAgent)
     }
   },
   methods: {
@@ -50,8 +50,8 @@ export default {
       this.$nextTick(() => {
         this.$refs.sticky.bindSticky()
       })
-    },
-  },
+    }
+  }
 }
 </script>
 <style scoped>
@@ -61,7 +61,10 @@ export default {
   text-align: center;
   border: 1px red solid;
 }
-
+.view-box {
+  height: 100vh;
+  overflow: auto;
+}
 .space {
   padding: 30px 0;
   margin: 10px;

@@ -2,6 +2,7 @@
   "name": "vux-refactor",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/h3n5/vux-refactor",
   "main": "dist/vux-refactor.umd.js",
   "module": "dist/vux-refactor.es.js",
   "scripts": {
