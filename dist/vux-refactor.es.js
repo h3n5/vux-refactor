@@ -97097,7 +97097,8 @@ const HT = W_.exports, X_ = (a) => typeof a == "string", U_ = (a) => typeof a ==
   },
   computed: {
     className() {
-      return `var-icon--set var-icon-${this.type}`;
+      const a = this.type;
+      return `var-icon--set var-icon-${a} vux-x-icon vux-x-icon-${a}`;
     }
   },
   methods: {

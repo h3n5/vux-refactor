@@ -35,6 +35,7 @@ export default ({ mode }) => {
         formats: ['es', 'umd'],
         fileName: (format) => `vux-refactor.${format}.js`
       },
+
       rollupOptions: {
         external: ['vue'],
         output: {

@@ -1,15 +1,17 @@
-.vux-fade-enter-active,.vux-fade-leave-active {
+.vux-fade-enter-active,
+.vux-fade-leave-active {
   opacity: 1;
   transition: opacity linear 0.2s;
 }
-.vux-fade-enter, .vux-fade-leave-to {
+.vux-fade-enter,
+.vux-fade-leave-to {
   opacity: 0;
 }
 .vux-dialog-enter-active {
-  animation: vux-dialog-in .5s;
+  animation: vux-dialog-in 0.5s;
 }
 .vux-dialog-leave-active {
-  animation: vux-dialog-out .3s;
+  animation: vux-dialog-out 0.3s;
 }
 @keyframes vux-dialog-in {
   0% {
@@ -31,9 +33,11 @@
     opacity: 0;
   }
 }
-.vux-mask-enter, .vux-mask-leave-active {
+.vux-mask-enter,
+.vux-mask-leave-active {
   opacity: 0;
 }
-.vux-mask-leave-active, .vux-mask-enter-active {
+.vux-mask-leave-active,
+.vux-mask-enter-active {
   transition: opacity 300ms;
 }

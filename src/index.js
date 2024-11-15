@@ -139,10 +139,7 @@ import ToastPlugin from './plugins/toast/index.js'
 import WechatPlugin from './plugins/wechat/index.js'
 // i18n
 import LocalePlugin from './locale/index.js'
-// resolver
-import VuxRefactorResolver from './resolver/index.js'
 export {
-  VuxRefactorResolver,
   ChinaAddressV1Data,
   ChinaAddressV2Data,
   ChinaAddressV3Data,
