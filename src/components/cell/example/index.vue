@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cell-example">
     <group>
       <cell :title="t('My Account')" :value="t('Protected')" @click.native="onClick"></cell>
       <cell :title="t('Money')" @click.native="onClick" :is-loading="!money" :value="money"></cell>
@@ -172,16 +172,16 @@ const { t } = useI18n()
 const list = ref([
   {
     label: 'Apple',
-    value: '3.29',
+    value: '3.29'
   },
   {
     label: 'Banana',
-    value: '1.04',
+    value: '1.04'
   },
   {
     label: 'Fish',
-    value: '8.00',
-  },
+    value: '8.00'
+  }
 ])
 const money = ref(null)
 const showContent001 = ref(false)
@@ -212,5 +212,8 @@ function onClick() {}
   max-height: 9999px;
   transition-timing-function: cubic-bezier(0.5, 0, 1, 0);
   transition-delay: 0s;
+}
+.cell-example {
+  --cell-font-size: 13px;
 }
 </style>
