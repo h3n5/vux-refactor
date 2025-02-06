@@ -31,7 +31,7 @@
     操作: "Action"
     点击事件: "Click Event"
     跳转到首页: "Homepage"
-  zh-CN:
+  zh_CN:
     付款金额: "付款金额"
     标题标题: "标题标题"
     商品: "商品"
@@ -44,8 +44,8 @@
     跳转到首页: "跳转到首页"
 </i18n>
 <script setup>
-import { FormPreview } from 'vux-refactor'
-import { useI18n } from 'vue-i18n-bridge'
+import { FormPreview } from '@/index'
+import { useI18n } from 'vue-i18n'
 import { ref } from 'vue'
 const { t } = useI18n()
 const $t = t
@@ -53,27 +53,27 @@ const $t = t
 const list = ref([
   {
     label: '商品',
-    value: '电动打蛋机',
+    value: '电动打蛋机'
   },
   {
     label: '标题标题',
-    value: '名字名字名字',
+    value: '名字名字名字'
   },
   {
     label: '标题标题',
-    value: '很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字',
-  },
+    value: '很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字'
+  }
 ])
 const buttons1 = ref([
   {
     style: 'default',
-    text: '辅助操作',
+    text: '辅助操作'
   },
   {
     style: 'primary',
     text: $t('跳转到首页'),
-    link: '/',
-  },
+    link: '/'
+  }
 ])
 const buttons2 = ref([
   {
@@ -81,7 +81,7 @@ const buttons2 = ref([
     text: $t('点击事件'),
     onButtonClick: (name) => {
       alert(`clicking ${name}`)
-    },
-  },
+    }
+  }
 ])
 </script>

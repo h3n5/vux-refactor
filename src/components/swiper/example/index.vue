@@ -124,42 +124,42 @@
 </template>
 
 <script>
-import { Swiper, GroupTitle, SwiperItem, XButton, Divider } from 'vux-refactor'
+import { Swiper, GroupTitle, SwiperItem, XButton, Divider } from '@/index'
 
 const baseList = [
   {
     url: 'javascript:',
     img: 'https://dummyimage.com/840x300/FF3B3B/ffffff.png',
-    title: '送你一朵fua',
+    title: '送你一朵fua'
   },
   {
     url: 'javascript:',
     img: 'https://dummyimage.com/850x300/FF3B3B/ffffff.png',
-    title: '送你一辆车',
+    title: '送你一辆车'
   },
   {
     url: 'javascript:',
     img: 'https://dummyimage.com/860x300/FF3B3B/ffffff.png',
-    title: '送你一次旅行',
-  },
+    title: '送你一次旅行'
+  }
 ]
 
 const imgList = [
   'https://dummyimage.com/810x300/FF3B3B/ffffff.png',
   'https://dummyimage.com/820x300/FFEF7D/ffffff.png',
-  'https://dummyimage.com/830x300/8AEEB1/ffffff.png',
+  'https://dummyimage.com/830x300/8AEEB1/ffffff.png'
 ]
 
 const urlList = baseList.map((item, index) => ({
   url: 'http://m.baidu.com',
   img: item.img,
   fallbackImg: item.fallbackImg,
-  title: `(可点击)${item.title}`,
+  title: `(可点击)${item.title}`
 }))
 
 const demoList = imgList.map((one, index) => ({
   url: 'javascript:',
-  img: one,
+  img: one
 }))
 
 const only2ClickList = baseList.slice(0, 2).map((item) => {
@@ -173,7 +173,7 @@ export default {
     SwiperItem,
     GroupTitle,
     XButton,
-    Divider,
+    Divider
   },
   ready() {},
   methods: {
@@ -194,7 +194,7 @@ export default {
     },
     demo07_onIndexChange(index) {
       this.demo07_index = index
-    },
+    }
   },
   data() {
     return {
@@ -210,9 +210,9 @@ export default {
       demo05_index: 0,
       demo06_index: 0,
       demo07_index: 0,
-      swiperItemIndex: 1,
+      swiperItemIndex: 1
     }
-  },
+  }
 }
 </script>
 

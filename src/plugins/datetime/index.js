@@ -1,13 +1,13 @@
 import Datetime from '@/components/datetime/datetimepicker.js'
 import ObjectAssign from 'object-assign'
 import DatetimeComponent from '@/components/datetime/index.vue'
-
+import { defineComponent } from 'vue'
 const libs = {
   show: function (options = {}) {
     options = ObjectAssign(
       {
         destroyOnHide: true,
-        isOneInstance: true,
+        isOneInstance: true
       },
       options
     )
@@ -16,17 +16,17 @@ const libs = {
   },
   hide: function () {
     libs.datetime && libs.datetime.hide()
-  },
+  }
 }
 
 export default {
-  install(Vue) {
+  install(app) {
     // inject style
-    const _Datetime = Vue.extend(DatetimeComponent)
+    const _Datetime = defineComponent(DatetimeComponent)
     const div = document.createElement('div')
     if (typeof document !== 'undefined') {
       let $vm = new _Datetime({
-        el: div,
+        el: div
       })
       if ($vm.$el.style) {
         $vm.$el.style.display = 'none'
@@ -35,18 +35,18 @@ export default {
       document.body.appendChild($vm.$el)
     }
 
-    if (!Vue.$vux) {
-      Vue.$vux = {
-        datetime: libs,
+    if (!app.config.globalProperties.$vux) {
+      app.config.globalProperties.$vux = {
+        datetime: libs
       }
     } else {
-      Vue.$vux.datetime = libs
+      app.config.globalProperties.$vux.datetime = libs
     }
 
-    Vue.mixin({
+    app.mixin({
       created: function () {
-        this.$vux = Vue.$vux
-      },
+        this.$vux = app.config.globalProperties.$vux
+      }
     })
-  },
+  }
 }

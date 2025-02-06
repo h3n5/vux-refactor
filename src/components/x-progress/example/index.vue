@@ -10,18 +10,18 @@
 </template>
 
 <script>
-import { XProgress, Box } from 'vux-refactor'
+import { XProgress, Box } from '@/index'
 
 export default {
   components: {
     XProgress,
-    Box,
+    Box
   },
   data() {
     return {
       percent1: 30,
-      percent2: 60,
+      percent2: 60
     }
-  },
+  }
 }
 </script>

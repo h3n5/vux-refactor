@@ -24,13 +24,13 @@ export default {
   name: 'picker',
   components: {
     Flexbox,
-    FlexboxItem,
+    FlexboxItem
   },
   created() {
     if (this.columns !== 0) {
       const length = this.columns
       this.store = new Manager(this.data, length, this.fixedColumns || this.columns)
-      this.currentData = this.store.getColumns(this.value)
+      this.currentData = this.store.getColumns(this.value || [])
     }
   },
   mounted() {
@@ -43,18 +43,21 @@ export default {
     data: Array,
     columns: {
       type: Number,
-      default: 0,
+      default: 0
     },
     fixedColumns: {
       type: Number,
-      default: 0,
+      default: 0
     },
-    value: Array,
+    value: {
+      type: Array,
+      default: () => []
+    },
     itemClass: {
       type: String,
-      default: 'scroller-item',
+      default: 'scroller-item'
     },
-    columnWidth: Array,
+    columnWidth: Array
   },
   methods: {
     getNameValues() {
@@ -110,7 +113,7 @@ export default {
             if (_this.columns !== 0) {
               _this.renderChain(i + 1)
             }
-          },
+          }
         })
         if (_this.currentValue) {
           _this.scroller[i].select(value[i])
@@ -141,7 +144,7 @@ export default {
             _this.$emit('on-change', _this.getValue())
           })
           _this.renderChain(i + 1)
-        },
+        }
       })
       // list is Array(empty) as maybe
       if (list.length) {
@@ -166,7 +169,7 @@ export default {
       if (!this.columns || (this.columns && val.length === this.store.count)) {
         this.$emit('on-change', val)
       }
-    },
+    }
   },
   data() {
     return {
@@ -174,7 +177,7 @@ export default {
       count: 0,
       uuid: '',
       currentData: this.data,
-      currentValue: this.value,
+      currentValue: this.value
     }
   },
   watch: {
@@ -239,14 +242,14 @@ export default {
           this.currentData = this.store.getColumns(this.currentValue)
         }
       }
-    },
+    }
   },
   beforeDestroy() {
     for (let i = 0; i < this.count; i++) {
       this.scroller[i] && this.scroller[i].destroy()
       this.scroller[i] = null
     }
-  },
+  }
 }
 </script>
 

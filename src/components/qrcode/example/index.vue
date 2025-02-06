@@ -16,7 +16,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     default type = img: '默认类型为 img，可以在微信里长按识别'
     type = canvas: '类型为 canvas'
     current url: '当前url'
@@ -28,12 +28,12 @@
     current fgColor: 'Current color'
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Qrcode, Divider } from 'vux-refactor'
+import { Qrcode, Divider } from '@/index'
 
 export default {
   mounted() {
@@ -44,13 +44,13 @@ export default {
   },
   components: {
     Qrcode,
-    Divider,
+    Divider
   },
   data() {
     return {
       value: 'https://vux.li',
-      fgColor: '#000000',
+      fgColor: '#000000'
     }
-  },
+  }
 }
 </script>

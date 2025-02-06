@@ -3,34 +3,34 @@ import { createVM, show, hide } from './util'
 let $vm
 
 const plugin = {
-  install (Vue) {
+  install(app) {
     if (!$vm) {
-      $vm = createVM(Vue)
+      $vm = createVM()
     }
 
     const alert = {
-      show (options = {}) {
+      show(options = {}) {
         return show.call(this, $vm, options)
       },
-      hide () {
+      hide() {
         return hide.call(this, $vm)
       },
-      isVisible () {
+      isVisible() {
         return $vm.showValue
       }
     }
 
-    if (!Vue.$vux) {
-      Vue.$vux = {
+    if (!app.config.globalProperties.$vux) {
+      app.config.globalProperties.$vux = {
         alert
       }
     } else {
-      Vue.$vux.alert = alert
+      app.config.globalProperties.$vux.alert = alert
     }
 
-    Vue.mixin({
+    app.mixin({
       created: function () {
-        this.$vux = Vue.$vux
+        this.$vux = app.config.globalProperties.$vux
       }
     })
   }
@@ -38,4 +38,3 @@ const plugin = {
 
 export default plugin
 export const install = plugin.install
-

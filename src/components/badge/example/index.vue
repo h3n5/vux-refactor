@@ -1,29 +1,29 @@
 <template>
   <div>
-    <badge text="1"></badge>
+    <Badge text="1"></Badge>
     <br />
-    <badge text="123"></badge>
+    <Badge text="123"></Badge>
     <br />
-    <group :title="$t('Used in a Cell')">
-      <cell :title="$t('Red dot')" is-link>
+    <Group :title="$t('Used in a Cell')">
+      <Cell :title="$t('Red dot')" is-link>
         <div class="badge-value">
           <span class="vertical-middle">{{ $t('New Messages') }} &nbsp;</span>
-          <badge></badge>
+          <Badge></Badge>
         </div>
-      </cell>
-      <cell :title="$t('Single digit')" is-link>
+      </Cell>
+      <Cell :title="$t('Single digit')" is-link>
         <div class="badge-value">
           <span class="vertical-middle">{{ $t('New Messages') }} &nbsp;</span>
-          <badge text="8"></badge>
+          <Badge text="8"></Badge>
         </div>
-      </cell>
-      <cell :title="$t('Big Number')" is-link>
+      </Cell>
+      <Cell :title="$t('Big Number')" is-link>
         <div class="badge-value">
           <span class="vertical-middle">{{ $t('New Messages') }} &nbsp;</span>
-          <badge text="888"></badge>
+          <Badge text="888"></Badge>
         </div>
-      </cell>
-    </group>
+      </Cell>
+    </Group>
   </div>
 </template>
 
@@ -34,7 +34,7 @@
     Single digit: "Single digit"
     Big Number: "Big Number"
     Red dot: "Red dot"
-  zh-CN:
+  zh_CN:
     Used in a Cell: "在 Cell 组件里使用"
     New Messages: 新消息
     Single digit: 个位数
@@ -42,20 +42,10 @@
     Red dot: 红点
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { Badge, Group, Cell } from '@/index'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
-</script>
-<script>
-import { Badge, Group, Cell } from 'vux-refactor'
-
-export default {
-  components: {
-    Badge,
-    Group,
-    Cell,
-  },
-}
 </script>
 
 <style lang="less">

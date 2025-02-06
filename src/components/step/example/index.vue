@@ -23,7 +23,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     next step: 下一步
     done: 已完成
     processing: 进行中
@@ -41,31 +41,31 @@
     step 3: 'step 3'
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Step, StepItem, XButton, XHr } from 'vux-refactor'
+import { Step, StepItem, XButton, XHr } from '@/index'
 
 export default {
   components: {
     Step,
     StepItem,
     XButton,
-    XHr,
+    XHr
   },
   data() {
     return {
       step1: 1,
-      step2: 0,
+      step2: 0
     }
   },
   methods: {
     nextStep() {
       this.step2++
-    },
-  },
+    }
+  }
 }
 </script>
 

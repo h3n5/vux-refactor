@@ -48,7 +48,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Simple card with header and content: "带有标题和内容的简单卡片"
     My wallet: "我的钱包"
     Point: "京豆"
@@ -74,18 +74,18 @@
     Use header slot and content slot: "Use header slot and content slot" 
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Divider, Card } from 'vux-refactor'
+import { Divider, Card } from '@/index'
 
 export default {
   components: {
     Card,
-    Divider,
-  },
+    Divider
+  }
 }
 </script>
 

@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import { XButton, Range, Group, GroupTitle, Cell } from 'vux-refactor'
+import { XButton, Range, Group, GroupTitle, Cell } from '@/index'
 
 export default {
   components: {
@@ -105,7 +105,7 @@ export default {
     Group,
     GroupTitle,
     Cell,
-    XButton,
+    XButton
   },
   mounted() {
     setTimeout(() => {
@@ -132,7 +132,7 @@ export default {
       min: 0,
       max: 100,
       step: 1,
-      dynamiValue: 0,
+      dynamiValue: 0
     }
   },
   methods: {
@@ -149,7 +149,7 @@ export default {
     },
     onTouchend(e) {
       console.log('touchend')
-    },
-  },
+    }
+  }
 }
 </script>

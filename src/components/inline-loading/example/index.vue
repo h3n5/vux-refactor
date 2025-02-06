@@ -22,22 +22,22 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     loading: "加载中"
   en:
     loading: "loading"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { InlineLoading } from 'vux-refactor'
+import { InlineLoading } from '@/index'
 
 export default {
   components: {
-    InlineLoading,
-  },
+    InlineLoading
+  }
 }
 </script>

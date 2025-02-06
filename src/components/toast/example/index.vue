@@ -44,7 +44,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Basic Usage: "基本用法"
     type:text: "type为text"
     type:cancel: "type为cancel"
@@ -74,18 +74,18 @@
     position: "position"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Toast, Group, XSwitch, XButton } from 'vux-refactor'
+import { Toast, Group, XSwitch, XButton } from '@/index'
 export default {
   components: {
     Toast,
     Group,
     XSwitch,
-    XButton,
+    XButton
   },
   methods: {
     showPosition(position) {
@@ -106,12 +106,12 @@ export default {
           onHide() {
             console.log("Plugin: I'm hiding")
             _this.show9 = false
-          },
+          }
         })
       } else {
         this.$vux.toast.hide()
       }
-    },
+    }
   },
   data() {
     return {
@@ -125,7 +125,7 @@ export default {
       show8: false,
       show9: false,
       position: 'default',
-      showPositionValue: false,
+      showPositionValue: false
     }
   },
   mounted() {
@@ -135,6 +135,6 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.timer)
-  },
+  }
 }
 </script>

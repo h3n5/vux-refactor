@@ -31,7 +31,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Default: "默认"
     Quantity: "数量"
     listen: "监听 on-change 事件（打印在控制台）"
@@ -55,30 +55,30 @@
     round style: "Round style"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, XNumber, XSwitch, Divider } from 'vux-refactor'
+import { Group, XNumber, XSwitch, Divider } from '@/index'
 
 export default {
   components: {
     XNumber,
     Group,
     XSwitch,
-    Divider,
+    Divider
   },
   data() {
     return {
       changeValue: 0,
-      roundValue: 0,
+      roundValue: 0
     }
   },
   methods: {
     change(val) {
       console.log('change', val)
-    },
-  },
+    }
+  }
 }
 </script>

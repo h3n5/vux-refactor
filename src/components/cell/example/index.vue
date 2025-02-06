@@ -117,7 +117,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     'My Account': 我的账号
     Protected: 保护中
     'Use is-link to show arrow': '使用 is-link 显示右边箭头'
@@ -165,8 +165,8 @@
     Animated: Animated
 </i18n>
 <script setup>
-import { Cell, CellBox, CellFormPreview, Group, Badge } from 'vux-refactor'
-import { useI18n } from 'vue-i18n-bridge'
+import { Cell, CellBox, CellFormPreview, Group, Badge } from '@/index'
+import { useI18n } from 'vue-i18n'
 import { onMounted, ref } from 'vue'
 const { t } = useI18n()
 const list = ref([

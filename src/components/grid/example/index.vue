@@ -41,7 +41,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Grid: "九宫格"
     "Go to Cell": "跳转到Cell"
     "Custom content": "自定义内容"
@@ -53,24 +53,24 @@
     "Custom col": "Custom col"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Grid, GridItem, GroupTitle } from 'vux-refactor'
+import { Grid, GridItem, GroupTitle } from '@/index'
 
 export default {
   components: {
     Grid,
     GridItem,
-    GroupTitle,
+    GroupTitle
   },
   methods: {
     onItemClick() {
       console.log('on item click')
-    },
-  },
+    }
+  }
 }
 </script>
 

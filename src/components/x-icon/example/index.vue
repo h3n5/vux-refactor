@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { Group, Cell, XIcon } from 'vux-refactor'
+import { Group, Cell, XIcon } from '@/index'
 
 export default {
   components: {

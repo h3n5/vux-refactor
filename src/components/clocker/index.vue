@@ -5,15 +5,15 @@
   </div>
 </template>
 <script setup>
-import { onMounted, nextTick, watch, onBeforeUnmount, useSlots, toRefs, ref } from 'vue-demi'
+import { onMounted, nextTick, watch, onBeforeUnmount, useSlots, toRefs, ref } from 'vue'
 import i18n from '@/locale/index.js'
 import Clocker from './clocker'
 const props = defineProps({
   time: [String, Number],
   format: {
     type: String,
-    default: '%D 天 %H 小时 %M 分 %S 秒',
-  },
+    default: '%D 天 %H 小时 %M 分 %S 秒'
+  }
 })
 const { time, format } = toRefs(props)
 const showTimeString = ref(true)
@@ -30,7 +30,7 @@ if (typeof locale === 'undefined') {
 } else {
   if (locale === 'en') {
     format.value = '%D d %H h %M m %S s'
-  } else if (locale === 'zh-CN') {
+  } else if (locale === 'zh_CN') {
     format.value = '%D 天 %H 小时 %M 分 %S 秒'
   }
 }

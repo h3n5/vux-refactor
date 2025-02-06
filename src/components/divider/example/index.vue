@@ -5,23 +5,23 @@
 </template>
 
 <i18n lang="yaml">
-zh-CN:
+zh_CN:
   I have bottom line: '我是有底线的'
 en:
   I have bottom line: 'I have bottom line'
 </i18n>
 <script>
 import { Divider } from '@/index.js'
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 export default {
   components: {
-    Divider,
+    Divider
   },
   setup() {
     const { t } = useI18n()
     return {
-      t,
+      t
     }
-  },
+  }
 }
 </script>

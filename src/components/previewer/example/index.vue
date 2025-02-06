@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import { Previewer, TransferDom } from 'vux-refactor'
+import { Previewer, TransferDom } from '@/index'
 
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
-    Previewer,
+    Previewer
   },
   methods: {
     logIndexChange(arg) {
@@ -30,7 +30,7 @@ export default {
     },
     show(index) {
       this.$refs.previewer.show(index)
-    },
+    }
   },
   data() {
     return {
@@ -39,8 +39,8 @@ export default {
           msrc: 'https://images.pexels.com/photos/792034/pexels-photo-792034.jpeg',
           src: 'https://images.pexels.com/photos/792034/pexels-photo-792034.jpeg',
           w: 800,
-          h: 400,
-        },
+          h: 400
+        }
       ],
       options: {
         getThumbBoundsFn(index) {
@@ -55,9 +55,9 @@ export default {
           return { x: rect.left, y: rect.top + pageYScroll, w: rect.width }
           // Good guide on how to get element coordinates:
           // https://javascript.info/tutorial/coordinates
-        },
-      },
+        }
+      }
     }
-  },
+  }
 }
 </script>

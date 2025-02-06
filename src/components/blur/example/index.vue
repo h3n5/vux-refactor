@@ -12,20 +12,20 @@
 </template>
 
 <script>
-import { Flexbox, FlexboxItem, Blur } from 'vux-refactor'
+import { Flexbox, FlexboxItem, Blur } from '@/index'
 
 export default {
   components: {
     Blur,
     Flexbox,
-    FlexboxItem,
+    FlexboxItem
   },
   data() {
     return {
       images: ['https://cdn.pixabay.com/photo/2023/04/20/12/22/globe-7939725_1280.jpg'],
-      url: 'https://cdn.pixabay.com/photo/2023/04/20/12/22/globe-7939725_1280.jpg',
+      url: 'https://cdn.pixabay.com/photo/2023/04/20/12/22/globe-7939725_1280.jpg'
     }
-  },
+  }
 }
 </script>
 

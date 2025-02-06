@@ -94,7 +94,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Current value: "当前值"
     Start date: "开始日期"
     End date: "结束日期"
@@ -144,12 +144,12 @@
     We can render a list of calendars order by month: "We can render a list of calendars order by month"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { InlineCalendar, Group, XSwitch, Radio, XButton, Cell, Divider } from 'vux-refactor'
+import { InlineCalendar, Group, XSwitch, Radio, XButton, Cell, Divider } from '@/index'
 import dayjs from 'dayjs'
 
 export default {
@@ -159,7 +159,7 @@ export default {
     },
     onViewChange(val, count) {
       console.log('on view change', val, count)
-    },
+    }
   },
   data() {
     return {
@@ -187,14 +187,14 @@ export default {
         if (date.formatedDate === '2017-10-16') {
           return true
         }
-      },
+      }
     }
   },
   watch: {
     replace(val) {
       this.replaceTextList = val
         ? {
-            TODAY: '今',
+            TODAY: '今'
           }
         : {}
     },
@@ -209,7 +209,7 @@ export default {
     },
     changeWeeksList(val) {
       this.weeksList = val ? ['日', '一', '二', '三', '四', '五', '六 '] : ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
-    },
+    }
   },
   components: {
     InlineCalendar,
@@ -218,8 +218,8 @@ export default {
     Radio,
     XButton,
     Cell,
-    Divider,
-  },
+    Divider
+  }
 }
 </script>
 

@@ -9,23 +9,23 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     wechat emotions: "微信表情列表"
   en:
     wechatEmotions: "wechatEmotions"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { WechatEmotion as Emotion, Divider } from 'vux-refactor'
+import { WechatEmotion as Emotion, Divider } from '@/index'
 
 export default {
   components: {
     Emotion,
-    Divider,
+    Divider
   },
   data() {
     return {
@@ -134,9 +134,9 @@ export default {
         '街舞',
         '献吻',
         '左太极',
-        '右太极',
-      ],
+        '右太极'
+      ]
     }
-  },
+  }
 }
 </script>

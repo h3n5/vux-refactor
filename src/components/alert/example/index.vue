@@ -37,7 +37,7 @@
     Your Message is sent successfully~: "Your Message is sent successfully~"
     Do you agree?: "Do you agree?"
     Will auto close in 3s: "Will auto close in 3s"
-  zh-CN:
+  zh_CN:
     Use as a module: "以模块方式调用"
     Show Me: "显示"
     Use as a plugin: "以插件方式调用"
@@ -48,23 +48,24 @@
 </i18n>
 
 <script>
-import { AlertModule, TransferDomDirective as TransferDom } from 'vux-refactor'
-import { useI18n } from 'vue-i18n-bridge'
+import { AlertModule, TransferDomDirective as TransferDom } from '@/index'
+import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
 export default {
+  name: 'alert-example',
   directives: {
     TransferDom
   },
-  data() {
-    return {
-      show: false,
-      show1: false,
-      show2: false
-    }
-  },
   setup() {
     const { t } = useI18n()
+    const show = ref(true)
+    const show1 = ref(false)
+    const show2 = ref(false)
     return {
-      t
+      t,
+      show,
+      show1,
+      show2
     }
   },
   methods: {

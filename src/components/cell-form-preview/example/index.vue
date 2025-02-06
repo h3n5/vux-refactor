@@ -8,7 +8,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Total: 合计
     $1024: '￥1024'
     Apple: 苹果
@@ -23,22 +23,22 @@
 </i18n>
 <script setup>
 import { ref } from 'vue'
-import { CellFormPreview, Group, Cell } from 'vux-refactor'
-import { useI18n } from 'vue-i18n-bridge'
+import { CellFormPreview, Group, Cell } from '@/index'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 const list = ref([
   {
     label: t('Apple'),
-    value: '3.29',
+    value: '3.29'
   },
   {
     label: t('Banana'),
-    value: '1.04',
+    value: '1.04'
   },
   {
     label: t('Fish'),
-    value: '8.00',
-  },
+    value: '8.00'
+  }
 ])
 </script>

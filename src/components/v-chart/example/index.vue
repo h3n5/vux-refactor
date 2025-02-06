@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { VChart, VLine, VArea, VTooltip, VLegend, VBar, XButton } from 'vux-refactor'
+import { VChart, VLine, VArea, VTooltip, VLegend, VBar, XButton } from '@/index'
 
 export default {
   components: {
@@ -20,7 +20,7 @@ export default {
     VTooltip,
     VLegend,
     VBar,
-    XButton,
+    XButton
   },
   data() {
     return {
@@ -32,9 +32,9 @@ export default {
         { year: '1958 年', sales: 48 },
         { year: '1959 年', sales: 38 },
         { year: '1960 年', sales: 38 },
-        { year: '1962 年', sales: 38 },
-      ],
+        { year: '1962 年', sales: 38 }
+      ]
     }
-  },
+  }
 }
 </script>

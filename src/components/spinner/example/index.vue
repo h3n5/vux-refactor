@@ -9,18 +9,18 @@
 </template>
 
 <script>
-import { Spinner, Group, Cell } from 'vux-refactor'
+import { Spinner, Group, Cell } from '@/index'
 
 export default {
   components: {
     Spinner,
     Cell,
-    Group,
+    Group
   },
   data() {
     return {
-      types: ['android', 'ios', 'ios-small', 'bubbles', 'circles', 'crescent', 'dots', 'lines', 'ripple', 'spiral'],
+      types: ['android', 'ios', 'ios-small', 'bubbles', 'circles', 'crescent', 'dots', 'lines', 'ripple', 'spiral']
     }
-  },
+  }
 }
 </script>

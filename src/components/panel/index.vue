@@ -1,8 +1,10 @@
 <template>
   <div class="weui-panel weui-panel_access">
     <!-- eslint-disable-next-line -->
-    <div class="weui-panel__hd" v-if="header" @click="onClickHeader" v-html="header">
-      <slot name="header"></slot>
+    <div class="weui-panel__hd" v-if="header" @click="onClickHeader">
+      <slot name="header">
+        {{ header }}
+      </slot>
     </div>
     <div class="weui-panel__bd">
       <slot name="body">
@@ -130,8 +132,8 @@ export default {
     list: Array,
     type: {
       type: String,
-      default: '1',
-    },
+      default: '1'
+    }
   },
   methods: {
     onImgError(item, $event) {
@@ -153,8 +155,8 @@ export default {
     onItemClick(item) {
       this.$emit('on-click-item', item)
       go(item.url, this.$router)
-    },
-  },
+    }
+  }
 }
 </script>
 

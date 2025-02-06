@@ -28,7 +28,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     cancel: "取消"
     done: "确定"
     Please select your card: "请选择银行卡"
@@ -48,28 +48,28 @@
     Card 4: "Card 4"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { PopupHeader, Popup, TransferDom, Group, XSwitch, Radio } from 'vux-refactor'
+import { PopupHeader, Popup, TransferDom, Group, XSwitch, Radio } from '@/index'
 
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
     PopupHeader,
     Popup,
     Group,
     XSwitch,
-    Radio,
+    Radio
   },
   data() {
     return {
-      show1: false,
+      show1: false
     }
-  },
+  }
 }
 </script>

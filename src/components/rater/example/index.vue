@@ -60,14 +60,14 @@
 </template>
 
 <script>
-import { Rater, Group, Cell, Range } from 'vux-refactor'
+import { Rater, Group, Cell, Range } from '@/index'
 
 export default {
   components: {
     Rater,
     Group,
     Cell,
-    Range,
+    Range
   },
   data() {
     return {
@@ -79,8 +79,8 @@ export default {
       data42: 3.5,
       data5: 3,
       data6: 3,
-      data7: 0,
+      data7: 0
     }
-  },
+  }
 }
 </script>

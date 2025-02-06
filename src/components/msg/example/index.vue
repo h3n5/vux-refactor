@@ -5,7 +5,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Yeah! You make it: "操作成功"
     Msg description: "内容详情，可根据实际需要安排，如果换行则不超过规定长度，居中展现文字链接"
     Primary button: "推荐操作"
@@ -18,8 +18,8 @@
 </i18n>
 <script setup>
 import { ref } from 'vue'
-import { useI18n } from 'vue-i18n-bridge'
-import { Msg } from 'vux-refactor'
+import { useI18n } from 'vue-i18n'
+import { Msg } from '@/index'
 const { t } = useI18n()
 const $t = t
 const description = ref('msg description')
@@ -28,12 +28,12 @@ const buttons = ref([
   {
     type: 'primary',
     text: $t('Primary button'),
-    onClick: changeIcon,
+    onClick: changeIcon
   },
   {
     type: 'default',
-    text: $t('Secondary button'),
-  },
+    text: $t('Secondary button')
+  }
 ])
 function changeIcon() {
   if (!icon.value || icon.value === 'success') {

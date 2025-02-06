@@ -156,14 +156,14 @@
 </template>
 
 <script>
-import { XInput, Group, XButton, Cell } from 'vux-refactor'
+import { XInput, Group, XButton, Cell } from '@/index'
 
 export default {
   components: {
     XInput,
     XButton,
     Group,
-    Cell,
+    Cell
   },
   data() {
     return {
@@ -176,7 +176,7 @@ export default {
       be2333: function (value) {
         return {
           valid: value === '2333',
-          msg: 'Must be 2333',
+          msg: 'Must be 2333'
         }
       },
       style: '',
@@ -184,7 +184,7 @@ export default {
       debounceValue: '',
       maxValue: '',
       maskValue: '13545678910',
-      maskValue2: '',
+      maskValue2: ''
     }
   },
   methods: {
@@ -205,8 +205,8 @@ export default {
     },
     onEnter(val) {
       console.log('click enter!', val)
-    },
-  },
+    }
+  }
 }
 </script>
 <style scoped>

@@ -70,7 +70,9 @@ import array2string from '@/filters/array2String.js'
 import value2name from '@/filters/value2name.js'
 import uuidMixin from '@/libs/mixin_uuid.js'
 import TransferDom from '@/directives/transfer-dom/index.js'
-import { localeMixin } from '@/locale/index.js'
+// import { localeMixin } from '@/locale/index.js'
+import { useI18n } from 'vue-i18n'
+import { ref, toRefs } from 'vue'
 const getObject = function (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
@@ -78,14 +80,9 @@ const getObject = function (obj) {
 export default {
   name: 'popup-picker',
   directives: {
-    TransferDom,
+    TransferDom
   },
-  created() {
-    if (typeof this.show !== 'undefined') {
-      this.showValue = this.show
-    }
-  },
-  mixins: [uuidMixin, localeMixin],
+  mixins: [uuidMixin],
   components: {
     Picker,
     Cell,
@@ -93,16 +90,16 @@ export default {
     PopupHeader,
     Flexbox,
     FlexboxItem,
-    InlineDesc,
+    InlineDesc
   },
   filters: {
     array2string,
-    value2name,
+    value2name
   },
   props: {
     valueTextAlign: {
       type: String,
-      default: 'right',
+      default: 'right'
     },
     title: String,
     cancelText: String,
@@ -111,39 +108,39 @@ export default {
       type: Array,
       default() {
         return []
-      },
+      }
     },
     placeholder: String,
     columns: {
       type: Number,
-      default: 0,
+      default: 0
     },
     fixedColumns: {
       type: Number,
-      default: 0,
+      default: 0
     },
     value: {
       type: Array,
       default() {
         return []
-      },
+      }
     },
     showName: Boolean,
     inlineDesc: [String, Number, Array, Object, Boolean],
     showCell: {
       type: Boolean,
-      default: true,
+      default: true
     },
     show: Boolean,
     displayFormat: Function,
     isTransferDom: {
       type: Boolean,
-      default: true,
+      default: true
     },
     columnWidth: Array,
     popupStyle: Object,
     popupTitle: String,
-    disabled: Boolean,
+    disabled: Boolean
   },
   computed: {
     labelStyles() {
@@ -151,15 +148,15 @@ export default {
         display: 'block',
         width: (this.$parent && (this.$parent.labelWidth || this.$parent.$parent.labelWidth)) || 'auto',
         textAlign: this.$parent && (this.$parent.labelAlign || this.$parent.$parent.labelAlign),
-        marginRight: this.$parent && (this.$parent.labelMarginRight || this.$parent.$parent.labelMarginRight),
+        marginRight: this.$parent && (this.$parent.labelMarginRight || this.$parent.$parent.labelMarginRight)
       }
     },
     labelClass() {
       return {
         'vux-cell-justify':
-          this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'),
+          this.$parent && (this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify')
       }
-    },
+    }
   },
   methods: {
     value2name,
@@ -211,7 +208,7 @@ export default {
       }
       const _val = getObject(val)
       this.$emit('on-shadow-change', _val, value2name(_val, this.data).split(' '))
-    },
+    }
   },
   watch: {
     value(val) {
@@ -229,18 +226,28 @@ export default {
     },
     showValue(val) {
       this.$emit('update:show', val)
-    },
-  },
-  data() {
-    return {
-      onShowProcess: false,
-      tempValue: getObject(this.value),
-      closeType: false,
-      currentData: JSON.stringify(this.data), // used for detecting if it is after data change
-      showValue: false,
-      currentValue: this.value,
     }
   },
+  setup(props) {
+    const { value, data, show } = toRefs(props)
+    const onShowProcess = ref(false)
+    const tempValue = ref(getObject(value))
+    const closeType = ref(false)
+    const currentData = ref(JSON.stringify(data))
+    const showValue = ref(show || false)
+    const currentValue = ref(value)
+    const { t } = useI18n()
+
+    return {
+      t,
+      onShowProcess,
+      tempValue,
+      closeType,
+      currentData,
+      showValue,
+      currentValue
+    }
+  }
 }
 </script>
 

@@ -14,22 +14,22 @@
 </template>
 
 <script>
-import { Masker } from 'vux-refactor'
+import { Masker } from '@/index'
 
 export default {
   components: {
-    Masker,
+    Masker
   },
   data() {
     return {
       list: [
         {
           title: '洗颜新潮流！人气洁面皂排行榜',
-          img: 'https://pixabay.com/photos/globe-ship-exploration-to-travel-7939725/',
-        },
-      ],
+          img: 'https://pixabay.com/photos/globe-ship-exploration-to-travel-7939725/'
+        }
+      ]
     }
-  },
+  }
 }
 </script>
 

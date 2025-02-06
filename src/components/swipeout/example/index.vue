@@ -79,7 +79,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Fav: "收藏"
     Delete: "删除"
     JavaScript is the best language: "JavaScript 是最好的语言"
@@ -114,12 +114,12 @@
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { GroupTitle, Swipeout, SwipeoutItem, SwipeoutButton, XButton } from 'vux-refactor'
+import { GroupTitle, Swipeout, SwipeoutItem, SwipeoutButton, XButton } from '@/index'
 
 export default {
   components: {
@@ -127,7 +127,7 @@ export default {
     Swipeout,
     SwipeoutItem,
     SwipeoutButton,
-    XButton,
+    XButton
   },
   methods: {
     onButtonClick(type) {
@@ -135,13 +135,13 @@ export default {
     },
     handleEvents(type) {
       console.log('event: ', type)
-    },
+    }
   },
   data() {
     return {
-      disabled: false,
+      disabled: false
     }
-  },
+  }
 }
 </script>
 

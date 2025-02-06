@@ -70,7 +70,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     A Horizontal Scroller without Scrollbar: "不带滚动条的水平 scroller"
     A Horizontal Scroller with Scrollbar: "显示滚动条的水平 scroller"
     A Horizontal Scroller without bounce effect: "没有边缘回滚效果的水平 scroller"
@@ -91,12 +91,12 @@
 
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore } from 'vux-refactor'
+import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore } from '@/index'
 
 export default {
   components: {
@@ -106,14 +106,14 @@ export default {
     XButton,
     Group,
     Cell,
-    LoadMore,
+    LoadMore
   },
   data() {
     return {
       showList1: true,
       scrollTop: 0,
       onFetching: false,
-      bottomCount: 20,
+      bottomCount: 20
     }
   },
   mounted() {
@@ -152,11 +152,11 @@ export default {
       this.showList1 = false
       this.$nextTick(() => {
         this.$refs.scroller.reset({
-          top: 0,
+          top: 0
         })
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

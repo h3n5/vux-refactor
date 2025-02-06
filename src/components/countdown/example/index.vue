@@ -15,7 +15,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Automatic countdown: "自动倒计时"
     Manually: "手动模式"
     Start: "开始"
@@ -25,19 +25,19 @@
     Start: "Start"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, Cell, Countdown, XSwitch } from 'vux-refactor'
+import { Group, Cell, Countdown, XSwitch } from '@/index'
 
 export default {
   components: {
     Group,
     Cell,
     Countdown,
-    XSwitch,
+    XSwitch
   },
   methods: {
     finish(index) {
@@ -48,7 +48,7 @@ export default {
     finish2(index) {
       this.start = false
       this.time = 20
-    },
+    }
   },
   data() {
     return {
@@ -56,8 +56,8 @@ export default {
       time1: 15,
       time2: 15,
       value: '',
-      start: false,
+      start: false
     }
-  },
+  }
 }
 </script>

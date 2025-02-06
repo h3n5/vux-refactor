@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import { XImg } from 'vux-refactor'
+import { XImg } from '@/index'
 export default {
   components: {
-    XImg,
+    XImg
   },
   methods: {
     success(src, ele) {
@@ -32,13 +32,13 @@ export default {
       console.log('error load', msg, src)
       const span = ele.parentNode.querySelector('span')
       span.innerText = 'load error'
-    },
+    }
   },
   data() {
     return {
-      list: ['https://dummyimage.com/810x300/FF3B3B/ffffff.png'],
+      list: ['https://dummyimage.com/810x300/FF3B3B/ffffff.png']
     }
-  },
+  }
 }
 </script>
 

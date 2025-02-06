@@ -10,18 +10,18 @@
 </template>
 
 <script>
-import { InlineXSwitch, XSwitch, Group } from 'vux-refactor'
+import { InlineXSwitch, XSwitch, Group } from '@/index'
 
 export default {
   components: {
     InlineXSwitch,
     XSwitch,
-    Group,
+    Group
   },
   data() {
     return {
-      value: false,
+      value: false
     }
-  },
+  }
 }
 </script>

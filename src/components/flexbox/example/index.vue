@@ -109,7 +109,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Horizontal: "水平"
     Honrizontal with no gutter: "水平无间隙"
     Vertical: "垂直"
@@ -125,19 +125,19 @@
     Flexible grid: "Flexible grid"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Flexbox, FlexboxItem, Divider } from 'vux-refactor'
+import { Flexbox, FlexboxItem, Divider } from '@/index'
 
 export default {
   components: {
     Flexbox,
     FlexboxItem,
-    Divider,
-  },
+    Divider
+  }
 }
 </script>
 

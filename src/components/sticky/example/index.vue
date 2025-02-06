@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { Tab, TabItem, Sticky, ViewBox } from 'vux-refactor'
+import { Tab, TabItem, Sticky, ViewBox } from '@/index'
 
 export default {
   components: {

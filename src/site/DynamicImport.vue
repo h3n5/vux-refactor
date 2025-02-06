@@ -4,7 +4,7 @@
       <code>
         import Components from 'unplugin-vue-components/vite'
         <br />
-        import VuxRefactorResolver from 'vux-refactor'
+        import VuxRefactorResolver from '@/index'
         <br />
         Components({ resolvers: [ VuxRefactorResolver({ exclude: [] }) ], allowOverrides: true })
       </code>

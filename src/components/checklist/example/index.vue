@@ -87,7 +87,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Basic Usage: "基本用法"
     Switch the position of labels: "切换 label 位置"
     Select first option: "选择第1个值"
@@ -120,12 +120,12 @@
 
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, CellBox, Checklist, Cell, Divider, XButton } from 'vux-refactor'
+import { Group, CellBox, Checklist, Cell, Divider, XButton } from '@/index'
 import _ from 'lodash'
 
 export default {
@@ -140,7 +140,7 @@ export default {
     Cell,
     Divider,
     XButton,
-    CellBox,
+    CellBox
   },
   methods: {
     change(val, label) {
@@ -155,7 +155,7 @@ export default {
     selectLeft() {
       const left = _.without.apply(_, [this.commonList].concat(this.checklist001))
       this.checklist001 = left
-    },
+    }
   },
   data() {
     return {
@@ -172,20 +172,20 @@ export default {
       objectList: [
         { key: '1', value: '001 value' },
         { key: '2', value: '002 value' },
-        { key: '3', value: '003 value' },
+        { key: '3', value: '003 value' }
       ],
       objectListValue: ['1', '2'],
       inlineDescList: [
         { key: '1', value: 'Tiger is good', inlineDesc: 'Tiger is the king of mountain' },
         { key: '2', value: 'Lion is better', inlineDesc: 'Lion is the king of woods' },
-        { key: '3', value: 'Camel is best, no inline-desc' },
+        { key: '3', value: 'Camel is best, no inline-desc' }
       ],
       inlineDescListValue: [1],
       asyncList: [],
       asyncListValue: [],
-      radioValue: ['China'],
+      radioValue: ['China']
     }
-  },
+  }
 }
 </script>
 

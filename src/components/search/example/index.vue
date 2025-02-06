@@ -27,14 +27,14 @@
 </template>
 
 <script>
-import { Search, Group, Cell, XButton } from 'vux-refactor'
+import { Search, Group, Cell, XButton } from '@/index'
 
 export default {
   components: {
     Search,
     Group,
     Cell,
-    XButton,
+    XButton
   },
   methods: {
     setFocus() {
@@ -52,7 +52,7 @@ export default {
       this.$vux.toast.show({
         type: 'text',
         position: 'top',
-        text: 'on submit',
+        text: 'on submit'
       })
     },
     onFocus() {
@@ -60,14 +60,14 @@ export default {
     },
     onCancel() {
       console.log('on cancel')
-    },
+    }
   },
   data() {
     return {
       results: [],
-      value: 'test',
+      value: 'test'
     }
-  },
+  }
 }
 
 function getResult(val) {
@@ -75,7 +75,7 @@ function getResult(val) {
   for (let i = 0; i < 20; i++) {
     rs.push({
       title: `${val} result: ${i + 1} `,
-      other: i,
+      other: i
     })
   }
   return rs

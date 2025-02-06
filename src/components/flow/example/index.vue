@@ -57,7 +57,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     In progress: 进行中
     Paid: 已付款
     Shipped: 已发货
@@ -71,18 +71,18 @@
     Done: Done
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Flow, FlowState, FlowLine } from 'vux-refactor'
+import { Flow, FlowState, FlowLine } from '@/index'
 
 export default {
   components: {
     Flow,
     FlowState,
-    FlowLine,
-  },
+    FlowLine
+  }
 }
 </script>

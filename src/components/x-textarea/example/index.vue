@@ -40,7 +40,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     placeholder: "提示"
     hide counter: "不显示计数器"
     used with input: "和input一起使用"
@@ -58,23 +58,23 @@
     set height=200: "set height=200"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { XTextarea, Group, XInput } from 'vux-refactor'
+import { XTextarea, Group, XInput } from '@/index'
 
 export default {
   components: {
     XTextarea,
     Group,
-    XInput,
+    XInput
   },
   methods: {
     onEvent(event) {
       console.log('on', event)
-    },
-  },
+    }
+  }
 }
 </script>

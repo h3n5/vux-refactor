@@ -37,7 +37,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Popover on top: "上方出现"
     Popover on bottom: "下方出现"
     Popover on left: "左边出现"
@@ -51,16 +51,16 @@
     Popover with scroll height: "Popover with scroll height"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Popover } from 'vux-refactor'
+import { Popover } from '@/index'
 
 export default {
   components: {
-    Popover,
+    Popover
   },
   methods: {
     onShow() {
@@ -68,8 +68,8 @@ export default {
     },
     onHide() {
       console.log('on hide')
-    },
-  },
+    }
+  }
 }
 </script>
 

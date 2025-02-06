@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import { localeMixin } from '@/locale/index.js'
+import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
 export default {
   name: 'actionsheet',
-  mixins: [localeMixin],
   mounted() {
     this.hasHeaderSlot = !!this.$slots.header
     this.$nextTick(() => {
@@ -63,23 +63,30 @@ export default {
     cancelText: String,
     theme: {
       type: String,
-      default: 'ios',
+      default: 'ios'
     },
     menus: {
       type: [Object, Array],
-      default: () => ({}),
+      default: () => ({})
     },
     closeOnClickingMask: {
       type: Boolean,
-      default: true,
+      default: true
     },
     closeOnClickingMenu: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  data() {
-    return { hasHeaderSlot: false, show: false }
+  setup() {
+    const hasHeaderSlot = ref(false)
+    const show = ref(false)
+    const { t } = useI18n()
+    return {
+      hasHeaderSlot,
+      show,
+      t
+    }
   },
   methods: {
     onTransitionEnd() {
@@ -121,7 +128,7 @@ export default {
       if (this.$tabbar && /iphone/i.test(navigator.userAgent)) {
         this.$tabbar.style.zIndex = zIndex
       }
-    },
+    }
   },
   watch: {
     show(val) {
@@ -138,13 +145,13 @@ export default {
       handler: function (val) {
         this.show = val
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   beforeDestroy() {
     this.fixIos(100)
     this.$refs.iOSMenu && this.$refs.iOSMenu.removeEventListener('transitionend', this.onTransitionEnd)
-  },
+  }
 }
 </script>
 

@@ -96,12 +96,12 @@
 </template>
 
 <script>
-import { XTable, LoadMore } from 'vux-refactor'
+import { XTable, LoadMore } from '@/index'
 
 export default {
   components: {
     XTable,
-    LoadMore,
-  },
+    LoadMore
+  }
 }
 </script>

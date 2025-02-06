@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import { Group, Cell, CellBox } from 'vux-refactor'
+import { Group, Cell, CellBox } from '@/index'
 
 export default {
   components: {
     Group,
     Cell,
-    CellBox,
-  },
+    CellBox
+  }
 }
 </script>

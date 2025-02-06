@@ -1,10 +1,9 @@
-import Vue from 'vue'
 import { createVM, show, hide } from './util'
 
 let $vm
 
 if (!$vm) {
-  $vm = createVM(Vue)
+  $vm = createVM()
 }
 
 const manager = {}
@@ -15,5 +14,5 @@ export default {
   },
   hide() {
     return hide.call(manager, $vm)
-  },
+  }
 }

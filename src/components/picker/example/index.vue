@@ -17,7 +17,7 @@
         changeValue([
           ['1', '3', '5', '7', '9', '11'],
           ['2', '3', '4', '5'],
-          ['a', 'b', 'c'],
+          ['a', 'b', 'c']
         ])
       "
     >
@@ -28,7 +28,7 @@
       @click.native="
         changeValue([
           ['1', '3', '5', '7', '9', '11'],
-          ['2', '3', '4', '5'],
+          ['2', '3', '4', '5']
         ])
       "
     >
@@ -68,7 +68,7 @@
   </div>
 </template>
 <i18n>
-  zh-CN:
+  zh_CN:
     Set value to: "设置数值为"
     Current value: "当前值"
     Normal usage, the first one is selected without setting default value: "默认，不设置默认值时选中第一个"
@@ -100,18 +100,18 @@
     3 cols data but only show 2 cols: "3 cols data but only show 2 cols"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Cell, Group, Picker, GroupTitle, XButton } from 'vux-refactor'
+import { Cell, Group, Picker, GroupTitle, XButton } from '@/index'
 
 let years = []
 for (var i = 2000; i <= 2030; i++) {
   years.push({
     name: i + '年',
-    value: i + '',
+    value: i + ''
   })
 }
 export default {
@@ -120,7 +120,7 @@ export default {
     GroupTitle,
     XButton,
     Cell,
-    Group,
+    Group
   },
   methods: {
     changeValue(value) {
@@ -142,9 +142,9 @@ export default {
       this.year7.push({
         name: '美国002_003',
         value: '0007',
-        parent: 'usa002',
+        parent: 'usa002'
       })
-    },
+    }
   },
   watch: {
     year5: {
@@ -153,11 +153,11 @@ export default {
         // this.year3.$set(0, val)
         this.$set(this.year3, 0, val)
       },
-      deep: true,
+      deep: true
     },
     change3(value) {
       this.year5 = value[0]
-    },
+    }
   },
   data() {
     return {
@@ -175,84 +175,84 @@ export default {
         ['you', 'I', 'him'],
         ['ni', 'wo', 'ta'],
         [1, 2, 3, 4, 5],
-        [5, 4, 3, 2, 1],
+        [5, 4, 3, 2, 1]
       ],
       year6Value: ['我', 'him', 'ni', '1', '2'],
       year7: [
         {
           name: '中国',
           value: 'china',
-          parent: 0,
+          parent: 0
         },
         {
           name: '美国',
           value: 'USA',
-          parent: 0,
+          parent: 0
         },
         {
           name: '广东',
           value: 'china001',
-          parent: 'china',
+          parent: 'china'
         },
         {
           name: '广西',
           value: 'china002',
-          parent: 'china',
+          parent: 'china'
         },
         {
           name: '美国001',
           value: 'usa001',
-          parent: 'USA',
+          parent: 'USA'
         },
         {
           name: '美国002',
           value: 'usa002',
-          parent: 'USA',
+          parent: 'USA'
         },
         {
           name: '广州',
           value: 'gz',
-          parent: 'china001',
+          parent: 'china001'
         },
         {
           name: '深圳',
           value: 'sz',
-          parent: 'china001',
+          parent: 'china001'
         },
         {
           name: '广西001',
           value: 'gz',
-          parent: 'china002',
+          parent: 'china002'
         },
         {
           name: '广西002',
           value: 'sz',
-          parent: 'china002',
+          parent: 'china002'
         },
         {
           name: '美国001_001',
           value: '0003',
-          parent: 'usa001',
+          parent: 'usa001'
         },
         {
           name: '美国001_002',
           value: '0004',
-          parent: 'usa001',
+          parent: 'usa001'
         },
         {
           name: '美国002_001',
           value: '0005',
-          parent: 'usa002',
+          parent: 'usa002'
         },
         {
           name: '美国002_002',
           value: '0006',
-          parent: 'usa002',
-        },
+          parent: 'usa002'
+        }
       ],
       year7Value: [],
-      year8Value: [],
+      year8Value: []
     }
-  },
+  }
 }
 </script>

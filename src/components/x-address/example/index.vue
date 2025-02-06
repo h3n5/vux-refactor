@@ -18,18 +18,18 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     select address: "选择地址"
   en:
     select address: "select address"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, XAddress, XButton, Cell } from 'vux-refactor'
+import { Group, XAddress, XButton, Cell } from '@/index'
 import value2name from '@/filters/value2name.js'
 import ChinaAddressV4Data from '@/datas/china_address.json'
 export default {
@@ -37,7 +37,7 @@ export default {
     Group,
     XAddress,
     XButton,
-    Cell,
+    Cell
   },
   data() {
     return {
@@ -50,7 +50,7 @@ export default {
       addressData: ChinaAddressV4Data,
       value4: [],
       value5: ['广东省', '深圳 市', '南山区'],
-      showAddress: false,
+      showAddress: false
     }
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
     },
     logShow(str) {
       console.log('on-show')
-    },
-  },
+    }
+  }
 }
 </script>

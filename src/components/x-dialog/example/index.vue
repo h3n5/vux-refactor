@@ -89,7 +89,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     hide on clicking mask: "点击遮罩自动关闭"
     Toggle: "显示/隐藏"
     custom dialog style: "自定义 dialog 容器样式"
@@ -108,30 +108,30 @@
 
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { XDialog, XButton, Group, XSwitch, TransferDomDirective as TransferDom, XIcon } from 'vux-refactor'
+import { XDialog, XButton, Group, XSwitch, TransferDomDirective as TransferDom, XIcon } from '@/index'
 
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
     XIcon,
     XDialog,
     XButton,
     Group,
-    XSwitch,
+    XSwitch
   },
   methods: {
     doShowToast() {
       this.$vux.toast.show({
-        text: 'toast',
+        text: 'toast'
       })
-    },
+    }
   },
   data() {
     return {
@@ -140,9 +140,9 @@ export default {
       showToast: false,
       showHideOnBlur: false,
       showScrollBox: false,
-      showDialogStyle: false,
+      showDialogStyle: false
     }
-  },
+  }
 }
 </script>
 

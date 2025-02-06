@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem, Group, Cell } from 'vux-refactor'
+import { Tabbar, TabbarItem, Group, Cell } from '@/index'
 
 export default {
   components: {
     Tabbar,
     TabbarItem,
     Group,
-    Cell,
-  },
+    Cell
+  }
 }
 </script>

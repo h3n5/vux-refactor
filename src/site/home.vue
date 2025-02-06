@@ -40,8 +40,8 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue-demi'
-import { Cell } from 'vux-refactor'
+import { ref } from 'vue'
+import { Cell } from '@/index.js'
 import router from '@/router'
 const baseComponent = ref([
   {
@@ -419,7 +419,7 @@ const baseComponent = ref([
     ]
   }
 ])
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const goRouter = (route) => {
   router.push({

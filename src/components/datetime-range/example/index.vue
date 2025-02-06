@@ -14,7 +14,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     daterange-format: 'YYYY年MM月DD日'
     Choose: '选择'
   en:
@@ -22,27 +22,27 @@
     Choose: 'Choose'
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, DatetimeRange } from 'vux-refactor'
+import { Group, DatetimeRange } from '@/index'
 
 export default {
   components: {
     Group,
-    DatetimeRange,
+    DatetimeRange
   },
   methods: {
     onChange(val) {
       console.log('change', val)
-    },
+    }
   },
   data() {
     return {
-      value: ['2017-01-15', '03', '05'],
+      value: ['2017-01-15', '03', '05']
     }
-  },
+  }
 }
 </script>

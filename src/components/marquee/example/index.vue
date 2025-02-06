@@ -28,7 +28,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Default usage: "默认"
     Used in a cell: "在 cell 中使用"
     News: "公告"
@@ -42,12 +42,12 @@
     JavaScript is the best language: "JavaScript is the best language"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, Cell, Marquee, MarqueeItem, Divider } from 'vux-refactor'
+import { Group, Cell, Marquee, MarqueeItem, Divider } from '@/index'
 
 export default {
   components: {
@@ -55,7 +55,7 @@ export default {
     MarqueeItem,
     Group,
     Cell,
-    Divider,
+    Divider
   },
   mounted() {
     setTimeout(() => {
@@ -65,13 +65,13 @@ export default {
   methods: {
     onClick(i) {
       console.log(i)
-    },
+    }
   },
   data() {
     return {
-      asyncCount: 0,
+      asyncCount: 0
     }
-  },
+  }
 }
 </script>
 

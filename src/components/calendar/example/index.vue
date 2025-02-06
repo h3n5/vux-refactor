@@ -70,7 +70,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Basic Usage: "基本用法"
     Set value as TODAY: "设置时间为今天"
     Disable future: "禁止选择未来时间"
@@ -94,12 +94,12 @@
     Toggle readonly: "Toggle readonly"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, Calendar, Cell, Badge, CellBox, XButton } from 'vux-refactor'
+import { Group, Calendar, Cell, Badge, CellBox, XButton } from '@/index'
 
 export default {
   components: {
@@ -108,7 +108,7 @@ export default {
     Cell,
     Badge,
     CellBox,
-    XButton,
+    XButton
   },
   data() {
     return {
@@ -125,7 +125,7 @@ export default {
         } else {
           return value.length ? value.length + ' days' : ''
         }
-      },
+      }
     }
   },
   methods: {
@@ -134,8 +134,8 @@ export default {
     },
     onChange(val) {
       console.log('on change', val)
-    },
-  },
+    }
+  }
 }
 </script>
 

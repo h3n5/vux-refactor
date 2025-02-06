@@ -1,16 +1,16 @@
 import LoadingComponent from '@/components/loading/index.vue'
 import { mergeOptions } from '@/libs/plugin_helper.js'
-
-export function createVM(Vue) {
+import { defineComponent, createApp } from 'vue'
+export function createVM() {
   if (typeof document === 'undefined') {
     console.error('[VUX] Loading plugin cannot be used in ssr.')
     return
   }
-  const Comp = Vue.extend(LoadingComponent)
-  const $vm = new Comp({
-    el: document.createElement('div'),
-  })
-  document.body.appendChild($vm.$el)
+  const Comp = defineComponent(LoadingComponent)
+  const el = document.createElement('div')
+  const $vm = createApp(Comp)
+  $vm.mount(el)
+  document.body.appendChild(el)
   return $vm
 }
 
@@ -33,5 +33,5 @@ export function hide($vm) {
 
 export default {
   show,
-  hide,
+  hide
 }

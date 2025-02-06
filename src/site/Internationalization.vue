@@ -8,21 +8,21 @@
 </template>
 
 <script setup>
-import { Group, Radio, LocalePlugin, InlineCalendar } from "vux-refactor";
-import { ref, watch } from "vue-demi";
-const lang = ref("zh_CN");
-const show = ref(true);
+import { Group, Radio, LocalePlugin, InlineCalendar } from '@/index.js'
+import { ref, watch } from 'vue'
+const lang = ref('zh_CN')
+const show = ref(true)
 const list = ref([
   {
-    value: "中文",
-    key: "zh_CN",
+    value: '中文',
+    key: 'zh_CN'
   },
   {
-    value: "English",
-    key: "en_GB",
-  },
-]);
+    value: 'English',
+    key: 'en_GB'
+  }
+])
 watch(lang, (val) => {
-  LocalePlugin.locale = val;
-});
+  LocalePlugin.locale = val
+})
 </script>

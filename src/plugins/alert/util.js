@@ -1,18 +1,18 @@
 import AlertComponent from '@/components/alert/index.vue'
 import { mergeOptions } from '@/libs/plugin_helper'
-
-export function createVM(Vue) {
+import { defineComponent, createApp } from 'vue'
+import i18n from '@/locale/index.js'
+export function createVM() {
   if (typeof document === 'undefined') {
     console.error('[VUX] Alert plugin cannot be used in ssr.')
     return
   }
   try {
-    const Alert = Vue.extend(AlertComponent)
-    const $vm = new Alert({
-      el: document.createElement('div'),
-    })
-    document.body.appendChild($vm.$el)
-    return $vm
+    const Alert = defineComponent(AlertComponent)
+    const el = document.createElement('div')
+    const app = createApp(Alert).use(i18n).mount(el)
+    document.body.appendChild(el)
+    return app
   } catch (error) {
     console.log('AutoConsole: createVM -> error', error)
   }
@@ -45,5 +45,5 @@ export function hide($vm) {
 
 export default {
   show,
-  hide,
+  hide
 }

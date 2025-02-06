@@ -20,7 +20,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Toggle: "开关"
     Show loading: "显示loading (2s后关闭)"
     Show delay loading: "延时1s后显示"
@@ -32,30 +32,30 @@
     No loading text: "No loading text"
 </i18n>
 <script>
-import { useI18n } from 'vue-i18n-bridge'
-import { Loading, Group, XSwitch, XButton, TransferDomDirective as TransferDom } from 'vux-refactor'
+import { useI18n } from 'vue-i18n'
+import { Loading, Group, XSwitch, XButton, TransferDomDirective as TransferDom } from '@/index'
 
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
     Loading,
     Group,
     XSwitch,
-    XButton,
+    XButton
   },
   setup() {
     const { t } = useI18n()
     return {
-      t,
+      t
     }
   },
   data() {
     return {
       show1: false,
       show2: false,
-      text1: 'Processing',
+      text1: 'Processing'
     }
   },
   mounted() {
@@ -69,7 +69,7 @@ export default {
   methods: {
     showLoading() {
       this.$vux.loading.show({
-        text: 'Loading',
+        text: 'Loading'
       })
       setTimeout(() => {
         this.$vux.loading.hide()
@@ -78,7 +78,7 @@ export default {
     showDelayLoading() {
       this.$vux.loading.show({
         text: 'Loading',
-        delay: 1e3,
+        delay: 1e3
       })
       setTimeout(() => {
         this.$vux.loading.hide()
@@ -104,8 +104,8 @@ export default {
           }
         })
       }
-    },
-  },
+    }
+  }
 }
 
 function tick(i, cb) {

@@ -22,30 +22,30 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     anticlockwise: 逆时针
   en:
     anticlockwise: anticlockwise
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { XCircle, Range, Icon } from 'vux-refactor'
+import { XCircle, Range, Icon } from '@/index'
 
 export default {
   components: {
     XCircle,
     Range,
-    Icon,
+    Icon
   },
   data() {
     return {
-      percent: 50,
+      percent: 50
     }
-  },
+  }
 }
 </script>
 

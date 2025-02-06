@@ -26,19 +26,19 @@
 </template>
 
 <script>
-import { Timeline, TimelineItem, XButton } from 'vux-refactor'
+import { Timeline, TimelineItem, XButton } from '@/index'
 
 export default {
   components: {
     Timeline,
     TimelineItem,
-    XButton,
+    XButton
   },
   data() {
     return {
-      count: 3,
+      count: 3
     }
-  },
+  }
 }
 </script>
 

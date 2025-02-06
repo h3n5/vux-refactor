@@ -224,7 +224,7 @@
         :order-map="{
           year: 3,
           month: 2,
-          day: 1,
+          day: 1
         }"
         v-model="value1"
         @on-change="change"
@@ -238,7 +238,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     "Default format: YYYY-MM-DD": "默认格式：YYYY-MM-DD"
     "Format": "格式"
     "Start time": "开始时间"
@@ -307,19 +307,19 @@
 
 </i18n>
 <script>
-import { Datetime, Group, XButton } from 'vux-refactor'
-import { useI18n } from 'vue-i18n-bridge'
+import { Datetime, Group, XButton } from '@/index'
+import { useI18n } from 'vue-i18n'
 
 export default {
   components: {
     Datetime,
     Group,
-    XButton,
+    XButton
   },
   setup() {
     const { t } = useI18n()
     return {
-      t,
+      t
     }
   },
   data() {
@@ -361,7 +361,7 @@ export default {
         return [options.month] // if current month is n, days are [n]
       },
       onlySetEndDate: '2017-10-11',
-      onlySetEndDateValue: '',
+      onlySetEndDateValue: ''
     }
   },
   methods: {
@@ -386,7 +386,7 @@ export default {
         },
         onHide() {
           console.log('plugin hide')
-        },
+        }
       })
     },
     toggleFormat() {
@@ -413,8 +413,8 @@ export default {
       if (day < 10) day = '0' + day
       this.value7 = now.getFullYear() + '-' + cmonth + '-' + day
       console.log('set today ok')
-    },
-  },
+    }
+  }
 }
 </script>
 

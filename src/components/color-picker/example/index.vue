@@ -19,7 +19,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Use in cell: "在 cell 中使用"
     A cell without title: "不带标题的 cell"
   en:
@@ -27,24 +27,24 @@
     A cell without title: "A cell without title"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { ColorPicker, Group, Cell } from 'vux-refactor'
+import { ColorPicker, Group, Cell } from '@/index'
 
 export default {
   components: {
     ColorPicker,
     Group,
-    Cell,
+    Cell
   },
   data() {
     return {
       color1: '#FFEF7D',
-      colors1: ['#FF3B3B', '#FFEF7D', '#8AEEB1', '#8B8AEE', '#CC68F8', '#fff'],
+      colors1: ['#FF3B3B', '#FFEF7D', '#8AEEB1', '#8B8AEE', '#CC68F8', '#fff']
     }
-  },
+  }
 }
 </script>

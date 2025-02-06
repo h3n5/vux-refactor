@@ -44,7 +44,7 @@
     New Messages: "New Messages"
     Red Dot: "Red Dot"
     Use v-model to set selected item: "Use v-model to set selected item:"
-  zh-CN:
+  zh_CN:
     Today: 今天
     This Week: 本周
     This Month: 本月
@@ -58,28 +58,28 @@
     Use v-model to set selected item: "使用 v-model 设置当前选中项"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { ButtonTab, ButtonTabItem, Divider } from 'vux-refactor'
+import { ButtonTab, ButtonTabItem, Divider } from '@/index'
 
 export default {
   components: {
     ButtonTab,
     ButtonTabItem,
-    Divider,
+    Divider
   },
   methods: {
     consoleIndex() {
       console.log('click demo01', this.demo01)
-    },
+    }
   },
   data() {
     return {
-      demo01: 0,
+      demo01: 0
     }
-  },
+  }
 }
 </script>

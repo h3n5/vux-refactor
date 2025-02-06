@@ -38,12 +38,12 @@
 </template>
 
 <script>
-import { Group, PopupRadio } from 'vux-refactor'
+import { Group, PopupRadio } from '@/index'
 
 export default {
   components: {
     Group,
-    PopupRadio,
+    PopupRadio
   },
   data() {
     return {
@@ -53,19 +53,19 @@ export default {
       options2: [
         {
           key: 'A',
-          value: 'label A',
+          value: 'label A'
         },
         {
           key: 'B',
-          value: 'label B',
-        },
+          value: 'label B'
+        }
       ],
       option3: 'C',
       options3: ['A', 'B', 'C'],
       option4: 'B',
-      option5: 'B',
+      option5: 'B'
     }
-  },
+  }
 }
 </script>
 

@@ -8,17 +8,17 @@
 </template>
 
 <script>
-import { Spinner } from 'vux-refactor'
+import { Spinner } from '@/index'
 
 export default {
   components: {
-    Spinner,
+    Spinner
   },
   props: {
     scrollable: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   mounted() {
     setTimeout(() => {
@@ -27,9 +27,9 @@ export default {
   },
   data() {
     return {
-      text: 'initializing~',
+      text: 'initializing~'
     }
-  },
+  }
 }
 </script>
 

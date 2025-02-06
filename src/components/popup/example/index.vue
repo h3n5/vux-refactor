@@ -216,13 +216,13 @@
 </template>
 
 <script>
-import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from 'vux-refactor'
+import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from '@/index'
 
 import ToggleText from './ToggleText.vue'
 
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
     Popup,
@@ -232,7 +232,7 @@ export default {
     Toast,
     XAddress,
     XButton,
-    ToggleText,
+    ToggleText
   },
   data() {
     return {
@@ -256,13 +256,13 @@ export default {
       show14: false,
       show15: false,
       show16: false,
-      show17: false,
+      show17: false
     }
   },
   methods: {
     log(str) {
       console.log(str)
-    },
+    }
   },
   watch: {
     show10(val) {
@@ -271,8 +271,8 @@ export default {
           this.show10 = false
         }, 1000)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

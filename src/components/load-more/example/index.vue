@@ -7,7 +7,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     正在加载: "正在加载"
     暂无数据: "暂无数据"
   en:
@@ -15,16 +15,16 @@
     暂无数据: "The End"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { LoadMore } from 'vux-refactor'
+import { LoadMore } from '@/index'
 
 export default {
   components: {
-    LoadMore,
-  },
+    LoadMore
+  }
 }
 </script>

@@ -48,23 +48,23 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     pre-select China(disabled): "默认值 China(禁用操作)"
   en:
     pre-select China(disabled): "Preselect China (disabled)"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Radio, Group } from 'vux-refactor'
+import { Radio, Group } from '@/index'
 
 export default {
   components: {
     Radio,
-    Group,
+    Group
   },
   data() {
     return {
@@ -75,20 +75,20 @@ export default {
         {
           icon: 'https://dummyimage.com/110x110/FF2D55/000',
           key: '001',
-          value: 'radio001',
+          value: 'radio001'
         },
         {
           icon: 'https://dummyimage.com/110x110/FF2D55/000',
           key: '002',
-          value: 'radio002',
-        },
-      ],
+          value: 'radio002'
+        }
+      ]
     }
   },
   methods: {
     change(value, label) {
       console.log('change:', value, label)
-    },
-  },
+    }
+  }
 }
 </script>

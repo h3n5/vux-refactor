@@ -193,7 +193,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     "Radio: object value": "单选：对象值"
     "Checkbox: object value": "多选：对象值"
     "Radio: no default value": "单选，默认不选中任何项"
@@ -252,16 +252,16 @@
     "Checkbox: object value": "Checkbox: object value"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Checker, CheckerItem, Divider, Group, Cell, Popup, TransferDom } from 'vux-refactor'
+import { Checker, CheckerItem, Divider, Group, Cell, Popup, TransferDom } from '@/index'
 
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
     Checker,
@@ -269,7 +269,7 @@ export default {
     Divider,
     Group,
     Cell,
-    Popup,
+    Popup
   },
   methods: {
     onItemClick(value, disabled) {
@@ -277,23 +277,23 @@ export default {
       if (!this.disabled) {
         this.showPopup = false
       }
-    },
+    }
   },
   data() {
     return {
       items1: [
         {
           key: '1',
-          value: 'A',
+          value: 'A'
         },
         {
           key: '2',
-          value: 'B',
+          value: 'B'
         },
         {
           key: '3',
-          value: 'C',
-        },
+          value: 'C'
+        }
       ],
       demo1: '',
       demo1Required: '',
@@ -309,9 +309,9 @@ export default {
       demo4: '',
       showPopup: false,
       demo5: 1,
-      demo6: [2, 3],
+      demo6: [2, 3]
     }
-  },
+  }
 }
 </script>
 

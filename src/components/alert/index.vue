@@ -28,17 +28,12 @@
 
 <script>
 import XDialog from '../x-dialog/index.vue'
-import { localeMixin } from '@/locale/index.js'
+import { useI18n } from 'vue-i18n'
+import { ref, toRefs } from 'vue'
 export default {
   name: 'alert',
   components: {
-    XDialog,
-  },
-  mixins: [localeMixin],
-  created() {
-    if (typeof this.value !== 'undefined') {
-      this.showValue = this.value
-    }
+    XDialog
   },
   props: {
     value: Boolean,
@@ -47,27 +42,31 @@ export default {
     buttonText: String,
     hideOnBlur: {
       type: Boolean,
-      default: false,
+      default: false
     },
     maskTransition: {
       type: String,
-      default: 'vux-mask',
+      default: 'vux-mask'
     },
     dialogTransition: {
       type: String,
-      default: 'vux-dialog',
+      default: 'vux-dialog'
     },
-    maskZIndex: [Number, String],
+    maskZIndex: [Number, String]
   },
-  data() {
+  setup(props) {
+    const { value } = toRefs(props)
+    const showValue = ref(value || false)
+    const { t } = useI18n()
     return {
-      showValue: false,
+      showValue,
+      t
     }
   },
   methods: {
     _onHide() {
       this.showValue = false
-    },
+    }
   },
   watch: {
     value(val) {
@@ -75,8 +74,8 @@ export default {
     },
     showValue(val) {
       this.$emit('input', val)
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="less">

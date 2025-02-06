@@ -1,4 +1,4 @@
-import vue from '@vitejs/plugin-vue2'
+import vue from '@vitejs/plugin-vue'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import path from 'path'
 import copyPlugin from 'rollup-plugin-copy'
@@ -14,9 +14,7 @@ export default ({ mode }) => {
     define: {
       'process.env.NODE_ENV': JSON.stringify('production')
     },
-    optimizeDeps: {
-      exclude: ['vue-demi']
-    },
+    optimizeDeps: {},
     server: {
       host: true,
       port: 5173

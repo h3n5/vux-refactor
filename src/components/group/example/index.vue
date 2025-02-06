@@ -92,8 +92,8 @@ import {
   ChinaAddressData,
   XAddress,
   XTextarea,
-  XSwitch,
-} from 'vux-refactor'
+  XSwitch
+} from '@/index'
 
 export default {
   components: {
@@ -107,7 +107,7 @@ export default {
     Datetime,
     XNumber,
     XTextarea,
-    XSwitch,
+    XSwitch
   },
   data() {
     return {
@@ -123,8 +123,8 @@ export default {
       value5: ['A'],
       value6: [],
       list: [['A', 'B', 'C']],
-      numberValue: 0,
+      numberValue: 0
     }
-  },
+  }
 }
 </script>

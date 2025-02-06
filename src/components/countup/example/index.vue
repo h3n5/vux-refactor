@@ -12,18 +12,18 @@
 </template>
 
 <script>
-import { Countup, XButton } from 'vux-refactor'
+import { Countup, XButton } from '@/index'
 
 export default {
   components: {
     Countup,
-    XButton,
+    XButton
   },
   data() {
     return {
-      doStart: false,
+      doStart: false
     }
-  },
+  }
 }
 </script>
 

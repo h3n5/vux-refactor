@@ -41,7 +41,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Use in cell: "在 cell 中使用"
     Custom template: "自定义模版"
     "Date: 2018-08-01": "日期：2018-08-01"
@@ -53,18 +53,18 @@
     Basic Usage: "Basic Usage"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Clocker, Cell, Group } from 'vux-refactor'
+import { Clocker, Cell, Group } from '@/index'
 
 export default {
   components: {
     Clocker,
     Cell,
-    Group,
+    Group
   },
   created() {
     setTimeout(() => {
@@ -73,9 +73,9 @@ export default {
   },
   data() {
     return {
-      time1: '2018-07-13 21:54',
+      time1: '2018-07-13 21:54'
     }
-  },
+  }
 }
 </script>
 

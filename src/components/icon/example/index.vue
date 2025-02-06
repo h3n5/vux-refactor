@@ -28,12 +28,12 @@
 </template>
 
 <script>
-import { Box, Icon } from 'vux-refactor'
+import { Box, Icon } from '@/index'
 
 export default {
   components: {
     Box,
-    Icon,
-  },
+    Icon
+  }
 }
 </script>

@@ -106,7 +106,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Toggle: "显示"
     "Toggle show-input": "显示Prompt"
     "Set default input value": "设置默认输入文字"
@@ -136,7 +136,7 @@
     "showCancelButton=false": "showCancelButton=false"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
@@ -144,13 +144,13 @@ const $t = t
 import { Confirm, Group, XSwitch, XButton, TransferDomDirective as TransferDom } from '@/index.js'
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
     Confirm,
     Group,
     XSwitch,
-    XButton,
+    XButton
   },
   data() {
     return {
@@ -159,7 +159,7 @@ export default {
       show3: false,
       show4: false,
       show5: false,
-      show6: false,
+      show6: false
     }
   },
   methods: {
@@ -176,7 +176,7 @@ export default {
       console.log('on confirm')
       this.$vux.loading.show({
         transition: '',
-        text: 'processing',
+        text: 'processing'
       })
       setTimeout(() => {
         this.$vux.loading.hide()
@@ -211,7 +211,7 @@ export default {
         },
         onConfirm() {
           console.log('plugin confirm')
-        },
+        }
       })
     },
     showPlugin2() {
@@ -233,9 +233,9 @@ export default {
         },
         onConfirm(msg) {
           alert(msg)
-        },
+        }
       })
-    },
+    }
   },
   mounted() {
     this.timer = setInterval(() => {
@@ -244,6 +244,6 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.timer)
-  },
+  }
 }
 </script>

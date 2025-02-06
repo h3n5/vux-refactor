@@ -53,28 +53,28 @@
 </template>
 
 <script>
-import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem, XIcon } from 'vux-refactor'
+import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem, XIcon } from '@/index'
 
 export default {
   directives: {
-    TransferDom,
+    TransferDom
   },
   components: {
     XIcon,
     XHeader,
     Actionsheet,
     ButtonTab,
-    ButtonTabItem,
+    ButtonTabItem
   },
   data() {
     return {
       menus: {
         menu1: 'Take Photo',
-        menu2: 'Choose from photos',
+        menu2: 'Choose from photos'
       },
-      showMenus: false,
+      showMenus: false
     }
-  },
+  }
 }
 </script>
 

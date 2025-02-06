@@ -22,7 +22,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     prevent default: "阻止默认"
     Basic Usage: "基本用法"
     value map: "值转换 map"
@@ -42,37 +42,37 @@
     switch red: "switch red"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { XSwitch, Group, Cell } from 'vux-refactor'
+import { XSwitch, Group, Cell } from '@/index'
 
 export default {
   components: {
     XSwitch,
     Group,
-    Cell,
+    Cell
   },
   methods: {
     onClick(newVal, oldVal) {
       console.log(newVal, oldVal)
       this.$vux.loading.show({
-        text: 'in processing',
+        text: 'in processing'
       })
       setTimeout(() => {
         this.$vux.loading.hide()
         this.value2 = newVal
       }, 1000)
-    },
+    }
   },
   data() {
     return {
       value1: true,
       value2: false,
-      stringValue: '0',
+      stringValue: '0'
     }
-  },
+  }
 }
 </script>

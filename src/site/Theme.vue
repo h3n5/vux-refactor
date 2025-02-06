@@ -19,7 +19,7 @@
   </div>
 </template>
 <script setup>
-import { Group, XButton, Card, Cell } from 'vux-refactor'
+import { Group, XButton, Card, Cell } from '@/index.js'
 
 import { StyleProvider, Themes } from './utils.js'
 

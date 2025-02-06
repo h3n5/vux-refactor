@@ -10,28 +10,28 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Do you agree?: 同意不
   en:
     Do you agree?: Do you agree?
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { CheckIcon } from 'vux-refactor'
+import { CheckIcon } from '@/index'
 
 export default {
   components: {
-    CheckIcon,
+    CheckIcon
   },
   data() {
     return {
       demo1: false,
-      demo2: true,
+      demo2: true
     }
-  },
+  }
 }
 </script>

@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { Selector, Group, Cell, CellBox, XButton } from 'vux-refactor'
+import { Selector, Group, Cell, CellBox, XButton } from '@/index'
 
 export default {
   components: {
@@ -74,7 +74,7 @@ export default {
     Selector,
     Cell,
     CellBox,
-    XButton,
+    XButton
   },
   data() {
     return {
@@ -84,11 +84,11 @@ export default {
       plainList: ['广东', '广西'],
       list: [
         { key: 'gd', value: '广东' },
-        { key: 'gx', value: '广西' },
+        { key: 'gx', value: '广西' }
       ],
       list2: [
         { key: true, value: '是' },
-        { key: false, value: '否' },
+        { key: false, value: '否' }
       ],
       value1: '广西',
       value3: true,
@@ -98,14 +98,14 @@ export default {
         {
           idValue: 'key01',
           idLabel: 'value01',
-          otherProp: 'prop01',
+          otherProp: 'prop01'
         },
         {
           idValue: 'key02',
           idLabel: 'value02',
-          otherProp: 'prop02',
-        },
-      ],
+          otherProp: 'prop02'
+        }
+      ]
     }
   },
   methods: {
@@ -115,9 +115,9 @@ export default {
     getValue(ref) {
       this.$vux.alert.show({
         title: 'getFullValue',
-        content: this.$refs[ref].getFullValue(),
+        content: this.$refs[ref].getFullValue()
       })
-    },
-  },
+    }
+  }
 }
 </script>

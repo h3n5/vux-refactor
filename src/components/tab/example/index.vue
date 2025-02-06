@@ -169,16 +169,16 @@
 <i18n>
 en:
   set bar-active-color: "set bar-active-color"
-zh-CN:
+zh_CN:
   set bar-active-color: "设置选中tab的颜色"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem, ViewBox } from 'vux-refactor'
+import { Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem, ViewBox } from '@/index'
 const list = () => ['精选', '美食', '电影', '酒店', '外卖']
 
 export default {
@@ -190,7 +190,7 @@ export default {
     Divider,
     XButton,
     Swiper,
-    SwiperItem,
+    SwiperItem
   },
   data() {
     return {
@@ -205,14 +205,14 @@ export default {
       index: 0,
       getBarWidth: function (index) {
         return (index + 1) * 22 + 'px'
-      },
+      }
     }
   },
   methods: {
     switchTabItem(index) {
       console.log('on-before-index-change', index)
       this.$vux.loading.show({
-        text: 'loading',
+        text: 'loading'
       })
       setTimeout(() => {
         this.$vux.loading.hide()
@@ -245,8 +245,8 @@ export default {
       } else {
         --this.index
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

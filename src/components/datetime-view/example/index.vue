@@ -24,7 +24,7 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Current value: 选中值
     Set 2017-11-11: "设置为 2017-11-11"
     Set 2016-08-08: "设置为 2016-08-08"
@@ -40,28 +40,28 @@
     Show popup with datetime-view: "Show popup with datetime-view"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { DatetimeView, XButton, Popup, TransferDom } from 'vux-refactor'
+import { DatetimeView, XButton, Popup, TransferDom } from '@/index'
 
 export default {
   components: {
     DatetimeView,
     XButton,
-    Popup,
+    Popup
   },
   directives: {
-    TransferDom,
+    TransferDom
   },
   data() {
     return {
       value1: '2017-10-11',
       value2: '2017-10-24',
       showPopup: false,
-      format: 'YYYY-MM-DD',
+      format: 'YYYY-MM-DD'
     }
   },
   methods: {
@@ -82,8 +82,8 @@ export default {
         this.value1 = '2019-10-23 10'
         this.$refs.datetime.render()
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

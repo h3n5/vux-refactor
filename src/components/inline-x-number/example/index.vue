@@ -17,24 +17,24 @@
 </template>
 
 <i18n>
-  zh-CN:
+  zh_CN:
     Used within cell: "在cell中使用"
   en:
     Used within cell: "Used within cell"
 </i18n>
 <script setup>
-import { useI18n } from 'vue-i18n-bridge'
+import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const $t = t
 </script>
 <script>
-import { Group, Cell, InlineXNumber } from 'vux-refactor'
+import { Group, Cell, InlineXNumber } from '@/index'
 
 export default {
   components: {
     Group,
     Cell,
-    InlineXNumber,
-  },
+    InlineXNumber
+  }
 }
 </script>
