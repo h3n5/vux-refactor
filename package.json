@@ -1,6 +1,6 @@
 {
   "name": "vux-refactor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/h3n5/vux-refactor",
   "main": "dist/vux-refactor.umd.js",
